@@ -1,0 +1,10 @@
+---
+layout: layout.liquid
+pagination:
+  data: events
+  size: 1
+  alias: event
+permalink: "events/{{ event.slug | slug }}"
+---
+
+Event page for {{ event.slug }}
