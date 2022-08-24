@@ -1,10 +1,23 @@
 ---
 layout: layout.liquid
-pagination:
-  data: events
-  size: 1
-  alias: event
-permalink: "events/{{ event.slug | slug }}"
 ---
 
-Event page for {{ event.slug }}
+<h1>{{ title }}</h1>
+
+<p>Date: {{ event-date }}</p>
+
+<p>Start time: {{ start-time }}</p>
+
+<p>End time: {{ end-time }}</p>
+
+<p>
+	Location: 
+	<br>
+	&emsp;{{ location }}
+	{% if location-address != "" %}
+		<br>
+		&emsp;{{ location-address }}
+	{% endif %}
+</p>
+
+{{ content }}

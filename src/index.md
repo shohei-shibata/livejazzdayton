@@ -4,12 +4,26 @@ title: Home
 description: Live Jazz Event Listing for Dayton, OH
 ---
 
-# Live Jazz Dayton
-...where you will find all the great live jazz events happening around Dayton, Ohio!
+## Upcoming Events
 
-## Events
+<section class="events-list">
+	{%- for event in collections.futureEvents -%}
+		{% include event-card, 
+			title: event.data.title,
+			url: event.url,
+			event-date: event.data.event-date
+		%}
+	{%- endfor -%}
+</section>
 
-{% for event in events -%}
-	* {{ event.slug }}
-{% endfor -%}
+## Past Events
 
+<section class="events-list">
+	{%- for event in collections.pastEvents -%}
+		{% include event-card, 
+			title: event.data.title,
+			url: event.url,
+			event-date: event.data.event-date
+		%}
+	{%- endfor -%}
+</section>
