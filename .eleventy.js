@@ -43,6 +43,26 @@ module.exports = config => {
 		const lastUpdate = new Date();
 		return lastUpdate.toDateString();
 	});
+
+	config.addFilter("dateString", function (value) {
+		const dateObj = new Date(value);
+		const y = dateObj.getUTCFullYear();
+		const m = dateObj.getUTCMonth();
+		const d = dateObj.getUTCDate();
+		const day = dateObj.getUTCDay();
+		const months = [
+			"January", "February", "March", 
+			"April", "May", "June", "July",
+			"August", "September", "October",
+			"November", "December"
+		];
+		const DOTW = [
+			"Sunday", "Monday", "Tuesday",
+			"Wednesday", "Thursday", 
+			"Friday", "Saturday"
+		];
+		return `${months[m]} ${d}, ${y} (${DOTW[day]})`;
+	});
 	
   // 11ty defaults
   return {

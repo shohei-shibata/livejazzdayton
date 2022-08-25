@@ -13,10 +13,10 @@ layout: layout.liquid
 <p>
 	Location: 
 	<br>
-	&emsp;{{ location }}
-	{% if location-address != "" %}
+	&emsp;{{ location.name }}
+	{% if location.address != "" %}
 		<br>
-		&emsp;{{ location-address }}
+		&emsp;{{ location.address }}
 	{% endif %}
 </p>
 
