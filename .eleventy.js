@@ -61,7 +61,32 @@ module.exports = config => {
 			"Wednesday", "Thursday", 
 			"Friday", "Saturday"
 		];
-		return `${months[m]} ${d}, ${y} (${DOTW[day]})`;
+		return `${DOTW[day]}, ${months[m]} ${d}, ${y}`;
+	});
+
+	config.addFilter("getShortMonth", function (d) {
+		const dateObj = new Date(d);
+		const m = dateObj.getUTCMonth();
+		const months = [
+			"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+			"JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+		];
+		return months[m];
+	});
+
+	config.addFilter("getDate", function (d) {
+		const dateObj = new Date(d);
+		return dateObj.getUTCDate();
+	});
+
+	config.addFilter("getDay", function (d) {
+		const dateObj = new Date(d);
+		const day = dateObj.getUTCDay();
+		const DOTW = [
+			"SUN", "MON", "TUE", "WED", 
+			"THU", "FRI", "SAT"
+		];
+		return DOTW[day];
 	});
 	
   // 11ty defaults

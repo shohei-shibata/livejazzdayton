@@ -56,22 +56,76 @@ main {
 footer {
 	background-color: #eee;
 	text-align: center;
-	padding: 30px 0;
+	padding: 10px 0;
 }
 
 /*             */
 /* EVENT CARDS */
 /*             */
 
-.events-list {
+/*.events-list {
 	display: flex;
-}
+}*/
 
 .event-card {
+	display: flex;
 	background-color: #eee;
-	min-width: 200px;
-	min-height: 300px;
-	margin-right: 10px;
-	padding: 20px;
 	text-decoration: none;
+	margin-bottom: 25px;
+	margin-left: 10px;
+	transition: transform 0.3s;
+	color: #000;
+}
+
+.event-card:hover {
+	transform: translate(-10px);
+	opacity: 0.95;
+}
+
+.event-card-image {
+	background-color: #555;
+	width: 300px;
+	height: 300px;
+}
+
+.event-card-date {
+	background-color: transparent;
+	width: 90px;
+	height: 90px;
+	margin-top: -10px;
+	margin-left: -10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	text-align: center;
+}
+
+.event-card-date-month {
+	margin: 0;
+	padding: 5px 0;
+	width: 100%;
+	background-color: #dd3436;
+	color: #fff;
+	height: 30px;
+	border-radius: 10px 10px 0 0;
+}
+
+.event-card-date-date {
+	background-color: #fff;
+	padding: 5px 0;
+	width: 100%;
+	font-size: 1.5rem;
+}
+.event-card-date-day {
+	background-color: #fff;
+	padding: 5px 0;
+	width: 100%;
+	border-radius: 0 0 10px 10px;
+	font-size: 0.8rem;
+}
+
+.event-card-text {
+	margin-top: 20px;
+	padding: 20px 50px;
 }

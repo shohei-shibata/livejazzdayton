@@ -1,8 +1,8 @@
 ---
 title: First Thursday Jazz Jam
 event-date: 2022-10-06
-start-time: 19:00
-end-time: 21:00
+start-time: "7:00pm"
+end-time: "9:00pm"
 location: {
   name: "Wholly Grounds",
   address: "825 Wayne Ave, Dayton, OH 45410"

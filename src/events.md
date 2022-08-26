@@ -19,7 +19,7 @@ description: Live Jazz Event Listing for Dayton, OH
 	{%- endfor -%}
 </section>
 
-[>> See All Events](/events)
-
 Do you know of an event that is not listed? [Let me know!](/submit)
+
+[>> Back Home](/)
 
