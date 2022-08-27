@@ -1,0 +1,14 @@
+[
+	{
+		"name": "Events",
+		"url": "/events"
+	},
+	{
+		"name": "Submit",
+		"url": "/submit"
+	},
+	{
+		"name": "Contact",
+		"url": "/contact"
+	}
+]

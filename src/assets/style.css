@@ -1,21 +1,33 @@
+:root {
+	--banner-height: 250px;
+	--nav-height: 50px;
+	--color-white: #fff;
+}
+
 html, body {
 	margin: 0;
 	padding: 0;
+	background-color: #333;
+	color: var(--color-white);
 }
 nav {
+	height: var(--nav-height);
 	margin: 0 10px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	z-index: 1000;
 }
 #nav-container ul {
 	display: flex;
 	padding-left: 0;
-	justify-content: flex-end;
+	justify-content: center;
 }
 #nav-container li {
 	list-style-type: none;
 	margin: 0 10px;
+}
+#nav-container a {
+	color: var(--color-white);
+	text-transform: uppercase;
+	text-decoration: none;
 }
 #header-title a {
 	text-decoration: none;
@@ -34,13 +46,18 @@ nav {
 /*        */
 
 #banner {
-	background-color: #eee;
-	height: 50vh;
+	background-color: #222;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
+#banner-text-container {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
 /*        */
 /*  MAIN  */
 /*        */
@@ -69,10 +86,9 @@ footer {
 
 .event-card {
 	display: flex;
-	background-color: #eee;
+	background-color: #fff;
 	text-decoration: none;
-	margin-bottom: 25px;
-	margin-left: 10px;
+	margin: 35px 10px;
 	transition: transform 0.3s;
 	color: #000;
 }
