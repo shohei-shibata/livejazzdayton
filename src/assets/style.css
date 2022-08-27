@@ -86,6 +86,13 @@ footer {
 	background-color: #555;
 	width: 300px;
 	height: 300px;
+	overflow: hidden;
+}
+
+.event-card-image picture img {
+	object-fit: cover;
+	width: 300px;
+	height: 300px;
 }
 
 .event-card-date {
@@ -94,11 +101,13 @@ footer {
 	height: 90px;
 	margin-top: -10px;
 	margin-left: -10px;
+	margin-right: -80px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
 	text-align: center;
+	z-index: 100;
 }
 
 .event-card-date-month {
@@ -125,7 +134,13 @@ footer {
 	font-size: 0.8rem;
 }
 
+.event-card-grid-container {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+}
+
 .event-card-text {
 	margin-top: 20px;
-	padding: 20px 50px;
+	padding: 20px 30px;
+	max-width: 450px;
 }

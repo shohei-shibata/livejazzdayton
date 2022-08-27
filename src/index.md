@@ -14,7 +14,8 @@ description: Live Jazz Event Listing for Dayton, OH
 			event-date: event.data.event-date,
 			start-time: event.data.start-time,
 			end-time: event.data.end-time,
-			location: event.data.location
+			location: event.data.location,
+			image: event.data.image
 		%}
 	{%- endfor -%}
 </section>

@@ -7,6 +7,7 @@ location: {
   name: "Wholly Grounds",
   address: "825 Wayne Ave, Dayton, OH 45410"
 }
+image: 1st-thursday.jpg
 ---
 
 First Thursday Jazz Jam!

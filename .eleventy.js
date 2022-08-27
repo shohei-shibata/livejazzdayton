@@ -1,4 +1,6 @@
 // 11ty configuration
+const Image = require("@11ty/eleventy-img")
+
 const
   dev = global.dev  = (process.env.ELEVENTY_ENV === 'development'),
   now = new Date();
@@ -10,6 +12,8 @@ module.exports = config => {
   });
 
   config.addPassthroughCopy("src/assets");
+
+	// COLLECTIONS
 
 	config.addCollection("futureEvents", function(collectionApi) {
 		return collectionApi.getFilteredByGlob("src/events/*.md")
@@ -38,6 +42,8 @@ module.exports = config => {
 				return dateB - dateA;
 			});
 	});
+
+	// FILTERS
 
 	config.addFilter("lastUpdated", function () {
 		const lastUpdate = new Date();
@@ -87,6 +93,39 @@ module.exports = config => {
 			"THU", "FRI", "SAT"
 		];
 		return DOTW[day];
+	});
+
+	// SHORTCODES
+
+	// Images - from https://www.brycewray.com/posts/2021/04/using-eleventys-official-image-plugin/
+	config.addShortcode("image", function (
+		src, alt, sizes="(min-width: 1024px) 100vw, 50vw"
+	) {
+		console.log(`Generating image(s) from:  ${src}`)
+		let options = {
+			widths: [600, 900, 1500],
+			formats: ["webp", "jpeg"],
+			urlPath: "/images/",
+			outputDir: "./build/images/",
+			/*filenameFormat: function (id, src, width, format, options) {
+				//const extension = path.extname(src)
+				const name = path.basename(src, extension)
+				return `${name}-${width}w.${format}`
+			}*/
+		}
+
+		// generate images
+		Image(src, options)
+
+		let imageAttributes = {
+			alt,
+			sizes,
+			loading: "lazy",
+			decoding: "async",
+		}
+		// get metadata
+		metadata = Image.statsSync(src, options)
+		return Image.generateHTML(metadata, imageAttributes)
 	});
 	
   // 11ty defaults
