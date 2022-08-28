@@ -7,7 +7,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	background-color: #333;
+	background-color: #262626;
 	color: var(--color-white);
 }
 nav {
@@ -64,6 +64,7 @@ nav {
 main {
 	margin: 50px auto;
 	max-width: 800px;
+	min-height: 70vh;
 }
 
 /*        */
@@ -71,7 +72,7 @@ main {
 /*        */
 
 footer {
-	background-color: #eee;
+	background-color: #222;
 	text-align: center;
 	padding: 10px 0;
 }
@@ -91,6 +92,7 @@ footer {
 	margin: 35px 10px;
 	transition: transform 0.3s;
 	color: #000;
+	border-radius: 10px;
 }
 
 .event-card:hover {
@@ -103,6 +105,7 @@ footer {
 	width: 300px;
 	height: 300px;
 	overflow: hidden;
+	border-radius: 10px 0 0 10px; 
 }
 
 .event-card-image picture img {
@@ -124,6 +127,8 @@ footer {
 	justify-content: space-evenly;
 	text-align: center;
 	z-index: 100;
+	border-radius: 10px;
+	box-shadow: 1px 1px 3px #444;
 }
 
 .event-card-date-month {
