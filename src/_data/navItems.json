@@ -4,11 +4,11 @@
 		"url": "/events"
 	},
 	{
-		"name": "Submit",
-		"url": "/submit"
-	},
-	{
 		"name": "Contact",
 		"url": "/contact"
+	},
+	{
+		"name": "Add An Event",
+		"url": "/submit"
 	}
 ]

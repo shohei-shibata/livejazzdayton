@@ -4,7 +4,7 @@ title: Home
 description: Live Jazz Event Listing for Dayton, OH
 ---
 
-## Upcoming Events
+# Upcoming Events
 
 Last Update: {{ | lastUpdated }}
 
@@ -22,7 +22,12 @@ Last Update: {{ | lastUpdated }}
 	{%- endfor -%}
 </section>
 
-[>> See All Events](/events)
+<div class="align-right">
+	<a href="/events">>> See More Events</a>
+</div>
 
-Do you know of an event that is not listed? [Let me know!](/submit)
+<br>
+
+Do you know of an event that is not listed?
+<a href="/submit" class="btn btn-inline">>> Submit an Event</a>
 

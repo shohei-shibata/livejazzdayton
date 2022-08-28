@@ -2,6 +2,9 @@
 	--banner-height: 250px;
 	--nav-height: 50px;
 	--color-white: #fff;
+	--color-red: #dd3436;
+	--color-accent: #CB2D29;
+	--color-btn: #111;
 }
 
 html, body {
@@ -9,6 +12,29 @@ html, body {
 	padding: 0;
 	background-color: #262626;
 	color: var(--color-white);
+}
+.btn {
+	text-decoration: none;
+	color: var(--color-white);
+	background-color: var(--color-red);
+	padding: 10px 15px;
+	border-radius: 5px;
+	font-weight: bold;
+	width: 150px;
+	text-align: center;
+}
+.btn-inline {
+	margin-left: 20px;
+}
+.align-right {
+	display: flex;
+	justify-content: flex-end;
+}
+.float-right {
+	float: right;
+}
+.clear-both {
+	clear: both;
 }
 nav {
 	height: var(--nav-height);
@@ -135,7 +161,7 @@ footer {
 	margin: 0;
 	padding: 5px 0;
 	width: 100%;
-	background-color: #dd3436;
+	background-color: var(--color-red);
 	color: #fff;
 	height: 30px;
 	border-radius: 10px 10px 0 0;
@@ -165,3 +191,10 @@ footer {
 	padding: 20px 30px;
 	max-width: 450px;
 }
+
+/* FORM */
+
+label {
+	display: block;
+}
+
