@@ -23,11 +23,11 @@ Last Update: {{ | lastUpdated }}
 </section>
 
 <div class="align-right">
-	<a href="/events">>> See More Events</a>
+	<a href="/events">>> Show More Events</a>
 </div>
 
 <br>
 
 Do you know of an event that is not listed?
-<a href="/submit" class="btn btn-inline">>> Submit an Event</a>
+<a href="/submit" class="btn btn-inline">Submit an Event</a>
 

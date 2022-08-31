@@ -11,8 +11,14 @@ h1 {
 a {
 	color: var(--color-white);
 }
-a:hover {
+a:hover,
+.btn:hover {
 	opacity: 0.9;
+	cursor: pointer;
+}
+.btn {
+	text-transform: uppercase;
+	font-size: 1.2rem;
 }
 #banner-title {
 	font-size: 3rem;
