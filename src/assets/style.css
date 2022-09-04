@@ -1,28 +1,33 @@
 :root {
 	--banner-height: 250px;
 	--nav-height: 50px;
-	--color-white: #fff;
-	--color-red: #dd3436;
-	--color-accent: #CB2D29;
-	--color-btn: #111;
+	--color-font-light: #fff;
+	--color-font-dark: #111;
+	--color-calendar-red: #dd3436;
+	--color-background: #CBBEB9;
+	--color-btn: #EE5108;
+	--color-banner-1: #311A19;
+	--color-banner-2: #4E251F;
+	--color-background-footer: #4E251F;
 }
 
 html, body {
 	margin: 0;
 	padding: 0;
-	background-color: #262626;
-	color: var(--color-white);
+	background-color: var(--color-background);
+	color: var(--color-font-dark);
 }
 .btn {
 	text-decoration: none;
-	color: var(--color-white);
-	background-color: var(--color-red);
+	color: var(--color-font-light);
+	background-color: var(--color-btn);
 	padding: 10px 15px;
 	border-radius: 5px;
 	font-weight: bold;
 	width: 150px;
 	text-align: center;
-	box-shadow: inset .2px .2px 0 #777, 0 2px 3px rgb(0 0 0 / 40%)
+	box-shadow: 0 2px 3px rgb(0 0 0 / 40%);
+	border-width: 0;
 }
 .btn-inline {
 	margin-left: 20px;
@@ -52,7 +57,7 @@ nav {
 	margin: 0 10px;
 }
 #nav-container a {
-	color: var(--color-white);
+	color: var(--color-font-light);
 	text-transform: uppercase;
 	text-decoration: none;
 }
@@ -78,6 +83,12 @@ nav {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	color: var(--color-font-light);
+	background-image:
+    radial-gradient(
+      var(--color-banner-1),
+      var(--color-banner-2)
+    );
 }
 #banner-text-container {
 	text-align: center;
@@ -99,7 +110,8 @@ main {
 /*        */
 
 footer {
-	background-color: #222;
+	background-color: var(--color-background-footer);
+	color: var(--color-font-light);
 	text-align: center;
 	padding: 10px 0;
 }
@@ -162,7 +174,7 @@ footer {
 	margin: 0;
 	padding: 5px 0;
 	width: 100%;
-	background-color: var(--color-red);
+	background-color: var(--color-calendar-red);
 	color: #fff;
 	height: 30px;
 	border-radius: 10px 10px 0 0;
@@ -195,6 +207,22 @@ footer {
 
 /* FORM */
 
+form {
+	background-color: #fff;
+	color: #111;
+	padding: 10px 20px;
+	max-width: 600px;
+	margin: 50px auto;
+}
+form h3 {
+	text-align: center;
+}
+form h3::before {
+	content: "-- ";
+}
+form h3::after {
+	content: " --";
+}
 form .form-field-container {
 	display: grid;
 	grid-template-columns: 200px 1fr;
@@ -205,13 +233,27 @@ label {
 }
 input, textarea {
 	display: block;
+	box-sizing: border-box;
 	width: 100%;
 	padding: 5px;
-	margin: 5px;
 }
 input.btn {
 	margin: 20px auto;
 }
 input[type="file"] {
 	padding: 0;
+}
+
+/* EVENTS ARCHIVE */
+
+#pagination {
+  display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin: 20px auto 50px auto;
+}
+#pagination-current-page {
+	text-align: center;
+}
+#pagination-link-next {
+	text-align: right;
 }

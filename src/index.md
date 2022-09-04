@@ -23,7 +23,7 @@ Last Update: {{ | lastUpdated }}
 </section>
 
 <div class="align-right">
-	<a href="/events">>> Show More Events</a>
+	<a href="/events">>> View All Events</a>
 </div>
 
 <br>

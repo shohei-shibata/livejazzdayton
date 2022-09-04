@@ -8,6 +8,16 @@ description: Live Jazz Event Listing for Dayton, OH
 Use this form to request an event to be listed on this website. The event will be added upon administrator review.
 
 <form name="event-submit-form" method="POST" action="/success" data-netlify="true">
+	<h3>About You</h3>
+	<div class="form-field-container">
+		<label for="name">Your name: </label>
+		<input name="name" type="text" required>
+	</div>
+	<div class="form-field-container">
+		<label for="email">Email: </label>
+		<input name="email" type="email" required>
+	</div>
+	<h3>About the Event</h3>
 	<div class="form-field-container">
 		<label for="event-name">Event Name: </label>
 		<input name="event-name" type="text" required>

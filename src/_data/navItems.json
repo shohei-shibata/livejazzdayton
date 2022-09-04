@@ -1,5 +1,9 @@
 [
 	{
+		"name": "Home",
+		"url": "/"
+	},
+	{
 		"name": "Events",
 		"url": "/events"
 	},
