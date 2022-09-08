@@ -4,11 +4,13 @@
 	--color-font-light: #fff;
 	--color-font-dark: #111;
 	--color-calendar-red: #dd3436;
-	--color-background: #CBBEB9;
-	--color-btn: #EE5108;
-	--color-banner-1: #311A19;
-	--color-banner-2: #4E251F;
-	--color-background-footer: #4E251F;
+	--color-background: #ddd;
+	--color-background-card: #fff;
+	--color-btn: #dd3436;
+	--color-banner-1: #111;
+	--color-banner-2: #333;
+	--color-background-footer: #111;
+	--image-width-normal: 800px;
 }
 
 html, body {
@@ -126,7 +128,7 @@ footer {
 
 .event-card {
 	display: flex;
-	background-color: #fff;
+	background-color: var(--color-background-card);
 	text-decoration: none;
 	margin: 35px 10px;
 	transition: transform 0.3s;
@@ -250,10 +252,23 @@ input[type="file"] {
   display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	margin: 20px auto 50px auto;
-}
-#pagination-current-page {
 	text-align: center;
 }
 #pagination-link-next {
 	text-align: right;
+}
+
+/* EVENTS SINGLE PAGE */
+#event-details {
+	background-color: var(--color-background-card);
+	padding: 20px;
+	margin: 50px 0;
+}
+#event-featured-image {
+	text-align: center;
+}
+#event-featured-image img {
+	width: auto;
+	height: auto;
+	max-height: 50vh;
 }

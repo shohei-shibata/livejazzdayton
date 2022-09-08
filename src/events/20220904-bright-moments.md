@@ -1,8 +1,8 @@
 ---
 title: Bright Moments Mega Jazz Jam Blow Out
 event-date: 2022-09-04
-start-time: "7:00pm"
-end-time: "9:30pm"
+start-time: "19:00"
+end-time: "21:30"
 location: {
   name: "Hidden Gem Music Club",
   address: "507 Miamisburg Centerville Rd, Centerville, OH 45459"

@@ -11,13 +11,12 @@ Last Update: {{ | lastUpdated }}
 <section class="events-list">
 	{%- for event in collections.futureEvents -%}
 		{% include event-card, 
-			title: event.data.title,
+			title: event.data.event.name,
 			url: event.url,
-			event-date: event.data.event-date,
-			start-time: event.data.start-time,
-			end-time: event.data.end-time,
-			location: event.data.location,
-			image: event.data.image
+			start: event.data.event.start,
+			end: event.data.event.end,
+			location: event.data.event.location.name,
+			imagePath: event.data.event.imagePath
 		%}
 	{%- endfor -%}
 </section>

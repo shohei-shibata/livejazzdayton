@@ -2,24 +2,35 @@
 layout: layout.liquid
 ---
 
-<h1>{{ title }}</h1>
-
-<p>Date: {{ event-date }}</p>
-
-<p>Start time: {{ start-time }}</p>
-
-<p>End time: {{ end-time }}</p>
-
-<p>
-	Location: 
-	<br>
-	&emsp;{{ location.name }}
-	{% if location.address != "" %}
-		<br>
-		&emsp;{{ location.address }}
+<section id="event-details">
+	<div id="event-featured-image">
+	{% if image %}
+		{% image event.imagePath %}
 	{% endif %}
-</p>
+	</div>
 
-{{ content }}
+	<h1>{{ event.name }}</h1>
+
+	<p>When: {{ event.start | dateString }} from {{ event.start | timeString }} to {{ event.end | timeString }}</p>
+
+	<p>
+		Where: 
+		<br>
+		&emsp;{{ event.location.name }}
+		{% if event.location.address != "" %}
+			<br>
+			&emsp;
+			<a href={{ event.location.address | googleMapsSearchUrl }}>
+				{{ event.location.address }}
+			</a>
+		{% endif %}
+	</p>
+
+	<p>Calendar Links: {% calendarLinks event %}
+
+
+	{{ content }}
+
+</section>
 
 <a href="/">>> Back Home</a>

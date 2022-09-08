@@ -1,5 +1,6 @@
 // 11ty configuration
-const Image = require("@11ty/eleventy-img")
+const Image = require("@11ty/eleventy-img");
+const { google, ics } = require("calendar-link");
 
 const
   dev = global.dev  = (process.env.ELEVENTY_ENV === 'development'),
@@ -52,10 +53,10 @@ module.exports = config => {
 
 	config.addFilter("dateString", function (value) {
 		const dateObj = new Date(value);
-		const y = dateObj.getUTCFullYear();
-		const m = dateObj.getUTCMonth();
-		const d = dateObj.getUTCDate();
-		const day = dateObj.getUTCDay();
+		const y = dateObj.getFullYear();
+		const m = dateObj.getMonth();
+		const d = dateObj.getDate();
+		const day = dateObj.getDay();
 		const months = [
 			"January", "February", "March", 
 			"April", "May", "June", "July",
@@ -70,9 +71,27 @@ module.exports = config => {
 		return `${DOTW[day]}, ${months[m]} ${d}, ${y}`;
 	});
 
+	config.addFilter("timeString", function (value) {
+		const dateObj = new Date(value);
+		const hoursBase24 = dateObj.getHours();
+		let minutes = dateObj.getMinutes();
+		const amPm = hoursBase24 < 12 ? "AM" : "PM";
+		let hoursBase12 = hoursBase24 % 12;
+		
+		if (hoursBase12 === 0) {
+			hoursBase12 = 12;
+		};
+
+		if (minutes === 0) {
+			minutes = "00";
+		};
+
+		return `${hoursBase12}:${minutes}${amPm}`;
+	});
+
 	config.addFilter("getShortMonth", function (d) {
 		const dateObj = new Date(d);
-		const m = dateObj.getUTCMonth();
+		const m = dateObj.getMonth();
 		const months = [
 			"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
 			"JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
@@ -82,12 +101,12 @@ module.exports = config => {
 
 	config.addFilter("getDate", function (d) {
 		const dateObj = new Date(d);
-		return dateObj.getUTCDate();
+		return dateObj.getDate();
 	});
 
 	config.addFilter("getDay", function (d) {
 		const dateObj = new Date(d);
-		const day = dateObj.getUTCDay();
+		const day = dateObj.getDay();
 		const DOTW = [
 			"SUN", "MON", "TUE", "WED", 
 			"THU", "FRI", "SAT"
@@ -95,13 +114,21 @@ module.exports = config => {
 		return DOTW[day];
 	});
 
+	config.addFilter("googleMapsSearchUrl", function (d) {
+		if (!d) {
+			return d;
+		} else {
+			return `https://maps.google.com/maps?q=${d.replaceAll(" ", "+")}`;
+		}
+	});
+
 	// SHORTCODES
 
 	// Images - from https://www.brycewray.com/posts/2021/04/using-eleventys-official-image-plugin/
 	config.addShortcode("image", function (
-		src, alt, sizes="(min-width: 1024px) 100vw, 50vw"
+		src="./src/images/default-event-card-image.jpg", alt="No alt text provided", sizes="(min-width: 1024px) 100vw, 50vw"
 	) {
-		console.log(`Generating image(s) from:  ${src}`)
+		console.log(`Generating image(s) from:  ${src}`);
 		let options = {
 			widths: [600, 900, 1500],
 			formats: ["webp", "jpeg"],
@@ -126,6 +153,30 @@ module.exports = config => {
 		// get metadata
 		metadata = Image.statsSync(src, options)
 		return Image.generateHTML(metadata, imageAttributes)
+	});
+
+	config.addShortcode("calendarLinks", function({
+		name, start, end, location
+	}) {
+		const locationString = location ? 
+			`${location.name}, ${location.address}`
+			:
+			"";
+			
+		const event = {
+			title: name,
+			start: start,
+			end: end,
+			location: locationString
+		};
+
+		return (
+			`
+				<a href=${google(event)}>Google Calendar</a>
+				<a href=${ics(event)}>iCalendar</a>
+			`
+		);
+		
 	});
 	
   // 11ty defaults
