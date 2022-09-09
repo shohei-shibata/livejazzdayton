@@ -4,8 +4,14 @@ module.exports = function() {
 		tags: "events",
 		eleventyComputed: {
 			event: data => {
-				const startTime = setTime(new Date(data["event-date"]), data["start-time"]);
-				const endTime = setTime(new Date(data["event-date"]), data["end-time"]);
+				const eventDate = new Date(data["event-date"]);
+				const year = eventDate.getFullYear();
+				const month = eventDate.getMonth();
+				const date = eventDate.getDate() + 1;
+				const start = getHoursMinutes(data["start-time"]);
+				const end = getHoursMinutes(data["end-time"]);
+				const startTime = new Date(year, month, date, start.hours, start.minutes);
+				const endTime = new Date(year, month, date, end.hours, end.minutes);
 				const imagePath = data.image ? 
 					`./src/images/${data.image}`
 					:
@@ -22,20 +28,18 @@ module.exports = function() {
 	};
 };
 
-const setTime = (date, timeString) => {
+const getHoursMinutes = (timeString) => {
 	if (!timeString) {
-		console.error(`Events data file: No timeString provided for date ${date}`);
+		console.error(`getHoursMinutes: No timeString provided`);
 		return;
 	}
 	const timeArray = timeString.split(":");
 	const hours = timeArray[0];
 	const minutes = timeArray[1];
-	return new Date(
-		date.getUTCFullYear(), 
-		date.getUTCMonth(), 
-		date.getUTCDate(),
-		hours,
-		minutes
-	);
+	
+	return {
+		hours: hours,
+		minutes: minutes
+	};
 }
 

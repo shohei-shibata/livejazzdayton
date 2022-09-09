@@ -1,6 +1,6 @@
 ---
 title: "Noah Ramirez Trio"
-event-date: "July 29, 2022"
+event-date: 2022-07-29
 start-time: "19:00"
 end-time: "21:00"
 ---

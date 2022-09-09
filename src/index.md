@@ -10,7 +10,7 @@ Last Update: {{ | lastUpdated }}
 
 <section class="events-list">
 	{%- for event in collections.futureEvents -%}
-		{% include event-card, 
+		{% include event-card,
 			title: event.data.event.name,
 			url: event.url,
 			start: event.data.event.start,
