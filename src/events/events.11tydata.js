@@ -10,8 +10,8 @@ module.exports = function() {
 				const date = eventDate.getUTCDate();
 				const start = getHoursMinutes(data["start-time"]);
 				const end = getHoursMinutes(data["end-time"]);
-				const startTime = new Date(year, month, date, start.hours, start.minutes);
-				const endTime = new Date(year, month, date, end.hours, end.minutes);
+				const startTime = addTimezoneOffset(new Date(Date.UTC(year, month, date, start.hours, start.minutes)));
+				const endTime = addTimezoneOffset(new Date(Date.UTC(year, month, date, end.hours, end.minutes)));
 				const imagePath = data.image ? 
 					`./src/images/${data.image}`
 					:
@@ -44,3 +44,8 @@ const getHoursMinutes = (timeString) => {
 	};
 }
 
+const addTimezoneOffset = (date) => {
+	const timezoneOffset = date.getTimezoneOffset();
+	date.setTime(date.getTime() + (timezoneOffset*60*1000));
+	return date;
+}
