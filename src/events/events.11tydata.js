@@ -10,17 +10,18 @@ module.exports = function() {
 				const date = eventDate.getUTCDate();
 				const start = getHoursMinutes(data["start-time"]);
 				const end = getHoursMinutes(data["end-time"]);
-				const startTime = addTimezoneOffset(new Date(Date.UTC(year, month, date, start.hours, start.minutes)));
+				const startTimeUTCValue = Date.UTC(year, month, date, start.hours, start.minutes);
+				const startTime = addTimezoneOffset(new Date(startTimeUTCValue));
 				const endTime = addTimezoneOffset(new Date(Date.UTC(year, month, date, end.hours, end.minutes)));
 				const imagePath = data.image ? 
 					`./src/images/${data.image}`
 					:
 					"./src/images/default-event-card-image.jpg";
-				console.log("11tydata.js: ", startTime);
+				console.log("11tydata.js: ", month+1, date, start.hours, start.minutes, startTimeUTCValue, startTime.toUTCString());
 				return {
 					name: data.title,
-					start: startTime,
-					end: endTime,
+					start: startTime.toUTCString(),
+					end: endTime.toUTCString(),
 					imagePath: imagePath,
 					location: data.location
 				};
@@ -46,6 +47,7 @@ const getHoursMinutes = (timeString) => {
 
 const addTimezoneOffset = (date) => {
 	const timezoneOffset = date.getTimezoneOffset();
+	console.log("timezoneOffset: ", timezoneOffset);
 	date.setTime(date.getTime() + (timezoneOffset*60*1000));
 	return date;
 }
