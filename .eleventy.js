@@ -7,6 +7,18 @@ const
   now = new Date();
 
 module.exports = config => {
+	const timezoneString = "America/New_York";
+	const changeTimezone = (date, timezoneString) => {
+		if (!date) { return null }
+		const newTimezone = new Date(new Date().toLocaleString("en-US", { timeZone: timezoneString })).getTime();
+		const offset = newTimezone - new Date().getTime();
+		return roundDate(new Date(date.getTime() - offset), 5);
+	};
+	const roundDate = (date = new Date(), minutes) => {
+		const ms = minutes * 60 * 1000;
+		return new Date(Math.round(date.getTime() / ms) * ms);
+	}
+
 	config.setLiquidOptions({
     dynamicPartials: false,
     strictFilters: false, // renamed from `strict_filters` in Eleventy 1.0
@@ -52,8 +64,10 @@ module.exports = config => {
 	});
 
 	config.addFilter("dateString", function (value) {
-		const dateObj = new Date(value);
-		console.log("dateString input: ", dateObj);
+		if (!value) { return "No Date" }
+		console.log("dateString input: ", value);
+		const dateObj = changeTimezone(value, timezoneString);
+		console.log("dateString timezone converted: ", dateObj);
 		const y = dateObj.getFullYear();
 		const m = dateObj.getMonth();
 		const d = dateObj.getDate();
@@ -73,7 +87,8 @@ module.exports = config => {
 	});
 
 	config.addFilter("timeString", function (value) {
-		const dateObj = new Date(value);
+		if (!value) { return "Invalid Time" };
+		const dateObj = changeTimezone(new Date(value), timezoneString);
 		const hoursBase24 = dateObj.getHours();
 		let minutes = dateObj.getMinutes();
 		const amPm = hoursBase24 < 12 ? "AM" : "PM";
@@ -91,7 +106,8 @@ module.exports = config => {
 	});
 
 	config.addFilter("getShortMonth", function (d) {
-		const dateObj = new Date(d);
+		if (!d) { return "Invalid Month" };
+		const dateObj = changeTimezone(new Date(d), timezoneString);
 		const m = dateObj.getMonth();
 		const months = [
 			"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
@@ -101,12 +117,14 @@ module.exports = config => {
 	});
 
 	config.addFilter("getDate", function (d) {
-		const dateObj = new Date(d);
+		if (!d) { return "Invalid Date" };
+		const dateObj = changeTimezone(new Date(d), timezoneString);
 		return dateObj.getDate();
 	});
 
 	config.addFilter("getDay", function (d) {
-		const dateObj = new Date(d);
+		if (!d) { return "Invalid Date" };
+		const dateObj = changeTimezone(new Date(d), timezoneString);
 		const day = dateObj.getDay();
 		const DOTW = [
 			"SUN", "MON", "TUE", "WED", 

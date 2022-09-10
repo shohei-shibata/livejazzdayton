@@ -17,7 +17,7 @@ module.exports = function() {
 					`./src/images/${data.image}`
 					:
 					"./src/images/default-event-card-image.jpg";
-				console.log("11tydata.js: ", month+1, date, start.hours, start.minutes, startTime, changeTimezone(startTime, timezoneString));
+				console.log("11tydata.js: ", changeTimezone(startTime, timezoneString));
 				return {
 					name: data.title,
 					start: changeTimezone(startTime, timezoneString),
@@ -48,7 +48,6 @@ const getHoursMinutes = (timeString) => {
 const changeTimezone = (date, timezoneString) => {
 	const newTimezone = new Date(new Date().toLocaleString("en-US", { timeZone: timezoneString })).getTime();
 	const offset = newTimezone - new Date().getTime();
-	console.log("Timezone Offset: ", new Date().getTime() - newTimezone);
 	return roundDate(new Date(date.getTime() - offset), 5);
 }
 
