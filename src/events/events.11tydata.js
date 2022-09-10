@@ -16,6 +16,7 @@ module.exports = function() {
 					`./src/images/${data.image}`
 					:
 					"./src/images/default-event-card-image.jpg";
+				console.log("11tydata.js: ", startTime);
 				return {
 					name: data.title,
 					start: startTime,

@@ -53,6 +53,7 @@ module.exports = config => {
 
 	config.addFilter("dateString", function (value) {
 		const dateObj = new Date(value);
+		console.log("dateString input: ", dateObj);
 		const y = dateObj.getFullYear();
 		const m = dateObj.getMonth();
 		const d = dateObj.getDate();
@@ -165,12 +166,12 @@ module.exports = config => {
 			
 		const event = {
 			title: name,
-			start: start.toUTCString(),
-			end: end.toUTCString(),
+			start: start,
+			end: end,
 			location: locationString
 		};
 
-		console.log("CALENDAR: ", start, start.toUTCString(), name, event);
+		console.log("calendarLinks: ", event);
 
 		return (
 			`
