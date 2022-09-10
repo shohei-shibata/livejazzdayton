@@ -46,5 +46,13 @@ const getHoursMinutes = (timeString) => {
 }
 
 const changeTimezone = (date, timezoneString) => {
-	return new Date(new Date(date).toLocaleString("en-US", { timeZone: timezoneString }));
+	const newTimezone = new Date(new Date().toLocaleString("en-US", { timeZone: timezoneString })).getTime();
+	const offset = newTimezone - new Date().getTime();
+	console.log("Timezone Offset: ", new Date().getTime() - newTimezone);
+	return roundDate(new Date(date.getTime() + offset), 5);
+}
+
+const roundDate = (date = new Date(), minutes) => {
+	const ms = minutes * 60 * 1000;
+	return new Date(Math.round(date.getTime() / ms) * ms);
 }
