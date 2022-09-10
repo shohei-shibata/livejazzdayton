@@ -10,18 +10,18 @@ module.exports = function() {
 				const date = eventDate.getUTCDate();
 				const start = getHoursMinutes(data["start-time"]);
 				const end = getHoursMinutes(data["end-time"]);
-				const startTimeUTCValue = Date.UTC(year, month, date, start.hours, start.minutes);
-				const startTime = addTimezoneOffset(new Date(startTimeUTCValue));
-				const endTime = addTimezoneOffset(new Date(Date.UTC(year, month, date, end.hours, end.minutes)));
+				const startTime = new Date(year, month, date, start.hours, end.minutes);
+				const endTime = new Date(year, month, date, end.hours, end.minutes);
+				const timezoneString = "America/New_York";
 				const imagePath = data.image ? 
 					`./src/images/${data.image}`
 					:
 					"./src/images/default-event-card-image.jpg";
-				console.log("11tydata.js: ", month+1, date, start.hours, start.minutes, startTimeUTCValue, startTime.toUTCString());
+				console.log("11tydata.js: ", month+1, date, start.hours, start.minutes, startTime, changeTimezone(startTime, timezoneString));
 				return {
 					name: data.title,
-					start: startTime.toUTCString(),
-					end: endTime.toUTCString(),
+					start: changeTimezone(startTime, timezoneString),
+					end: changeTimezone(endTime, timezoneString),
 					imagePath: imagePath,
 					location: data.location
 				};
@@ -45,9 +45,6 @@ const getHoursMinutes = (timeString) => {
 	};
 }
 
-const addTimezoneOffset = (date) => {
-	const timezoneOffset = date.getTimezoneOffset();
-	console.log("timezoneOffset: ", timezoneOffset);
-	date.setTime(date.getTime() + (timezoneOffset*60*1000));
-	return date;
+const changeTimezone = (date, timezoneString) => {
+	return new Date(new Date(date).toLocaleString("en-US", { timeZone: timezoneString }));
 }
