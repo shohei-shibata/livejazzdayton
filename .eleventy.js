@@ -12,7 +12,7 @@ module.exports = config => {
 		if (!date) { return null }
 		const newTimezone = new Date(new Date().toLocaleString("en-US", { timeZone: timezoneString })).getTime();
 		const offset = newTimezone - new Date().getTime();
-		return roundDate(new Date(date.getTime() - offset), 5);
+		return roundDate(new Date(date.getTime() + offset), 5);
 	};
 	const roundDate = (date = new Date(), minutes) => {
 		const ms = minutes * 60 * 1000;
