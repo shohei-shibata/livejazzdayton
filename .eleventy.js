@@ -165,10 +165,12 @@ module.exports = config => {
 			
 		const event = {
 			title: name,
-			start: start,
-			end: end,
+			start: start.toUTCString(),
+			end: end.toUTCString(),
 			location: locationString
 		};
+
+		console.log("CALENDAR: ", start, start.toUTCString(), name, event);
 
 		return (
 			`

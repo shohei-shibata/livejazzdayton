@@ -5,9 +5,9 @@ module.exports = function() {
 		eleventyComputed: {
 			event: data => {
 				const eventDate = new Date(data["event-date"]);
-				const year = eventDate.getFullYear();
-				const month = eventDate.getMonth();
-				const date = eventDate.getDate();
+				const year = eventDate.getUTCFullYear();
+				const month = eventDate.getUTCMonth();
+				const date = eventDate.getUTCDate();
 				const start = getHoursMinutes(data["start-time"]);
 				const end = getHoursMinutes(data["end-time"]);
 				const startTime = new Date(year, month, date, start.hours, start.minutes);
