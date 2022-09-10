@@ -49,7 +49,7 @@ const changeTimezone = (date, timezoneString) => {
 	const newTimezone = new Date(new Date().toLocaleString("en-US", { timeZone: timezoneString })).getTime();
 	const offset = newTimezone - new Date().getTime();
 	console.log("Timezone Offset: ", new Date().getTime() - newTimezone);
-	return roundDate(new Date(date.getTime() + offset), 5);
+	return roundDate(new Date(date.getTime() - offset), 5);
 }
 
 const roundDate = (date = new Date(), minutes) => {
