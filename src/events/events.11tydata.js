@@ -3,6 +3,9 @@ module.exports = function() {
 		layout: "event.liquid",
 		tags: "events",
 		eleventyComputed: {
+			googleApiKey: data => {
+				return process.env.GOOGLE_MAPS_API_KEY
+			},
 			event: data => {
 				const eventDate = new Date(data["event-date"]);
 				const year = eventDate.getUTCFullYear();
