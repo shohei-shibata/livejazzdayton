@@ -11,24 +11,25 @@ layout: layout.liquid
 
 	<h1>{{ event.name }}</h1>
 
-	<p>When: {{ event.start | dateString }} from {{ event.start | timeString }} to {{ event.end | timeString }}</p>
+	<h2>{{ event.start | dateString }} from {{ event.start | timeString }} to {{ event.end | timeString }}</h2>
 
 	<p>
-		Where: 
-		<br>
-		&emsp;{{ event.location.name }}
-		{% if event.location.address != "" %}
-			<br>
-			&emsp;
-			<a href={{ event.location.address | googleMapsSearchUrl }}>
-				{{ event.location.address }}
-			</a>
+	  At {{ event.location.name }}
+		{% if event.location.address %}
+		 (<a href= {{ event.location.queryString | googleMapsSearchUrl }}>{{ event.location.address }}</a>)
 		{% endif %}
 	</p>
 
-	<p>Calendar Links: {% calendarLinks event %}
+	<p>{% calendarLinks event %}
 
 	{{ content }}
+
+	<div class="google-maps-container">
+		<div class="google-maps-canvas">
+			<iframe frameborder="0" src="https://www.google.com/maps/embed/v1/search?q={{ event.location.queryString }}&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8">
+			</iframe>
+		</div>
+	</div>
 
 </section>
 

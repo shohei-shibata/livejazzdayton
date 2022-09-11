@@ -17,13 +17,19 @@ module.exports = function() {
 					`./src/images/${data.image}`
 					:
 					"./src/images/default-event-card-image.jpg";
-				console.log("11tydata.js: ", changeTimezone(startTime, timezoneString));
+				const googleMapsQueryString = data.location.address ?
+					`${data.location.name} ${data.location.address}`
+					:
+					`${data.location.name} near Dayton Ohio`
 				return {
 					name: data.title,
 					start: changeTimezone(startTime, timezoneString),
 					end: changeTimezone(endTime, timezoneString),
 					imagePath: imagePath,
-					location: data.location
+					location: {
+						...data.location,
+						queryString: googleMapsQueryString
+					}
 				};
 			}
 		}

@@ -7,6 +7,10 @@ body {
 h1 {
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
+	font-size: 1.8em;
+}
+h2 {
+	font-size: 1.4em;
 }
 a {
 	color: var(--color-white);
@@ -26,4 +30,5 @@ a:hover,
 #banner-subtitle {
 	font-size: 1.2rem;
 }
+
 

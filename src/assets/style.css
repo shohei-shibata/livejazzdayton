@@ -34,6 +34,13 @@ html, body {
 .btn-inline {
 	margin-left: 20px;
 }
+.btn-secondary {
+	background-color: #eee;
+	text-decoration: none;
+	padding: 5px;
+	border-radius: 3px;
+	margin-right: 10px;
+}
 .align-right {
 	display: flex;
 	justify-content: flex-end;
@@ -271,4 +278,23 @@ input[type="file"] {
 	width: auto;
 	height: auto;
 	max-height: 50vh;
+}
+.google-maps-container {
+	max-width: 100%;
+	list-style: none;
+	transition: none;
+	overflow: hidden;
+	width: 500px;
+	height: 500px;
+	margin: 2em auto;
+}
+.google-maps-canvas {
+	height: 100%;
+	width: 100%;
+	max-width: 100%;
+}
+.google-maps-canvas iframe {
+  height: 100%;
+	width: 100%;
+	border: 0;
 }

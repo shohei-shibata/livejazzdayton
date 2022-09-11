@@ -65,9 +65,7 @@ module.exports = config => {
 
 	config.addFilter("dateString", function (value) {
 		if (!value) { return "No Date" }
-		console.log("dateString input: ", value);
 		const dateObj = changeTimezone(value, timezoneString);
-		console.log("dateString timezone converted: ", dateObj);
 		const y = dateObj.getFullYear();
 		const m = dateObj.getMonth();
 		const d = dateObj.getDate();
@@ -134,6 +132,7 @@ module.exports = config => {
 	});
 
 	config.addFilter("googleMapsSearchUrl", function (d) {
+		console.log("googleMapsSearchUrl: ", d);
 		if (!d) {
 			return d;
 		} else {
@@ -147,7 +146,7 @@ module.exports = config => {
 	config.addShortcode("image", function (
 		src="./src/images/default-event-card-image.jpg", alt="No alt text provided", sizes="(min-width: 1024px) 100vw, 50vw"
 	) {
-		console.log(`Generating image(s) from:  ${src}`);
+		//console.log(`Generating image(s) from:  ${src}`);
 		let options = {
 			widths: [600, 900, 1500],
 			formats: ["webp", "jpeg"],
@@ -189,12 +188,10 @@ module.exports = config => {
 			location: locationString
 		};
 
-		console.log("calendarLinks: ", event);
-
 		return (
 			`
-				<a href=${google(event)}>Google Calendar</a>
-				<a href=${ics(event)}>iCalendar</a>
+				<a class="calendar-link btn-secondary" href=${google(event)}>Google Calendar</a>
+				<a class="calendar-link btn-secondary" href=${ics(event)}>iCalendar</a>
 			`
 		);
 		
