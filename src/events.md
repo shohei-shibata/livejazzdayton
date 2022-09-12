@@ -4,7 +4,7 @@ title: Home
 description: Live Jazz Event Listing for Dayton, OH
 pagination:
   data: collections.futureEvents
-  size: 2
+  size: 5
 ---
 
 # Upcoming Events

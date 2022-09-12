@@ -9,7 +9,7 @@ description: Live Jazz Event Listing for Dayton, OH
 Last Update: {{ | lastUpdated }}
 
 <section class="events-list">
-	{%- for event in collections.futureEvents -%}
+	{%- for event in collections.futureEvents limit:3 -%}
 		{% include event-card,
 			title: event.data.event.name,
 			url: event.url,

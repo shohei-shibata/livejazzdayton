@@ -31,13 +31,13 @@ module.exports = config => {
 	config.addCollection("futureEvents", function(collectionApi) {
 		return collectionApi.getFilteredByGlob("src/events/*.md")
 			.filter( item => {
-				const eventDate = new Date(item.data["event-date"]);
+				const eventDate = new Date(item.data.eventDate);
 				const yesterday = new Date(Date.now() - 864e5);
 				return eventDate > yesterday;
 			})
 			.sort( (a, b) => {
-				const dateA = new Date(a.data["event-date"]);
-				const dateB = new Date(b.data["event-date"]);
+				const dateA = new Date(a.data.eventDate);
+				const dateB = new Date(b.data.eventDate);
 				return dateA - dateB;
 			});
 	});
@@ -45,13 +45,13 @@ module.exports = config => {
 	config.addCollection("pastEvents", function(collectionApi) {
 		return collectionApi.getFilteredByGlob("src/events/*.md")
 			.filter( item => {
-				const eventDate = new Date(item.data["event-date"]);
+				const eventDate = new Date(item.data.eventDate);
 				const today = new Date();
 				return eventDate < today;
 			})
 			.sort( (a, b) => {
-				const dateA = new Date(a.data["event-date"]);
-				const dateB = new Date(b.data["event-date"]);
+				const dateA = new Date(a.data.eventDate);
+				const dateB = new Date(b.data.eventDate);
 				return dateB - dateA;
 			});
 	});
@@ -132,7 +132,6 @@ module.exports = config => {
 	});
 
 	config.addFilter("googleMapsSearchUrl", function (d) {
-		console.log("googleMapsSearchUrl: ", d);
 		if (!d) {
 			return d;
 		} else {
@@ -146,7 +145,7 @@ module.exports = config => {
 	config.addShortcode("image", function (
 		src="./src/images/default-event-card-image.jpg", alt="No alt text provided", sizes="(min-width: 1024px) 100vw, 50vw"
 	) {
-		//console.log(`Generating image(s) from:  ${src}`);
+		console.log(`Generating image(s) from:  ${src}`);
 		let options = {
 			widths: [600, 900, 1500],
 			formats: ["webp", "jpeg"],

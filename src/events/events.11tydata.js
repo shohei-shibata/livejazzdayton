@@ -7,12 +7,12 @@ module.exports = function() {
 				return process.env.GOOGLE_MAPS_API_KEY
 			},
 			event: data => {
-				const eventDate = new Date(data["event-date"]);
+				const eventDate = new Date(data.eventDate);
 				const year = eventDate.getUTCFullYear();
 				const month = eventDate.getUTCMonth();
 				const date = eventDate.getUTCDate();
-				const start = getHoursMinutes(data["start-time"]);
-				const end = getHoursMinutes(data["end-time"]);
+				const start = getHoursMinutes(data.startTime);
+				const end = getHoursMinutes(data.endTime);
 				const startTime = new Date(year, month, date, start.hours, end.minutes);
 				const endTime = new Date(year, month, date, end.hours, end.minutes);
 				const timezoneString = "America/New_York";
@@ -25,7 +25,7 @@ module.exports = function() {
 					:
 					`${data.location.name} near Dayton Ohio`
 				return {
-					name: data.title,
+					name: data.eventName,
 					start: changeTimezone(startTime, timezoneString),
 					end: changeTimezone(endTime, timezoneString),
 					imagePath: imagePath,
@@ -42,9 +42,12 @@ module.exports = function() {
 const getHoursMinutes = (timeString) => {
 	if (!timeString) {
 		console.error(`getHoursMinutes: No timeString provided`);
-		return;
+		return {
+			hours: undefined,
+			minutes: undefined
+		};
 	}
-	const timeArray = timeString.split(":");
+	const timeArray = timeString.toString().split(":");
 	const hours = timeArray[0];
 	const minutes = timeArray[1];
 	

@@ -18,8 +18,13 @@ html, body {
 	padding: 0;
 	background-color: var(--color-background);
 	color: var(--color-font-dark);
+	overflow-x: hidden;
+}
+main {
+	padding: 0 10px;
 }
 .btn {
+	box-sizing: border-box;
 	text-decoration: none;
 	color: var(--color-font-light);
 	background-color: var(--color-btn);
@@ -37,7 +42,7 @@ html, body {
 .btn-secondary {
 	background-color: #eee;
 	text-decoration: none;
-	padding: 5px;
+	padding: 5px 8px;
 	border-radius: 3px;
 	margin-right: 10px;
 }
@@ -165,6 +170,7 @@ footer {
 .event-card-date {
 	background-color: transparent;
 	width: 90px;
+	min-width: 90px;
 	height: 90px;
 	margin-top: -10px;
 	margin-left: -10px;
@@ -221,7 +227,7 @@ form {
 	color: #111;
 	padding: 10px 20px;
 	max-width: 600px;
-	margin: 50px auto;
+	margin: 2em auto;
 }
 form h3 {
 	text-align: center;
@@ -278,6 +284,7 @@ input[type="file"] {
 	width: auto;
 	height: auto;
 	max-height: 50vh;
+	max-width: 100%;
 }
 .google-maps-container {
 	max-width: 100%;
@@ -297,4 +304,35 @@ input[type="file"] {
   height: 100%;
 	width: 100%;
 	border: 0;
+}
+
+@media screen and (max-width: 800px) {
+	.event-card {
+		max-width: 600px;
+		margin: 35px auto;
+	}
+	.event-card-grid-container {
+		grid-template-columns: 1fr;
+		width: 100%;
+	}
+	.event-card-image {
+		width: 100%;
+		border-radius: 10px 10px 0 0;
+	}
+	.event-card-image picture img {
+		width: 100%;
+	}
+	.event-card-text {
+		margin: 0;
+	}
+	.btn-inline {
+		display: block;
+    margin: 1em auto;
+	}
+	.btn {
+		width: 100%;
+	}
+	.form-field-container {
+		grid-template-columns: 1fr !important;
+	}
 }

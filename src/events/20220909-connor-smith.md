@@ -1,8 +1,8 @@
 ---
-title: Jazz Jam at the Market!
-event-date: 2022-09-09
-start-time: "20:00"
-end-time: "22:00"
+eventName: Jazz Jam at the Market!
+eventDate: 2022-09-09
+startTime: "20:00"
+endTime: "22:00"
 location: {
   name: "The Market Bar at CoHatch",
   address: "101 S Fountain Ave, Springfield, OH 45502"
