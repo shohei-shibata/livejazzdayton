@@ -8,11 +8,11 @@
 		"url": "/events"
 	},
 	{
-		"name": "Contact",
-		"url": "/contact"
-	},
-	{
 		"name": "Add An Event",
 		"url": "/submit"
+	},
+	{
+		"name": "Contact",
+		"url": "/contact"
 	}
 ]
