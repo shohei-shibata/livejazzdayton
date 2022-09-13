@@ -334,6 +334,12 @@ input[type="file"] {
 	color: #555;
 	padding-bottom: 3px;
 }
+.tag:first-child::before {
+	content: "By "
+}
+.tag {
+	margin-right: 3px;
+}
 .tag::after {
 	content: ",";
 }

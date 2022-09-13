@@ -19,7 +19,8 @@ Last Update: {{ | lastUpdated }}
 			start: event.data.event.start,
 			end: event.data.event.end,
 			location: event.data.event.location.name,
-			imagePath: event.data.event.imagePath
+			imagePath: event.data.event.imagePath,
+			artists: event.data.artists
 		%}
 	{%- endfor -%}
 	<div id="pagination">
