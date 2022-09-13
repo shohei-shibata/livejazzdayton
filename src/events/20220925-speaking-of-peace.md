@@ -8,6 +8,15 @@ location: {
   address: 507 Miamisburg Centerville Rd, Centerville, OH 45459
 }
 image: 20220925-speaking-of-peace.jpg
+links: {
+  facebook: "https://www.facebook.com/events/764057338191541/",
+}
+artists: [
+  "G. Scott Jones",
+  "Keigo Hirakawa",
+  "Eddie Brookshire",
+  "Matt Green"
+]
 ---
 
 Come enjoy Jazz standards and original music from G. Scott Jones' recent album, Walk With Me. We'll kick it off at 7 p.m. at the Hidden Gem, 507 Miamisburg-Centerville Rd.

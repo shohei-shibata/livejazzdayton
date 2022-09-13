@@ -5,7 +5,7 @@ layout: layout.liquid
 <section id="event-details">
 	<div id="event-featured-image">
 	{% if image %}
-		{% image event.imagePath %}
+		{% image event.imagePath event.imageAltText %}
 	{% endif %}
 	</div>
 
@@ -20,7 +20,28 @@ layout: layout.liquid
 		{% endif %}
 	</p>
 
-	<p>{% calendarLinks event %}
+	<div class="tags-container">
+		By 
+		{% for artist in artists %}
+			<span class="tag">{{ artist }}</span>
+		{% endfor %}
+	</div>
+
+	<div id="event-links-container">
+		{% calendarLinks event %}
+		{% if links %}
+			{% if links.facebook %}
+				<a class="btn-secondary" href={{ links.facebook }}>
+					Facebook
+				</a>
+			{% endif %}
+			{% if links.website %}
+				<a class="btn-secondary" href={{ links.website }}>
+					Website
+				</a>
+			{% endif %}
+		{% endif %}
+	</div>
 
 	{{ content }}
 
@@ -33,4 +54,4 @@ layout: layout.liquid
 
 </section>
 
-<a href="/">>> Back Home</a>
+<a href="/" class="btn"><< Back Home</a>

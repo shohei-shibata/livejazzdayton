@@ -29,6 +29,7 @@ module.exports = function() {
 					start: changeTimezone(startTime, timezoneString),
 					end: changeTimezone(endTime, timezoneString),
 					imagePath: imagePath,
+					imageAltText: data.imageAltText,
 					location: {
 						...data.location,
 						queryString: googleMapsQueryString

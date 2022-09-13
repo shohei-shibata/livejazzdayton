@@ -8,6 +8,9 @@ location: {
   address: "825 Wayne Ave, Dayton, OH 45410"
 }
 image: 1st-thursday.jpg
+artists: [
+  "Kelli Campbell"
+]
 ---
 
 First Thursday Jazz Jam!
