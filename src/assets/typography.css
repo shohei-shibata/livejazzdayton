@@ -12,6 +12,9 @@ h1 {
 h2 {
 	font-size: 1.4em;
 }
+p {
+	line-height: 1.5em;
+}
 a {
 	color: var(--color-white);
 }

@@ -1,7 +1,7 @@
 ---
 layout: layout.liquid
 title: Contact Form
-description: Live Jazz Event Listing for Dayton, OH
+description: Submit a message to the admin of Live Jazz Dayton website.
 ---
 
 # Contact Me

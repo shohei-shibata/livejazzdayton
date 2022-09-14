@@ -1,7 +1,7 @@
 ---
 layout: layout.liquid
 title: Home
-description: Live Jazz Event Listing for Dayton, OH
+description: Live Jazz Event Listing for Dayton, Ohio
 ---
 
 # Upcoming Events

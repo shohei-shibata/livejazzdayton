@@ -1,6 +1,8 @@
 :root {
+	--banner-image-filename: "dolo-iglesias-FjElUqGfbAw-unsplash.jpg";
 	--banner-height: 250px;
 	--nav-height: 50px;
+	--nav-height-mobile: 80px;
 	--color-font-light: #fff;
 	--color-font-dark: #111;
 	--color-calendar-red: #dd3436;
@@ -62,22 +64,24 @@ main {
 }
 nav {
 	height: var(--nav-height);
-	margin: 0 10px;
 	z-index: 1000;
 }
-#nav-container ul {
+#nav-container-desktop ul {
 	display: flex;
 	padding-left: 0;
 	justify-content: center;
 }
-#nav-container li {
+.nav-container li {
 	list-style-type: none;
 	margin: 0 10px;
 }
-#nav-container a {
+.nav-container a {
 	color: var(--color-font-light);
 	text-transform: uppercase;
 	text-decoration: none;
+}
+#nav-container-mobile {
+	display: none;
 }
 #header-title a {
 	text-decoration: none;
@@ -102,11 +106,14 @@ nav {
 	align-items: center;
 	justify-content: center;
 	color: var(--color-font-light);
+	/*background-image: url("/images/dolo-iglesias-FjElUqGfbAw-unsplash.jpg");*/
+}
+.banner-image-overlay {
 	background-image:
-    radial-gradient(
-      var(--color-banner-1),
-      var(--color-banner-2)
-    );
+		radial-gradient(
+		var(--color-banner-1),
+		var(--color-banner-2)
+		);
 }
 #banner-text-container {
 	text-align: center;
@@ -242,7 +249,6 @@ form {
 	background-color: #fff;
 	color: #111;
 	padding: 10px 20px;
-	max-width: 600px;
 	margin: 2em auto;
 }
 form h3 {
@@ -269,7 +275,10 @@ input, textarea {
 	padding: 5px;
 }
 input.btn {
+	display: block;
 	margin: 20px auto;
+	margin-top: 2em;
+	max-width: 300px;
 }
 input[type="file"] {
 	padding: 0;
@@ -378,5 +387,45 @@ input[type="file"] {
 	}
 	#event-featured-image img {
 		width: 100%;
+	}
+}
+@media screen and (max-width: 600px) {
+	#nav-container-desktop {
+		display: none;
+	}
+	#nav-container-mobile {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		display: block;
+		width: 100vw;
+		height: var(--nav-height-mobile);
+		background-color: var(--color-banner-1);
+	}
+	#nav-container-mobile ul {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		padding: 0;
+	}
+	#nav-container-mobile a {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#nav-container-mobile i {
+		display: block;
+		font-size: 1.5em;
+		margin-bottom: 0.3em;
+	}
+	.mobile-nav-text {
+		font-size: 0.7em;
+		line-height: 1.5em;
+	}
+	footer {
+		margin-bottom: var(--nav-height-mobile);
+	}
+	.footer-link-logos-container {
+		font-size: 1.5em;
+		margin: 0 0.5em;
 	}
 }

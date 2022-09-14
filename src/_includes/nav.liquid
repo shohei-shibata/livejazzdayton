@@ -1,5 +1,5 @@
 <nav>
-  <div id="nav-container">
+  <div id="nav-container-desktop" class="nav-container">
     <ul>
 			{% for item in navItems %}
 				<li>
@@ -8,6 +8,18 @@
 					</a>
 				</li>
 			{% endfor %}
+    </ul>
+  </div>
+  <div id="nav-container-mobile" class="nav-container">
+	<ul>
+		{% for item in navItems %}
+			<li>
+				<a href={{item.url}}>
+					<i class="fa-solid {{item.icon}}"></i>
+					<small class="mobile-nav-text">{{item.name}}</small>
+				</a>
+			</li>
+		{% endfor %}
     </ul>
   </div>
 </nav>

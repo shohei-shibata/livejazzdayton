@@ -1,18 +1,22 @@
 [
 	{
 		"name": "Home",
-		"url": "/"
+		"url": "/",
+		"icon": "fa-house"
 	},
 	{
 		"name": "Events",
-		"url": "/events"
+		"url": "/events",
+		"icon": "fa-calendar"
 	},
 	{
 		"name": "Add An Event",
-		"url": "/submit"
+		"url": "/submit",
+		"icon": "fa-plus"
 	},
 	{
 		"name": "Contact",
-		"url": "/contact"
+		"url": "/contact",
+		"icon": "fa-envelope"
 	}
 ]

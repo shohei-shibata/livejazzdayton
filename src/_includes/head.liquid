@@ -3,7 +3,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Live Jazz Dayton | {{ title }}</title>
-  <meta name="description" content={{ description }}>
+  <meta name="description" content="{{ description }}">
+  {% if noindex == "true" %}
+    <meta name="robots" content="noindex">
+  {% endif %}
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Barlow&family=Rubik+Dirt&display=swap" rel="stylesheet">
@@ -15,4 +18,13 @@
   <link rel="manifest" href="/assets/favicon/manifest.webmanifest">
   <script src="https://kit.fontawesome.com/d2a533daa7.js" crossorigin="anonymous"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZMSQLFM6Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DZMSQLFM6Q');
+  </script>
 </head>
