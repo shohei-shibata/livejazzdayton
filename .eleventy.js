@@ -20,9 +20,9 @@ module.exports = config => {
 	}
 
 	config.setLiquidOptions({
-    dynamicPartials: false,
-    strictFilters: false, // renamed from `strict_filters` in Eleventy 1.0
-  });
+		dynamicPartials: false,
+		strictFilters: false, // renamed from `strict_filters` in Eleventy 1.0
+	});
 
   config.addPassthroughCopy("src/assets");
 
@@ -171,6 +171,22 @@ module.exports = config => {
 		metadata = Image.statsSync(src, options)
 		return Image.generateHTML(metadata, imageAttributes)
 	});
+
+	config.addShortcode("cssBackgroundImage", function (src) {
+		console.log(`Generating css background image from: ${src}`);
+		let options = {
+			widths: [1500],
+			formats: ["jpeg"],
+			urlPath: "/images/",
+			outputDir: "./build/images/"
+		}
+
+		Image(src, options);
+
+		metadata = Image.statsSync(src, options);
+
+		return `background-image: url(${metadata.jpeg[0].url});`;
+	})
 
 	config.addShortcode("calendarLinks", function({
 		name, start, end, location

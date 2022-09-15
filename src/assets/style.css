@@ -9,9 +9,8 @@
 	--color-background: #ddd;
 	--color-background-card: #fff;
 	--color-btn: #dd3436;
-	--color-banner-1: #111;
-	--color-banner-2: #333;
-	--color-background-footer: #111;
+	--color-banner: #111;
+	--color-background-footer: #333;
 	--image-width-normal: 800px;
 }
 
@@ -100,25 +99,21 @@ nav {
 /*        */
 
 #banner {
-	background-color: #222;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	color: var(--color-font-light);
-	/*background-image: url("/images/dolo-iglesias-FjElUqGfbAw-unsplash.jpg");*/
-}
-.banner-image-overlay {
-	background-image:
-		radial-gradient(
-		var(--color-banner-1),
-		var(--color-banner-2)
-		);
+	/*background-image property defined in ./src/_includes/banner.liquid*/
+	background-size: cover;
+	background-position: center;
+	background-color: var(--color-banner);
+	background-blend-mode: overlay;
 }
 #banner-text-container {
 	text-align: center;
-	margin-top: 50px;
-	margin-bottom: 30px;
+	margin-top: 6em;
+	margin-bottom: 4em;
 }
 
 /*        */
@@ -137,8 +132,12 @@ main {
 footer {
 	background-color: var(--color-background-footer);
 	color: var(--color-font-light);
-	text-align: center;
 	padding: 10px 0;
+}
+#footer-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .footer-link-logos-container {
 	display: inline-block;
@@ -400,7 +399,7 @@ input[type="file"] {
 		display: block;
 		width: 100vw;
 		height: var(--nav-height-mobile);
-		background-color: var(--color-banner-1);
+		background-color: var(--color-banner);
 	}
 	#nav-container-mobile ul {
 		display: grid;
