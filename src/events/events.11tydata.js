@@ -4,10 +4,10 @@ module.exports = function() {
 		tags: "events",
 		eleventyComputed: {
 			googleApiKey: data => {
-				return process.env.GOOGLE_MAPS_API_KEY
+				return process.env.GOOGLE_API_KEY
 			},
 			event: data => {
-				const eventDate = new Date(data.eventDate);
+				const eventDate = new Date(data.eventDate || data.startTime);
 				const year = eventDate.getUTCFullYear();
 				const month = eventDate.getUTCMonth();
 				const date = eventDate.getUTCDate();
