@@ -4,12 +4,10 @@ layout: layout.liquid
 
 <section id="event-details">
 	<div id="event-featured-image">
-	{% if image %}
-		{% image event.imagePath event.imageAltText %}
-	{% endif %}
+		{{ event.image }}
 	</div>
 
-	<h1>{{ event.name }}</h1>
+	<h1>{{ event.title }}</h1>
 
 	<h2>{{ event.start | dateString }} from {{ event.start | timeString }} to {{ event.end | timeString }}</h2>
 

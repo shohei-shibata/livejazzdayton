@@ -10,7 +10,16 @@ Last Update: {{ | lastUpdated }}
 
 <section class="events-list">
 	{%- for event in events limit:3 -%}
-		<a href="{{ event.permalink }}">{{ event.title }}</a>
+		{{ event.title }}
+		{% include event-card,
+			title: event.title,
+			url: event.url,
+			start: event.start,
+			end: event.end,
+			location: event.location.name,
+			imagePath: event.imagePath,
+			artists: event.artists
+		%}
 	{%- endfor -%}
 </section>
 
