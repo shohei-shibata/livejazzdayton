@@ -31,13 +31,15 @@ module.exports = async function() {
         type: "json"
     });
     return await Promise.all(cards.map(async card => {
+        console.log("JSON: ", JSON.parse(card.desc));
         const { 
             start, 
             end, 
             locationName, 
             locationAddress, 
             description,  
-            artists
+            artists,
+            links
         } = JSON.parse(card.desc)
         const imageInfo = await EleventyFetch(
             `http://api.trello.com/1/cards/${card.id}/attachments/${card.cover.idAttachment}?${params}`,
@@ -79,6 +81,10 @@ module.exports = async function() {
             location: {
                 name: locationName,
                 address: locationAddress
+            },
+            links: {
+                facebook: links.facebook && links.facebook.length > 0 ? links.facebook : null,
+                website: links.website && links.website.length > 0 ? links.website : null
             },
             description: description,
             image: imageHtml,

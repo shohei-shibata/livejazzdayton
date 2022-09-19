@@ -26,14 +26,14 @@ layout: layout.liquid
 
 	<div id="event-links-container">
 		{% calendarLinks event %}
-		{% if links %}
-			{% if links.facebook %}
-				<a class="btn-secondary" href={{ links.facebook }}>
+		{% if event.links %}
+			{% if event.links.facebook %}
+				<a class="btn-secondary" href={{ event.links.facebook }}>
 					Facebook
 				</a>
 			{% endif %}
-			{% if links.website %}
-				<a class="btn-secondary" href={{ links.website }}>
+			{% if event.links.website %}
+				<a class="btn-secondary" href={{ event.links.website }}>
 					Website
 				</a>
 			{% endif %}
