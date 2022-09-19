@@ -50,16 +50,12 @@ You can also enter in the details of the event below.
 		<textarea name="description" rows="5"></textarea>
 	</div>
 	<div class="form-field-container">
-		<label for="event-date">Event Date: </label>
-		<input name="event-date" type="date" required>
+		<label for="start-time">Start: </label>
+		<input name="start-time" type="datetime-local">
 	</div>
 	<div class="form-field-container">
-		<label for="start-time">Start Time: </label>
-		<input name="start-time" type="time">
-	</div>
-	<div class="form-field-container">
-		<label for="end-time">End Time: </label>
-		<input name="end-time" type="time">
+		<label for="end-time">End: </label>
+		<input name="end-time" type="datetime-local">
 	</div>
 	<div class="form-field-container">
 		<label for="location-name">Location Name: </label>

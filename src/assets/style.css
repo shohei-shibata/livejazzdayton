@@ -183,7 +183,7 @@ iconify-icon {
 	border-radius: 10px 0 0 10px; 
 }
 
-.event-card-image picture img {
+.event-card-image img {
 	object-fit: cover;
 	width: 300px;
 	height: 300px;
