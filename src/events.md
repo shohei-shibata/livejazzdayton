@@ -15,7 +15,7 @@ Last Update: {{ | lastUpdated }}
 	{%- for event in pagination.items -%}
 		{% include event-card, 
 			title: event.title,
-			url: event.permalink,
+			slug: event.slug,
 			start: event.start,
 			end: event.end,
 			location: event.location.name,

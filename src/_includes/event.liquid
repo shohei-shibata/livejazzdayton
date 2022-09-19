@@ -14,12 +14,12 @@ layout: layout.liquid
 	<p>
 	  At {{ event.location.name }}
 		{% if event.location.address %}
-		 (<a href= {{ event.location.queryString | googleMapsSearchUrl }}>{{ event.location.address }}</a>)
+		 (<a href="{{ event.googleMapsUrl }}">{{ event.location.address }}</a>)
 		{% endif %}
 	</p>
 
 	<div class="tags-container">
-		{% for artist in artists %}
+		{% for artist in event.artists %}
 			<span class="tag">{{ artist }}</span>
 		{% endfor %}
 	</div>
@@ -44,7 +44,7 @@ layout: layout.liquid
 
 	<div class="google-maps-container">
 		<div class="google-maps-canvas">
-			<iframe frameborder="0" src="https://www.google.com/maps/embed/v1/search?q={{ event.location.queryString }}&key={{ googleApiKey }}">
+			<iframe frameborder="0" src="{{ event.googleMapsEmbed }}">
 			</iframe>
 		</div>
 	</div>
