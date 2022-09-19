@@ -17,6 +17,7 @@
     "@11ty/eleventy-fetch": "^3.0.0",
     "@netlify/functions": "^1.2.0",
     "calendar-link": "^2.2.0",
+    "netlify-plugin-cache": "^1.0.3",
     "slugify": "^1.6.5"
   }
 }
