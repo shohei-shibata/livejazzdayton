@@ -11,13 +11,13 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
-    "@11ty/eleventy-img": "^2.0.1"
+    "@11ty/eleventy-img": "^2.0.1",
+    "netlify-plugin-cache": "^1.0.3"
   },
   "dependencies": {
     "@11ty/eleventy-fetch": "^3.0.0",
     "@netlify/functions": "^1.2.0",
     "calendar-link": "^2.2.0",
-    "netlify-plugin-cache": "^1.0.3",
     "slugify": "^1.6.5"
   }
 }
