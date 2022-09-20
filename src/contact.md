@@ -6,7 +6,7 @@ description: Submit a message to the admin of Live Jazz Dayton website.
 
 # Contact Me
 
-Hi, this is Shohei, the creator/admin of this website. Use the form below to send me a message! Any suggestions to improve this website, or anything else that is on your mind. I'd love to hear from you.
+Use the form below to send me a message! Any suggestions to improve this website, or anything else that is on your mind. I'd love to hear from you.
 
 If you are interested in building a website, or need help with an existing one, I may be able to help! Feel free to contact me if you are interested in my services as a web developer.
 

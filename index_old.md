@@ -10,13 +10,14 @@ Last Update: {{ | lastUpdated }}
 
 <section class="events-list">
 	{%- for event in events limit:3 -%}
-		{% include event-card, 
+		{{ event.title }}
+		{% include event-card,
 			title: event.title,
-			slug: event.slug,
+			url: event.url,
 			start: event.start,
 			end: event.end,
 			location: event.location.name,
-			image: event.image,
+			imagePath: event.imagePath,
 			artists: event.artists
 		%}
 	{%- endfor -%}

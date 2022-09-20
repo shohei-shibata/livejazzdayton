@@ -4,38 +4,36 @@ layout: layout.liquid
 
 <section id="event-details">
 	<div id="event-featured-image">
-	{% if image %}
-		{% image event.imagePath event.imageAltText %}
-	{% endif %}
+		{{ event.image }}
 	</div>
 
-	<h1>{{ event.name }}</h1>
+	<h1>{{ event.title }}</h1>
 
 	<h2>{{ event.start | dateString }} from {{ event.start | timeString }} to {{ event.end | timeString }}</h2>
 
 	<p>
 	  At {{ event.location.name }}
 		{% if event.location.address %}
-		 (<a href= {{ event.location.queryString | googleMapsSearchUrl }}>{{ event.location.address }}</a>)
+		 (<a href="{{ event.googleMapsUrl }}">{{ event.location.address }}</a>)
 		{% endif %}
 	</p>
 
 	<div class="tags-container">
-		{% for artist in artists %}
+		{% for artist in event.artists %}
 			<span class="tag">{{ artist }}</span>
 		{% endfor %}
 	</div>
 
 	<div id="event-links-container">
 		{% calendarLinks event %}
-		{% if links %}
-			{% if links.facebook %}
-				<a class="btn-secondary" href={{ links.facebook }}>
+		{% if event.links %}
+			{% if event.links.facebook %}
+				<a class="btn-secondary" href={{ event.links.facebook }}>
 					Facebook
 				</a>
 			{% endif %}
-			{% if links.website %}
-				<a class="btn-secondary" href={{ links.website }}>
+			{% if event.links.website %}
+				<a class="btn-secondary" href={{ event.links.website }}>
 					Website
 				</a>
 			{% endif %}
@@ -46,7 +44,7 @@ layout: layout.liquid
 
 	<div class="google-maps-container">
 		<div class="google-maps-canvas">
-			<iframe frameborder="0" src="https://www.google.com/maps/embed/v1/search?q={{ event.location.queryString }}&key={{ googleApiKey }}">
+			<iframe frameborder="0" src="{{ event.googleMapsEmbed }}">
 			</iframe>
 		</div>
 	</div>

@@ -4,6 +4,10 @@
 		"url": "/",
 		"icon": "fa-house"
 	},
+	{	"name": "About",
+		"url": "/about",
+		"icon": "fa-circle-question"
+	},
 	{
 		"name": "Events",
 		"url": "/events",
