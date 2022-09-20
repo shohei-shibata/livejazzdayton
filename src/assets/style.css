@@ -42,6 +42,11 @@ main {
 .btn-inline {
 	margin-left: 20px;
 }
+.bmc-btn-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 2em;
+}
 .btn-secondary {
 	background-color: transparent;	
 	text-decoration: none;
@@ -282,6 +287,10 @@ input.btn {
 input[type="file"] {
 	padding: 0;
 }
+.google-form {
+	display: block;
+	margin: auto;
+}
 
 /* EVENTS ARCHIVE */
 
@@ -403,7 +412,7 @@ input[type="file"] {
 	}
 	#nav-container-mobile ul {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 		padding: 0;
 	}
 	#nav-container-mobile a {
