@@ -14,11 +14,6 @@
 		"icon": "fa-calendar"
 	},
 	{
-		"name": "Add Event",
-		"url": "/submit",
-		"icon": "fa-plus"
-	},
-	{
 		"name": "Contact",
 		"url": "/contact",
 		"icon": "fa-envelope"
