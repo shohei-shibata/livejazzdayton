@@ -6,6 +6,7 @@ noindex: "true"
 ---
 
 # Success!
-Your form has been submitted. Thank you for your contribution to the Dayton jazz scene!
+
+Your form has been submitted. Thank you!
 
 <a class="btn" href="/">Go back to home page</a>
