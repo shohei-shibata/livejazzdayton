@@ -6,7 +6,7 @@
 	--color-font-light: #fff;
 	--color-font-dark: #111;
 	--color-calendar-red: #dd3436;
-	--color-background: #ddd;
+	--color-background: #eee;
 	--color-background-card: #fff;
 	--color-btn: #dd3436;
 	--color-banner: #111;
@@ -169,6 +169,7 @@ iconify-icon {
 .event-card {
 	display: flex;
 	background-color: var(--color-background-card);
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 	text-decoration: none;
 	margin: 35px 10px;
 	transition: transform 0.3s;
@@ -210,7 +211,7 @@ iconify-icon {
 	text-align: center;
 	z-index: 100;
 	border-radius: 10px;
-	box-shadow: 1px 1px 3px #444;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .event-card-date-month {
@@ -252,6 +253,7 @@ iconify-icon {
 
 form {
 	background-color: #fff;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 	color: #111;
 	padding: 10px 20px;
 	margin: 2em auto;
@@ -368,9 +370,10 @@ input[type="file"] {
 /* MAILCHIMP FORM */
 #sign-up-form-container {
 	max-width: var(--main-content-width);
-	margin: auto;
+	margin: 2em auto;
 	display: grid;
-	grid-template-columns: 1fr 2fr;
+	grid-template-columns: 1fr;
+	text-align: center;
 }
 .form-footer {
 	width: 100%;
