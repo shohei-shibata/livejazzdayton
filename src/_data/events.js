@@ -1,9 +1,10 @@
-const EleventyFetch = require("@11ty/eleventy-fetch");
+const { 
+		getAllApprovedCards,
+		parseCard,
+		getImageUrl
+	} = require("../trello.js");
 const Image = require("@11ty/eleventy-img");
 const slugify = require('slugify')
-const TRELLO_API_KEY = process.env.TRELLO_API_KEY;
-const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
-const params = `key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 const changeTimezone = (date, timezoneString) => {
@@ -26,13 +27,12 @@ const getDateString = (value = new Date()) => {
 }
 
 module.exports = async function() {
-    const cardsUrl = `http://api.trello.com/1/lists/6325995217c6c700939f9740/cards?${params}`
-    const cards = await EleventyFetch(cardsUrl, {
-        type: "json"
-    });
+		const cards = await getAllApprovedCards();
     return await Promise.all(cards.map(async card => {
-        console.log("JSON: ", JSON.parse(card.desc));
         const { 
+						cardId,
+						name,
+						imageId,
             start, 
             end, 
             locationName, 
@@ -40,14 +40,8 @@ module.exports = async function() {
             description,  
             artists,
             links
-        } = JSON.parse(card.desc)
-        const imageInfo = await EleventyFetch(
-            `http://api.trello.com/1/cards/${card.id}/attachments/${card.cover.idAttachment}?${params}`,
-            {
-                type: "json"
-            }
-        );
-        const imageUrl = `${imageInfo.url}?${params}`;
+        } = await parseCard(card)
+        const imageUrl = await getImageUrl(cardId, imageId);
         const imageOptions = { 
             formats: "jpeg",
             widths: [600, 900, 1500],
@@ -92,7 +86,6 @@ module.exports = async function() {
             googleMapsUrl: `https://maps.google.com/maps?q=${queryString.replaceAll(" ", "+")}`,
             googleMapsEmbed: `https://www.google.com/maps/embed/v1/search?q=${queryString.replaceAll(" ", "+")}&key=${GOOGLE_API_KEY}`
         }
-        console.log("EVENT FORMATTED: ", eventFormatted);
 
         return eventFormatted;
     }));

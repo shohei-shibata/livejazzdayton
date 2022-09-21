@@ -12,6 +12,7 @@
 	--color-banner: #111;
 	--color-background-footer: #333;
 	--image-width-normal: 800px;
+	--main-content-width: 800px;
 }
 
 html, body {
@@ -126,7 +127,7 @@ nav {
 /*        */
 main {
 	margin: 50px auto;
-	max-width: 800px;
+	max-width: var(--main-content-width);
 	min-height: 70vh;
 }
 
@@ -190,7 +191,7 @@ iconify-icon {
 
 .event-card-image img {
 	object-fit: cover;
-	width: 300px;
+	width: 100%;
 	height: 300px;
 }
 
@@ -364,6 +365,27 @@ input[type="file"] {
 	content: "";
 }
 
+/* MAILCHIMP FORM */
+#sign-up-form-container {
+	max-width: var(--main-content-width);
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+.form-footer {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 1em 0;
+	padding: 0;
+	padding-left: 50px;
+	background-color: transparent;
+	color: var(--color-font-light);
+}
+.form-footer .form-field-container {
+	display: grid;
+	grid-template-columns: 100px 1fr;
+}
+
 @media screen and (max-width: 800px) {
 	.event-card {
 		max-width: 600px;
@@ -377,7 +399,7 @@ input[type="file"] {
 		width: 100%;
 		border-radius: 10px 10px 0 0;
 	}
-	.event-card-image picture img {
+	.event-card-image img {
 		width: 100%;
 	}
 	.event-card-text {
