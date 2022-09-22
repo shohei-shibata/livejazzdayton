@@ -12,6 +12,7 @@ const getAllApprovedCards = async () => {
 
 const parseCard = card => {
 	// TO DO: get card.desc content from actual fields on the card
+	console.log("PARSE: ", card);
 	return {
 		...JSON.parse(card.desc),
 		cardId: card.id,

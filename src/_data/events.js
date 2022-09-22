@@ -30,9 +30,9 @@ module.exports = async function() {
 		const cards = await getAllApprovedCards();
     return await Promise.all(cards.map(async card => {
         const { 
-						cardId,
-						name,
-						imageId,
+			cardId,
+			name,
+			imageId,
             start, 
             end, 
             locationName, 
@@ -69,7 +69,7 @@ module.exports = async function() {
         
         const eventFormatted = {
             slug: slug,
-            title: card.name,
+            title: name,
             start: start,
             end: end,
             location: {
