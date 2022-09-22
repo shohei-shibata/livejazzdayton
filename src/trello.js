@@ -1,4 +1,10 @@
 const EleventyFetch = require("@11ty/eleventy-fetch");
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+const { marked } = require('marked');
 
 const TRELLO_API_KEY = process.env.TRELLO_API_KEY;
 const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
@@ -57,12 +63,16 @@ const getCustomFieldByName = async (card, fieldName) => {
   };
 }
 
+const markdownToHtml = markdown => {
+  const html = DOMPurify.sanitize(marked.parse(markdown));
+  return html;
+}
+
 const parseCard = async card => {
-  console.log("Description: ", card.name, card.desc);
   const trelloParsed = {
     cardId: card.id,
     name: card.name,
-    description: card.desc,
+    description: markdownToHtml(card.desc),
 		imageId: card.cover.idAttachment,
     locationName: await getVenueNameById(card.id),
     locationAddress: await getVenueAddressById(card.id),
