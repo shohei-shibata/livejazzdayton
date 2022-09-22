@@ -189,7 +189,7 @@ module.exports = config => {
 	})
 
 	config.addShortcode("calendarLinks", function({
-		name, start, end, location
+		title, start, end, location
 	}) {
 		const locationString = location ? 
 			`${location.name}, ${location.address}`
@@ -197,7 +197,7 @@ module.exports = config => {
 			"";
 			
 		const event = {
-			title: name,
+			title: title,
 			start: start,
 			end: end,
 			location: locationString
