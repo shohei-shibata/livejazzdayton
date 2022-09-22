@@ -88,6 +88,8 @@ module.exports = async function() {
           googleMapsEmbed: `https://www.google.com/maps/embed/v1/search?q=${queryString.replaceAll(" ", "+")}&key=${GOOGLE_API_KEY}`
       }
 
+      console.log("TITLE: ", eventFormatted.title )
+
       return eventFormatted;
     }));
 
