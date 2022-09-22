@@ -5,20 +5,76 @@ const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
 
 const params = `key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
 
+const trelloBoardId = "6325991c66402801560c94dd";
+
 const getAllApprovedCards = async () => {
 	const url = `http://api.trello.com/1/lists/6325995217c6c700939f9740/cards?${params}&customFieldItems=true`
 	return await EleventyFetch(url, { type: "json" });
 }
 
-const parseCard = card => {
-	// TO DO: get card.desc content from actual fields on the card
-	console.log("PARSE: ", card);
-	return {
-		...JSON.parse(card.desc),
-		cardId: card.id,
-		name: card.name,
+const getVenueAddressById = async (cardId) => {
+	const url = `http://api.trello.com/1/cards/${cardId}/address?${params}`
+	const res = await EleventyFetch(url, { type: "json" });
+  return res._value;
+}
+
+const getVenueNameById = async (cardId) => {
+	const url = `http://api.trello.com/1/cards/${cardId}/locationName?${params}`
+	const res = await EleventyFetch(url, { type: "json" });
+  return res._value;
+}
+
+const getCustomFields = async (boardId) => {
+  const url = `http://api.trello.com/1/boards/${boardId}/customFields?${params}`
+	const res = await EleventyFetch(url, { type: "json" });
+  return res.map(item => {
+    return {
+      name: item.name,
+      id: item.id,
+    };
+  });
+}
+
+const getCustomFieldByName = async (card, fieldName) => {
+  const customFields = await getCustomFields(trelloBoardId);
+  const idCustomField = customFields.filter(item => {
+    return item.name === fieldName
+  })[0].id;
+  const customFieldFiltered = card.customFieldItems.filter(item => {
+    return item.idCustomField === idCustomField
+  });
+  const customFieldValue = customFieldFiltered.length > 0 ?
+    customFieldFiltered[0].value : null;
+  const dateFields = ["Event Start", "Event End"];
+  const isDate = dateFields.includes(fieldName);
+  if (!customFieldValue) { return null }
+  if (isDate) {
+    return customFieldValue.date;
+  } else if (fieldName === "Artists") {
+    return customFieldValue.text.split(", ");
+  } else {
+    return customFieldValue.text;
+  }
+}
+
+const parseCard = async card => {
+  console.log("Description: ", card.name, card.desc);
+  const trelloParsed = {
+    cardId: card.id,
+    name: card.name,
+    description: card.desc,
 		imageId: card.cover.idAttachment,
-	}
+    locationName: await getVenueNameById(card.id),
+    locationAddress: await getVenueAddressById(card.id),
+    start: await getCustomFieldByName(card, "Event Start"),
+    end: await getCustomFieldByName(card, "Event End"),
+    artists: await getCustomFieldByName(card, "Artists"),
+    links: {
+      facebook: await getCustomFieldByName(card, "Facebook"),
+      website: await getCustomFieldByName(card, "Website"),
+    }
+  }
+  return trelloParsed;
 }
 
 const getImageUrl = async (cardId, attachmentId) => {
