@@ -43,6 +43,7 @@ module.exports = async function() {
       } = await parseCard(card)
       const imageUrl = await getImageUrl(cardId, imageId);
       const imageOptions = { 
+
           formats: "jpeg",
           widths: [600, 900, 1500],
           urlPath: "/images/",
