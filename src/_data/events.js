@@ -30,32 +30,32 @@ module.exports = async function() {
 		const cards = await getAllApprovedCards();
     return await Promise.all(cards.map(async card => {
         const { 
-					cardId,
-					name,
-					imageId,
-					start, 
-					end, 
-					locationName, 
-					locationAddress, 
-					description,  
-					artists,
-					links
+          cardId,
+          name,
+          imageId,
+          start, 
+          end, 
+          locationName, 
+          locationAddress, 
+          description,  
+          artists,
+          links
         } = await parseCard(card)
         const imageUrl = await getImageUrl(cardId, imageId);
         const imageOptions = { 
-            formats: "jpeg",
-            widths: [600, 900, 1500],
-            urlPath: "/images/",
-            outputDir: "./build/images/",
+          formats: "jpeg",
+          widths: [600, 900, 1500],
+          urlPath: "/images/",
+          outputDir: "./build/images/",
         };
 
         const metadata = await Image(imageUrl, imageOptions);
     
         let imageAttributes = {
-            alt: "ALT TEXT",
-            sizes: "(min-width: 1024px) 100vw, 50vw",
-            loading: "lazy",
-            decoding: "async",
+          alt: "ALT TEXT",
+          sizes: "(min-width: 1024px) 100vw, 50vw",
+          loading: "lazy",
+          decoding: "async",
         };
 
         const imageHtml = Image.generateHTML(metadata, imageAttributes);
