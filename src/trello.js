@@ -47,14 +47,14 @@ const getCustomFieldByName = async (card, fieldName) => {
     customFieldFiltered[0].value : null;
   const dateFields = ["Event Start", "Event End"];
   const isDate = dateFields.includes(fieldName);
-  if (!customFieldValue) { return null }
+  if (!customFieldValue) { return null };
   if (isDate) {
     return customFieldValue.date;
   } else if (fieldName === "Artists") {
     return customFieldValue.text.split(", ");
   } else {
     return customFieldValue.text;
-  }
+  };
 }
 
 const parseCard = async card => {
