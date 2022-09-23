@@ -28,6 +28,9 @@ const getDateString = (value = new Date()) => {
 
 module.exports = async function() {
 		const cards = await getAllApprovedCards();
+    cards.sort((a, b) => {
+      return new Date(a.due).getTime() - new Date(b.due).getTime();
+    });
     return await Promise.all(cards.map(async card => {
       const { 
         cardId,
@@ -87,6 +90,8 @@ module.exports = async function() {
           googleMapsUrl: `https://maps.google.com/maps?q=${queryString.replaceAll(" ", "+")}`,
           googleMapsEmbed: `https://www.google.com/maps/embed/v1/search?q=${queryString.replaceAll(" ", "+")}&key=${GOOGLE_API_KEY}`
       }
+
+      console.log("TITLE: ", eventFormatted.title )
 
       return eventFormatted;
     }));

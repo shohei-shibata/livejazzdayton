@@ -139,6 +139,11 @@ module.exports = config => {
 		}
 	});
 
+  config.addFilter("toString", function (d) {
+    console.log("toString Filter: ", d, typeof d, d.toString());
+    return d.toString();
+  });
+
 	// SHORTCODES
 
 	// Images - from https://www.brycewray.com/posts/2021/04/using-eleventys-official-image-plugin/
