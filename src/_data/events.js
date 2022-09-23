@@ -28,6 +28,9 @@ const getDateString = (value = new Date()) => {
 
 module.exports = async function() {
 		const cards = await getAllApprovedCards();
+    cards.sort((a, b) => {
+      return new Date(a.due).getTime() - new Date(b.due).getTime();
+    });
     return await Promise.all(cards.map(async card => {
         const { 
 					cardId,
