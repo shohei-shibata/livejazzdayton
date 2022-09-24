@@ -162,9 +162,10 @@ iconify-icon {
 /* EVENT CARDS */
 /*             */
 
-/*.events-list {
-	display: flex;
-}*/
+.events-list,
+.announcements-list {
+	margin: 2em 0;
+}
 
 .event-card {
 	display: flex;
