@@ -11,10 +11,11 @@ const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
 
 const params = `key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
 
-const trelloBoardId = "6325991c66402801560c94dd";
+const approvedEventsBoardId = "6325991c66402801560c94dd";
+const approvedEventsListId = "6325995217c6c700939f9740";
 
-const getAllApprovedCards = async () => {
-	const url = `http://api.trello.com/1/lists/6325995217c6c700939f9740/cards?${params}&customFieldItems=true`
+const getAllCards = async (listId) => {
+	const url = `http://api.trello.com/1/lists/${listId}/cards?${params}&customFieldItems=true`
 	return await EleventyFetch(url, { type: "json" });
 }
 
@@ -42,7 +43,7 @@ const getCustomFields = async (boardId) => {
 }
 
 const getCustomFieldByName = async (card, fieldName) => {
-  const customFields = await getCustomFields(trelloBoardId);
+  const customFields = await getCustomFields(approvedEventsBoardId);
   const idCustomField = customFields.filter(item => {
     return item.name === fieldName
   })[0].id;
@@ -94,7 +95,7 @@ const getImageUrl = async (cardId, attachmentId) => {
 }
 
 module.exports = {
-	getAllApprovedCards,
+	getAllCards,
 	parseCard,
 	getImageUrl
 }

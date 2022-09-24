@@ -1,11 +1,13 @@
 const { 
-		getAllApprovedCards,
+		getAllCards,
 		parseCard,
 		getImageUrl
 	} = require("../trello.js");
 const Image = require("@11ty/eleventy-img");
 const slugify = require('slugify')
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+
+const listIdApprovedCards = "6325995217c6c700939f9740";
 
 const changeTimezone = (date, timezoneString) => {
   if (!date) { return null }
@@ -27,7 +29,7 @@ const getDateString = (value = new Date()) => {
   }
 
 module.exports = async function() {
-		const cards = await getAllApprovedCards();
+		const cards = await getAllCards(listIdApprovedCards);
     cards.sort((a, b) => {
       return new Date(a.due).getTime() - new Date(b.due).getTime();
     });
@@ -90,8 +92,6 @@ module.exports = async function() {
           googleMapsUrl: `https://maps.google.com/maps?q=${queryString.replaceAll(" ", "+")}`,
           googleMapsEmbed: `https://www.google.com/maps/embed/v1/search?q=${queryString.replaceAll(" ", "+")}&key=${GOOGLE_API_KEY}`
       }
-
-      console.log("TITLE: ", eventFormatted.title )
 
       return eventFormatted;
     }));
