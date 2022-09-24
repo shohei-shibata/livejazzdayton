@@ -368,7 +368,7 @@ input[type="file"] {
 	content: "";
 }
 
-/* MAILCHIMP FORM */
+/* NEWSLETTER FORM */
 #news-letter-signup {
 	max-width: var(--main-content-width);
 	margin: 2em auto;
@@ -408,6 +408,14 @@ input[type="file"] {
 .form-footer .form-field-container {
 	display: grid;
 	grid-template-columns: 100px 1fr;
+}
+.announcement-card {
+  background-color: var(--color-background-card);
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  margin: 2em 0;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 800px) {
