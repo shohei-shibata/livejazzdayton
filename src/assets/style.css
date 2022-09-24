@@ -369,14 +369,14 @@ input[type="file"] {
 }
 
 /* MAILCHIMP FORM */
-#sign-up-form-container {
+#news-letter-signup {
 	max-width: var(--main-content-width);
 	margin: 2em auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
   column-gap: 20px;
 }
-#sign-up-form-container h1 {
+#news-letter-signup h1 {
   margin: 0;
 }
 .newsletter-signup-form {
