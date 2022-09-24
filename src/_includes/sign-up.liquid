@@ -1,15 +1,17 @@
-<form name="newsletter-sign-up" method="POST" action="/success" data-netlify="true" class="form-footer">
-    <div class="form-field-container">
-        <label for="email">Email*</label>
-        <input type="email" autocapitalize="off" autocorrect="off" name="email" required>
-    </div>
-    <div class="form-field-container">
-        <label for="first-name">First Name*</label>
-        <input type="text" name="first-name" autocomplete="off" required>
-    </div>
-    <div class="form-field-container">
-        <label for="last-name">Last Name</label>
-        <input type="text" name="last-name" autocomplete="off">
-    </div>
-    <input type="submit" class="btn" name="submit" value="Subscribe">
+<form
+  action="https://buttondown.email/api/emails/embed-subscribe/livejazzdayton"
+  method="post"
+  target="popupwindow"
+  onsubmit="window.open('https://buttondown.email/livejazzdayton', 'popupwindow')"
+  class="newsletter-signup-form"
+>
+  <div class="input-group">
+    <label for="bd-name">Name</label>
+    <input type="text" name="metadata__name" id="bd-Name" class="input" required>
+  </div>
+  <div class="input-group">
+    <label for="bd-email">Email</label>
+    <input type="email" name="email" id="bd-email" class="input" required/>
+  </div>
+  <input type="submit" value="Subscribe" class="btn"/>
 </form>
