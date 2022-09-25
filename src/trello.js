@@ -16,24 +16,33 @@ const approvedEventsListId = "6325995217c6c700939f9740";
 
 const getAllCards = async (listId) => {
 	const url = `http://api.trello.com/1/lists/${listId}/cards?${params}&customFieldItems=true`
-	return await EleventyFetch(url, { type: "json" });
+	return await EleventyFetch(url, { 
+    duration: "1h",
+    type: "json" 
+  });
 }
 
 const getVenueAddressById = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/address?${params}`
-	const res = await EleventyFetch(url, { type: "json" });
+	const res = await EleventyFetch(url, { 
+    duration: "1h",
+    type: "json" });
   return res._value;
 }
 
 const getVenueNameById = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/locationName?${params}`
-	const res = await EleventyFetch(url, { type: "json" });
+	const res = await EleventyFetch(url, { 
+    duration: "1h",
+    type: "json" });
   return res._value;
 }
 
 const getCustomFields = async (boardId) => {
   const url = `http://api.trello.com/1/boards/${boardId}/customFields?${params}`
-	const res = await EleventyFetch(url, { type: "json" });
+	const res = await EleventyFetch(url, { 
+    duration: "1h",
+    type: "json" });
   return res.map(item => {
     return {
       name: item.name,
@@ -90,7 +99,9 @@ const parseCard = async card => {
 
 const getImageUrl = async (cardId, attachmentId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/attachments/${attachmentId}?${params}`;
-	const imageInfo = await EleventyFetch(url, { type: "json" });
+	const imageInfo = await EleventyFetch(url, { 
+    duration: "1h",
+    type: "json" });
 	return `${imageInfo.url}?${params}`;
 }
 
