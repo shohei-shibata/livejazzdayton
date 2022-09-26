@@ -71,7 +71,7 @@ module.exports = async function() {
           :
           `${locationName} near Dayton, Ohio`;
 
-      const slug = `${getDateString(start)}-${slugify(card.name)}`
+      const slug = `${getDateString(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
       
       const eventFormatted = {
           slug: slug,
