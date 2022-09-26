@@ -41,7 +41,7 @@ module.exports = async function() {
       const description = card.desc;
       const dateUpdated = card.dateLastActivity;
 
-      const slug = `${getDateString(dateUpdated)}-${slugify(card.name)}`
+      const slug = `${getDateString(dateUpdated)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
       
       const formattedAnnoucement = {
           slug: slug,
