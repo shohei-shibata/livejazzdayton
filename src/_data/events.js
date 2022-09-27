@@ -4,7 +4,8 @@ const {
 		getImageUrl
 	} = require("../trello.js");
 const Image = require("@11ty/eleventy-img");
-const slugify = require('slugify')
+const slugify = require('slugify');
+const { google, ics } = require("calendar-link");
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 const listIdApprovedCards = "6325995217c6c700939f9740";
@@ -27,6 +28,20 @@ const getDateString = (value = new Date()) => {
     const d = dateObj.getDate();
     return `${y}-${m+1}-${d}`;
   }
+
+const getCalendarLinks = (title, start, end, address, description) => {
+  const event = {
+    title: title,
+    start: start,
+    end: end,
+    location: address,
+    description: description
+  };
+  return {
+    google: google(event),
+    ics: ics(event)
+  }
+};
 
 module.exports = async function() {
 		const cards = await getAllCards(listIdApprovedCards);
@@ -73,6 +88,18 @@ module.exports = async function() {
 
       const slug = `${getDateString(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
       
+      let artistsString = "";
+
+      if (artists) {
+        artistsString = artists.map((artist, index) => {
+          if (index > 0) {
+            return `, ${artist}`
+          } else {
+            return artist
+          }
+        });
+      }
+
       const eventFormatted = {
           slug: slug,
           title: name,
@@ -89,6 +116,8 @@ module.exports = async function() {
           description: description,
           image: imageHtml,
           artists: artists,
+          artistsString: artistsString,
+          calendarLinks: getCalendarLinks(name, start, end, locationAddress, description),
           googleMapsUrl: `https://maps.google.com/maps?q=${queryString.replaceAll(" ", "+")}`,
           googleMapsEmbed: `https://www.google.com/maps/embed/v1/search?q=${queryString.replaceAll(" ", "+")}&key=${GOOGLE_API_KEY}`
       }
