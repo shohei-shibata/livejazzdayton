@@ -51,6 +51,14 @@ const getCustomFields = async (boardId) => {
   });
 }
 
+const getAttachmentsByCardId = async (cardId) => {
+	const url = `http://api.trello.com/1/cards/${cardId}/attachments?${params}`
+	const res = await EleventyFetch(url, { 
+    duration: "1h",
+    type: "json" });
+  return res;
+}
+
 const getCustomFieldByName = async (card, fieldName) => {
   const customFields = await getCustomFields(approvedEventsBoardId);
   const idCustomField = customFields.filter(item => {
@@ -108,5 +116,6 @@ const getImageUrl = async (cardId, attachmentId) => {
 module.exports = {
 	getAllCards,
 	parseCard,
-	getImageUrl
+	getImageUrl,
+  getAttachmentsByCardId
 }

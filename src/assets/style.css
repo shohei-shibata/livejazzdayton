@@ -409,13 +409,16 @@ input[type="file"] {
 	display: grid;
 	grid-template-columns: 100px 1fr;
 }
-.announcement-card {
+.announcement-card,
+.link-card {
+  display: block;
   background-color: var(--color-background-card);
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   box-sizing: border-box;
   padding: 10px 20px;
   margin: 2em 0;
   border-radius: 10px;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 800px) {
@@ -469,7 +472,7 @@ input[type="file"] {
 	}
 	#nav-container-mobile ul {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 		padding: 0;
 	}
 	#nav-container-mobile a {
