@@ -15,7 +15,7 @@ description: Live Jazz Event Listing for Dayton, Ohio
     {%- endfor -%}
 
   <p>If you have suggestions for links to add, let me know!
-  <a href="#" target="_blank" class="btn btn-inline">Submit a Link</a>
+  <a href="https://docs.google.com/forms/d/17Bu7NbTSGHFeTOCW6Ss5xVEnmjY4VHblqwwUgMsYCT4" target="_blank" class="btn btn-inline">Submit a Link</a>
   </p>
 </section>
 {% endif %}
