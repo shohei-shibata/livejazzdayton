@@ -2,6 +2,7 @@ const {
 		getAllCards
 	} = require("../trello.js");
 const slugify = require('slugify');
+const { markdownToHtml } = require("../markdownParser");
 
 /*
 JUST FOR REFERENCE IN CASE NEEDED IN THE FUTURE
@@ -34,8 +35,9 @@ const getDateString = (value = new Date()) => {
 module.exports = async function() {
 		const cards = await getAllCards(listIdAnnoucements);
     cards.sort((a, b) => {
-      return new Date(a.due).getTime() - new Date(b.due).getTime();
+      return new Date(b.dateLastActivity).getTime() - new Date(a.dateLastActivity).getTime();
     });
+    console.log(cards);
     return await Promise.all(cards.map(card => {
       const name = card.name;
       const description = card.desc;
@@ -47,10 +49,8 @@ module.exports = async function() {
           slug: slug,
           dateUpdated: dateUpdated,
           title: name,
-          content: description,
+          content: markdownToHtml(description),
       }
-
-      console.log("Announcement: ", formattedAnnoucement )
 
       return formattedAnnoucement;
     }));
