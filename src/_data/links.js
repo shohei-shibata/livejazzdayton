@@ -2,7 +2,7 @@ const {
 		getAllCards,
     getAttachmentsByCardId
 	} = require("../trello.js");
-const slugify = require('slugify');
+const { markdownToHtml } = require("../markdownParser");
 
 /*
 JUST FOR REFERENCE IN CASE NEEDED IN THE FUTURE
@@ -26,7 +26,7 @@ module.exports = async function() {
       const formattedLink = {
           dateUpdated: dateUpdated,
           title: name,
-          description: description,
+          description: markdownToHtml(description),
           url: linkUrl
       }
 

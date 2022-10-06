@@ -2,6 +2,7 @@ const {
 		getAllCards
 	} = require("../trello.js");
 const slugify = require('slugify');
+const { markdownToHtml } = require("../markdownParser");
 
 /*
 JUST FOR REFERENCE IN CASE NEEDED IN THE FUTURE
@@ -48,7 +49,7 @@ module.exports = async function() {
           slug: slug,
           dateUpdated: dateUpdated,
           title: name,
-          content: description,
+          content: markdownToHtml(description),
       }
 
       return formattedAnnoucement;
