@@ -1,6 +1,7 @@
 ---
 title: Newsletter Content
 noindex: "true"
+eleventyExcludeFromCollections: true
 ---
 
 Hey there! This is the {{ | lastUpdated }} edition of the newsletter.

@@ -37,7 +37,6 @@ module.exports = async function() {
     cards.sort((a, b) => {
       return new Date(b.dateLastActivity).getTime() - new Date(a.dateLastActivity).getTime();
     });
-    console.log(cards);
     return await Promise.all(cards.map(card => {
       const name = card.name;
       const description = card.desc;
