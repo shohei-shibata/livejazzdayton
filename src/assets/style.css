@@ -420,6 +420,15 @@ input[type="file"] {
   border-radius: 10px;
   text-decoration: none;
 }
+.link-card {
+	margin: 1em 0;
+	min-height: 200px;
+}
+.links-list-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 1em;
+}
 
 @media screen and (max-width: 800px) {
 	.event-card {
@@ -495,5 +504,11 @@ input[type="file"] {
 	.footer-link-logos-container {
 		font-size: 1.5em;
 		margin: 0 0.5em;
+	}
+	.links-list-container {
+		grid-template-columns: 1fr;
+	}
+  #news-letter-signup {
+		grid-template-columns: 1fr;
 	}
 }
