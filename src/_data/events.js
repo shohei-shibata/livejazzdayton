@@ -82,9 +82,9 @@ module.exports = async function() {
       const imageHtml = Image.generateHTML(metadata, imageAttributes);
 
       const queryString = locationAddress ? 
-          `${locationName}, ${locationAddress}`
+          `${locationName.replace("&", "and")}, ${locationAddress}`
           :
-          `${locationName} near Dayton, Ohio`;
+          `${locationName.replace("&", "and")} near Dayton, Ohio`;
 
       const slug = `${getDateString(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
       
