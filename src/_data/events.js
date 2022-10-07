@@ -63,7 +63,6 @@ module.exports = async function() {
       } = await parseCard(card)
       const imageUrl = await getImageUrl(cardId, imageId);
       const imageOptions = { 
-
           formats: "jpeg",
           widths: [600, 900, 1500],
           urlPath: "/images/",
@@ -81,10 +80,15 @@ module.exports = async function() {
 
       const imageHtml = Image.generateHTML(metadata, imageAttributes);
 
+      const locationNameEscaped = locationName ? 
+        locationName.replace("&", "and")
+        :
+        "";
+
       const queryString = locationAddress ? 
-          `${locationName.replace("&", "and")}, ${locationAddress}`
+          `${locationNameEscaped}, ${locationAddress}`
           :
-          `${locationName.replace("&", "and")} near Dayton, Ohio`;
+          `${locationNameEscaped} near Dayton, Ohio`;
 
       const slug = `${getDateString(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
       
