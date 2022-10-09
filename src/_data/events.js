@@ -29,16 +29,16 @@ const getDateString = (value = new Date()) => {
     return `${y}-${m+1}-${d}`;
   }
 
-const getCalendarLinks = (title, start, end, address, description) => {
+const getCalendarLinks = (title, start, end, address, description, streamLink) => {
   const event = {
     title: title,
     start: start,
     end: end,
     location: address,
-    description: description
+    description: streamLink ? `${description}\n<a href="${streamLink}">Live Stream Link</a>` : description,
   };
   return {
-    google: google(event),
+    googleCalendar: google(event),
     ics: ics(event)
   }
 };
@@ -102,7 +102,9 @@ module.exports = async function() {
             return artist
           }
         });
-      }
+      } 
+
+      const { googleCalendar, ics } = getCalendarLinks(name, start, end, locationAddress, description, links.stream);
 
       const eventFormatted = {
           slug: slug,
@@ -114,14 +116,18 @@ module.exports = async function() {
               address: locationAddress
           },
           links: {
-              facebook: links.facebook && links.facebook.length > 0 ? links.facebook : null,
-              website: links.website && links.website.length > 0 ? links.website : null
+            googleCalendar: googleCalendar,
+            ics: ics,
+            facebook: links.facebook && links.facebook.length > 0 ? links.facebook : null,
+            website: links.website && links.website.length > 0 ? links.website : null,
+            stream: links.stream && links.stream.length > 0 ? links.stream : null,
+            tickets: links.tickets && links.tickets.length > 0 ? links.tickets : null,
           },
+          streamEmbed: links.streamEmbed && links.streamEmbed.length > 0 ? links.streamEmbed : null,
           description: description,
           image: imageHtml,
           artists: artists,
           artistsString: artistsString,
-          calendarLinks: getCalendarLinks(name, start, end, locationAddress, description),
           googleMapsUrl: `https://maps.google.com/maps?q=${queryString.replaceAll(" ", "+")}`,
           googleMapsEmbed: `https://www.google.com/maps/embed/v1/search?q=${queryString.replaceAll(" ", "+")}&key=${GOOGLE_API_KEY}`
       }

@@ -192,30 +192,6 @@ module.exports = config => {
 
 		return `background-image: url(${metadata.jpeg[0].url});`;
 	})
-
-	config.addShortcode("calendarLinks", function({
-		title, start, end, location
-	}) {
-		const locationString = location ? 
-			`${location.name}, ${location.address}`
-			:
-			"";
-			
-		const event = {
-			title: title,
-			start: start,
-			end: end,
-			location: locationString
-		};
-
-		return (
-			`
-				<a class="calendar-link btn-secondary" href=${google(event)}>Google Calendar</a>
-				<a class="calendar-link btn-secondary" href=${ics(event)}>iCalendar</a>
-			`
-		);
-		
-	});
 	
   // 11ty defaults
   return {

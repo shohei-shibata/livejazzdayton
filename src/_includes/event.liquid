@@ -25,8 +25,13 @@ layout: layout.liquid
 	</div>
 
 	<div id="event-links-container">
-		{% calendarLinks event %}
 		{% if event.links %}
+      <a class="btn-secondary" href={{ event.links.googleCalendar }}>
+        Google Calendar
+      </a>
+      <a class="btn-secondary" href={{ event.links.ics }}>
+        iCal
+      </a>
 			{% if event.links.facebook %}
 				<a class="btn-secondary" href={{ event.links.facebook }}>
 					Facebook
@@ -35,6 +40,16 @@ layout: layout.liquid
 			{% if event.links.website %}
 				<a class="btn-secondary" href={{ event.links.website }}>
 					Website
+				</a>
+			{% endif %}
+      {% if event.links.stream %}
+				<a class="btn-secondary" href={{ event.links.stream }}>
+					Live Stream
+				</a>
+			{% endif %}
+      {% if event.links.tickets %}
+				<a class="btn-secondary" href={{ event.links.tickets }}>
+					Ticket
 				</a>
 			{% endif %}
 		{% endif %}

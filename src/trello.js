@@ -56,9 +56,10 @@ const getAttachmentsByCardId = async (cardId) => {
 
 const getCustomFieldByName = async (card, fieldName) => {
   const customFields = await getCustomFields(approvedEventsBoardId);
-  const idCustomField = customFields.filter(item => {
+  const customField = customFields.filter(item => {
     return item.name === fieldName
-  })[0].id;
+  });
+  const idCustomField = customField.length > 0 ? customField[0].id : null;
   const customFieldFiltered = card.customFieldItems.filter(item => {
     return item.idCustomField === idCustomField
   });
@@ -90,7 +91,10 @@ const parseCard = async card => {
     links: {
       facebook: await getCustomFieldByName(card, "Facebook"),
       website: await getCustomFieldByName(card, "Website"),
-    }
+      stream: await getCustomFieldByName(card, "Stream Link"),
+      tickets: await getCustomFieldByName(card, "Tickets"),
+    },
+    streamEmbed: await getCustomFieldByName(card, "Stream Embed")
   }
   return trelloParsed;
 }
