@@ -8,8 +8,6 @@ eleventyExcludeFromCollections: true
 
 # Email Confirmed
 
-Your email address has been confirmed. You will begin seeing the email from the next issue.
-
-Thanks!!!
+Your email address has been confirmed. Thanks!!!
 
 <a class="btn" href="/">Go back to home page</a>
