@@ -1,10 +1,5 @@
 const EleventyFetch = require("@11ty/eleventy-fetch");
-const createDOMPurify = require('dompurify');
-const { JSDOM } = require('jsdom');
-
-const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window);
-const { marked } = require('marked');
+const { markdownToHtml } = require("./markdownParser");
 
 const TRELLO_API_KEY = process.env.TRELLO_API_KEY;
 const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
@@ -79,11 +74,6 @@ const getCustomFieldByName = async (card, fieldName) => {
   } else {
     return customFieldValue.text;
   };
-}
-
-const markdownToHtml = markdown => {
-  const html = DOMPurify.sanitize(marked.parse(markdown));
-  return html;
 }
 
 const parseCard = async card => {

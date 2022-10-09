@@ -3,6 +3,7 @@ layout: layout.liquid
 title: Newsletter Unsubscribed
 description: Live Jazz Event Listing for Dayton, OH
 noindex: "true"
+eleventyExcludeFromCollections: true
 ---
 
 # Unsubsribed
