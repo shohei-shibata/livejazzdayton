@@ -1,6 +1,6 @@
 const { 
 		getAllCards,
-		parseCard,
+		parseEventCard,
 		getImageUrl
 	} = require("../js/trello.js");
 const Image = require("@11ty/eleventy-img");
@@ -60,7 +60,7 @@ module.exports = async function() {
         description,  
         artists,
         links
-      } = await parseCard(card)
+      } = await parseEventCard(card)
       const imageUrl = await getImageUrl(cardId, imageId);
       const imageOptions = { 
           formats: "jpeg",

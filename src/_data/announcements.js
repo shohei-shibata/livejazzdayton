@@ -1,17 +1,17 @@
 const { 
-		getAllCards
+		getAllCards,
+    getCustomFieldByName
 	} = require("../js/trello.js");
 const slugify = require('slugify');
 const { markdownToHtml } = require("../js/markdownParser");
 
 /*
 JUST FOR REFERENCE IN CASE NEEDED IN THE FUTURE
-const boardIdLinksAnnouncements = "632d73dfc435890468f6a2fc";
 const listIdLinks = "632d10c84c2e6705be8d7a3f";
 */
 
 const listIdAnnoucements = "632ddd7b1ae6ac01f1b0e8f1";
-
+const boardIdLinksAnnouncements = "632d73dfc435890468f6a2fc"
 
 const changeTimezone = (date, timezoneString) => {
   if (!date) { return null }
@@ -35,12 +35,14 @@ const getDateString = (value = new Date()) => {
 module.exports = async function() {
 		const cards = await getAllCards(listIdAnnoucements);
     cards.sort((a, b) => {
-      return new Date(b.dateLastActivity).getTime() - new Date(a.dateLastActivity).getTime();
+      dateA = getCustomFieldByName(boardIdLinksAnnouncements, a, "Published")
+      dateB = getCustomFieldByName(boardIdLinksAnnouncements, b, "Published")
+      return new Date(dateB).getTime() - new Date(dateA).getTime();
     });
     return await Promise.all(cards.map(card => {
       const name = card.name;
       const description = card.desc;
-      const dateUpdated = card.dateLastActivity;
+      const dateUpdated = getCustomFieldByName(boardIdLinksAnnouncements, card, "Published");
 
       const slug = `${getDateString(dateUpdated)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
       
