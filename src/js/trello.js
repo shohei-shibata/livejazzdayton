@@ -6,6 +6,8 @@ const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
 
 const params = `key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
 
+const defaultDuration = '1m';
+
 const approvedEventsBoardId = "6325991c66402801560c94dd";
 const approvedEventsListId = "6325995217c6c700939f9740";
 
@@ -20,7 +22,7 @@ const getAllCards = async (listId) => {
 const getVenueAddressById = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/address?${params}`
 	const res = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
   return res._value;
 }
@@ -28,7 +30,7 @@ const getVenueAddressById = async (cardId) => {
 const getVenueNameById = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/locationName?${params}`
 	const res = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
   return res._value;
 }
@@ -36,7 +38,7 @@ const getVenueNameById = async (cardId) => {
 const getCustomFields = async (boardId) => {
   const url = `http://api.trello.com/1/boards/${boardId}/customFields?${params}`
 	const res = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
   return res.map(item => {
     return {
@@ -49,7 +51,7 @@ const getCustomFields = async (boardId) => {
 const getAttachmentsByCardId = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/attachments?${params}`
 	const res = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
   return res;
 }
@@ -102,7 +104,7 @@ const parseCard = async card => {
 const getImageUrl = async (cardId, attachmentId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/attachments/${attachmentId}?${params}`;
 	const imageInfo = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
 	return `${imageInfo.url}?${params}`;
 }
