@@ -6,6 +6,8 @@ const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
 
 const params = `key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
 
+const defaultDuration = '1m';
+
 const approvedEventsBoardId = "6325991c66402801560c94dd";
 const approvedEventsListId = "6325995217c6c700939f9740";
 
@@ -20,7 +22,7 @@ const getAllCards = async (listId) => {
 const getVenueAddressById = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/address?${params}`
 	const res = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
   return res._value;
 }
@@ -28,7 +30,7 @@ const getVenueAddressById = async (cardId) => {
 const getVenueNameById = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/locationName?${params}`
 	const res = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
   return res._value;
 }
@@ -36,7 +38,7 @@ const getVenueNameById = async (cardId) => {
 const getCustomFields = async (boardId) => {
   const url = `http://api.trello.com/1/boards/${boardId}/customFields?${params}`
 	const res = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
   return res.map(item => {
     return {
@@ -49,13 +51,14 @@ const getCustomFields = async (boardId) => {
 const getAttachmentsByCardId = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/attachments?${params}`
 	const res = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
   return res;
 }
 
-const getCustomFieldByName = async (card, fieldName) => {
-  const customFields = await getCustomFields(approvedEventsBoardId);
+const getCustomFieldByName = async (boardId, card, fieldName) => {
+
+  const customFields = await getCustomFields(boardId);
   const customField = customFields.filter(item => {
     return item.name === fieldName
   });
@@ -65,7 +68,7 @@ const getCustomFieldByName = async (card, fieldName) => {
   });
   const customFieldValue = customFieldFiltered.length > 0 ?
     customFieldFiltered[0].value : null;
-  const dateFields = ["Event Start", "Event End"];
+  const dateFields = ["Event Start", "Event End", "Published"];
   const isDate = dateFields.includes(fieldName);
   if (!customFieldValue) { return null };
   if (isDate) {
@@ -77,7 +80,7 @@ const getCustomFieldByName = async (card, fieldName) => {
   };
 }
 
-const parseCard = async card => {
+const parseEventCard = async card => {
   const trelloParsed = {
     cardId: card.id,
     name: card.name,
@@ -85,16 +88,16 @@ const parseCard = async card => {
 		imageId: card.cover.idAttachment,
     locationName: await getVenueNameById(card.id),
     locationAddress: await getVenueAddressById(card.id),
-    start: await getCustomFieldByName(card, "Event Start"),
-    end: await getCustomFieldByName(card, "Event End"),
-    artists: await getCustomFieldByName(card, "Artists"),
+    start: await getCustomFieldByName(approvedEventsBoardId, card, "Event Start"),
+    end: await getCustomFieldByName(approvedEventsBoardId, card, "Event End"),
+    artists: await getCustomFieldByName(approvedEventsBoardId, card, "Artists"),
     links: {
-      facebook: await getCustomFieldByName(card, "Facebook"),
-      website: await getCustomFieldByName(card, "Website"),
-      stream: await getCustomFieldByName(card, "Stream Link"),
-      tickets: await getCustomFieldByName(card, "Tickets"),
+      facebook: await getCustomFieldByName(approvedEventsBoardId, card, "Facebook"),
+      website: await getCustomFieldByName(approvedEventsBoardId, card, "Website"),
+      stream: await getCustomFieldByName(approvedEventsBoardId, card, "Stream Link"),
+      tickets: await getCustomFieldByName(approvedEventsBoardId, card, "Tickets"),
     },
-    streamEmbed: await getCustomFieldByName(card, "Stream Embed")
+    streamEmbed: await getCustomFieldByName(approvedEventsBoardId, card, "Stream Embed")
   }
   return trelloParsed;
 }
@@ -102,14 +105,15 @@ const parseCard = async card => {
 const getImageUrl = async (cardId, attachmentId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/attachments/${attachmentId}?${params}`;
 	const imageInfo = await EleventyFetch(url, { 
-    duration: "1h",
+    duration: defaultDuration,
     type: "json" });
 	return `${imageInfo.url}?${params}`;
 }
 
 module.exports = {
 	getAllCards,
-	parseCard,
+	parseEventCard,
 	getImageUrl,
-  getAttachmentsByCardId
+  getAttachmentsByCardId,
+  getCustomFieldByName,
 }
