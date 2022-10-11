@@ -1,7 +1,7 @@
 const clipboardJS= new ClipboardJS('[data-clipboard]');
 
 const btns=document.querySelectorAll('.btn-copy-to-clipboard');
-for (const i=0;i<btns.length;i++) {
+for (let i=0;i<btns.length;i++) {
   btns[i].addEventListener('mouseleave',clearTooltip);
   btns[i].addEventListener('blur',clearTooltip);
 }
