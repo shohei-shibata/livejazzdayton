@@ -1,8 +1,8 @@
 const { 
 		getAllCards
-	} = require("../trello.js");
+	} = require("../js/trello.js");
 const slugify = require('slugify');
-const { markdownToHtml } = require("../markdownParser");
+const { markdownToHtml } = require("../js/markdownParser");
 
 /*
 JUST FOR REFERENCE IN CASE NEEDED IN THE FUTURE

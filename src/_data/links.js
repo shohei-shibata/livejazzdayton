@@ -1,8 +1,8 @@
 const { 
 		getAllCards,
     getAttachmentsByCardId
-	} = require("../trello.js");
-const { markdownToHtml } = require("../markdownParser");
+	} = require("../js/trello.js");
+const { markdownToHtml } = require("../js/markdownParser");
 
 /*
 JUST FOR REFERENCE IN CASE NEEDED IN THE FUTURE

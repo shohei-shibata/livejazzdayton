@@ -19,7 +19,8 @@ a {
 	color: var(--color-white);
 }
 a:hover,
-.btn:hover {
+.btn:hover,
+.btn-secondary:hover {
 	opacity: 0.8;
 	cursor: pointer;
 }
