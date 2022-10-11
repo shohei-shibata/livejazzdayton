@@ -2,7 +2,7 @@ const {
 		getAllCards,
 		parseCard,
 		getImageUrl
-	} = require("../trello.js");
+	} = require("../js/trello.js");
 const Image = require("@11ty/eleventy-img");
 const slugify = require('slugify');
 const { google, ics } = require("calendar-link");

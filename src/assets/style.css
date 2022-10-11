@@ -57,6 +57,10 @@ main {
 	margin-right: 10px;
 	border: solid 1px var(--color-font-dark);
 }
+.btn-copy-to-clipboard {
+  margin-left: 20px;
+  vertical-align: middle;
+}
 .align-right {
 	display: flex;
 	justify-content: flex-end;
@@ -320,7 +324,7 @@ input[type="file"] {
 #event-featured-image img {
 	width: auto;
 	height: auto;
-	max-height: 50vh;
+	max-height: 75vh;
 	max-width: 100%;
 }
 .google-maps-container {
@@ -461,6 +465,7 @@ input[type="file"] {
 	}
 	#event-featured-image img {
 		width: 100%;
+    max-height: none;
 	}
   #sign-up-form-container {
     grid-template-columns: 1fr;

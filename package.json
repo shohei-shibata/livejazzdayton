@@ -18,6 +18,7 @@
     "@11ty/eleventy-fetch": "^3.0.0",
     "@netlify/functions": "^1.2.0",
     "calendar-link": "^2.2.0",
+    "clipboard": "^2.0.11",
     "dompurify": "^2.4.0",
     "jsdom": "^20.0.0",
     "marked": "^4.1.0",

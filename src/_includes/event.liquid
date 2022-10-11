@@ -7,7 +7,15 @@ layout: layout.liquid
 		{{ event.image }}
 	</div>
 
-	<h1>{{ event.title }}</h1>
+	<h1>{{ event.title }} 
+    <button 
+      class="btn-secondary btn-copy-to-clipboard" 
+      data-clipboard 
+      data-clipboard-text="https://livejazzdayton.com{{ page.url | url }}"
+    >
+      Copy Link
+    </button>
+  </h1>
 
 	<h2>{{ event.start | dateString }} from {{ event.start | timeString }} to {{ event.end | timeString }}</h2>
 
