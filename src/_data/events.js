@@ -5,6 +5,7 @@ const {
 	} = require("../js/trello.js");
 const Image = require("@11ty/eleventy-img");
 const slugify = require('slugify');
+const { htmlToText } = require('html-to-text');
 const { google, ics } = require("calendar-link");
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
@@ -104,7 +105,7 @@ module.exports = async function() {
         });
       } 
 
-      const { googleCalendar, ics } = getCalendarLinks(name, start, end, locationAddress, description, links.stream);
+      const { googleCalendar, ics } = getCalendarLinks(name, start, end, locationAddress, htmlToText(description), links.stream);
 
       const eventFormatted = {
           slug: slug,
