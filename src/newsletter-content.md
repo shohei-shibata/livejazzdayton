@@ -22,7 +22,7 @@ You can see more at [livejazzdayton.com](https://livejazzdayton.com). There you 
 			image: event.image,
 			artists: event.artistsString,
       googleMapsUrl: event.googleMapsUrl,
-      calendarLinks: event.calendarLinks,
+      googleCalendar: event.links.googleCalendar
 		%}
     <hr/>
 

@@ -15,7 +15,14 @@
 			{{ event.image }}
 		</div>
 		<div class="event-card-text">
-			<h2>{{ title }}</h2>
+			<h2>
+        {{ title }}
+        {%- for badge in event.badges -%}
+          {%- if badge.size > 0 -%}
+            <span class="badge-small">{{ badge }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      </h2>
 			<p>{{ start | dateString }} from {{ start | timeString }} to {{ end | timeString }}</p>
 			<div class="tags-container">
 				{%- for artist in artists -%}
