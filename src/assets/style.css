@@ -103,6 +103,18 @@ nav {
   margin-left: -50vw;
   margin-right: -50vw;
 }
+.badge-small {
+  position: relative;
+  top: -2px;
+	background-color: var(--color-btn);	
+  color: var(--color-font-light);
+	text-decoration: none;
+	padding: 3px 8px;
+	border-radius: 3px;
+	margin: 0.25em 10px;
+  margin-right: 0;
+  text-transform: uppercase;
+}
 
 /*        */
 /* BANNER */

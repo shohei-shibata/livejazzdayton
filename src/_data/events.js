@@ -22,13 +22,13 @@ const roundDate = (date = new Date(), minutes) => {
   return new Date(Math.round(new Date(date).getTime() / ms) * ms);
 }
 const getDateString = (value = new Date()) => {
-    const timezoneString = "America/New_York";
-    const dateObj = changeTimezone(value, timezoneString);
-    const y = dateObj.getFullYear();
-    const m = dateObj.getMonth();
-    const d = dateObj.getDate();
-    return `${y}-${m+1}-${d}`;
-  }
+  const timezoneString = "America/New_York";
+  const dateObj = changeTimezone(value, timezoneString);
+  const y = dateObj.getFullYear();
+  const m = dateObj.getMonth();
+  const d = dateObj.getDate();
+  return `${y}-${m+1}-${d}`;
+}
 
 const getCalendarLinks = (title, start, end, address, description, streamLink) => {
   const event = {
@@ -43,6 +43,16 @@ const getCalendarLinks = (title, start, end, address, description, streamLink) =
     ics: ics(event)
   }
 };
+
+const getIsToday = (value) => {
+  const timezoneString = "America/New_York";
+  const dateObj = changeTimezone(value, timezoneString);
+  const y = dateObj.getFullYear();
+  const m = dateObj.getMonth();
+  const d = dateObj.getDate();
+  console.log("IS TODAY:", (dateObj - new Date())/36e+5 < 72)
+  return (dateObj - new Date())/36e+5 < 24;
+}
 
 module.exports = async function() {
 		const cards = await getAllCards(listIdApprovedCards);
@@ -92,6 +102,8 @@ module.exports = async function() {
           `${locationNameEscaped} near Dayton, Ohio`;
 
       const slug = `${getDateString(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
+
+      const isToday = getIsToday(start);
       
       let artistsString = "";
 
@@ -125,6 +137,9 @@ module.exports = async function() {
             tickets: links.tickets && links.tickets.length > 0 ? links.tickets : null,
           },
           streamEmbed: links.streamEmbed && links.streamEmbed.length > 0 ? links.streamEmbed : null,
+          badges: [
+            isToday ? "Today" : null
+          ],
           description: description,
           image: imageHtml,
           artists: artists,
