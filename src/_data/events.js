@@ -46,12 +46,9 @@ const getCalendarLinks = (title, start, end, address, description, streamLink) =
 
 const getIsToday = (value) => {
   const timezoneString = "America/New_York";
-  const dateObj = changeTimezone(value, timezoneString);
-  const y = dateObj.getFullYear();
-  const m = dateObj.getMonth();
-  const d = dateObj.getDate();
-  console.log("IS TODAY:", (dateObj - new Date())/36e+5 < 72)
-  return (dateObj - new Date())/36e+5 < 24;
+  const now = changeTimezone(new Date(), timezoneString);
+  console.log("isToday: ", value, now)
+  return (value - new Date())/36e+5 < 21;
 }
 
 module.exports = async function() {
