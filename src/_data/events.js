@@ -45,9 +45,7 @@ const getCalendarLinks = (title, start, end, address, description, streamLink) =
 };
 
 const getIsToday = (value) => {
-  const timezoneString = "America/New_York";
-  const now = changeTimezone(new Date(), timezoneString);
-  console.log("isToday: ", value, now, new Date())
+  console.log("isToday: ", value, new Date())
   return (value - new Date())/36e+5 < 21;
 }
 
