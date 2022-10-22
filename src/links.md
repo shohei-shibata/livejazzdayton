@@ -1,7 +1,7 @@
 ---
 layout: layout.liquid
-title: Home
-description: Live Jazz Event Listing for Dayton, Ohio
+title: Links
+description: Links to websites related to jazz in Dayton, Ohio
 ---
 
 {% if links.size > 0 %}

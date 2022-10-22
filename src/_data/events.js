@@ -45,7 +45,7 @@ const getCalendarLinks = (title, start, end, address, description, streamLink) =
 };
 
 const getIsToday = (value) => {
-  console.log("isToday: ", value, new Date(), (new Date(value) - new Date())/36e+5)
+  //console.log("isToday: ", value, new Date(), (new Date(value) - new Date())/36e+5)
   return (new Date(value) - new Date())/36e+5 < 21;
 }
 

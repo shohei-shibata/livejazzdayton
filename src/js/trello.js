@@ -9,7 +9,6 @@ const params = `key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
 const defaultDuration = '1m';
 
 const approvedEventsBoardId = "6325991c66402801560c94dd";
-const approvedEventsListId = "6325995217c6c700939f9740";
 
 const getAllCards = async (listId) => {
 	const url = `http://api.trello.com/1/lists/${listId}/cards?${params}&customFieldItems=true`
