@@ -6,7 +6,7 @@
 	--color-font-light: #fff;
 	--color-font-dark: #111;
 	--color-calendar-red: #dd3436;
-	--color-background: #eee;
+	--color-background: rgb(200,200,200,0.1);
 	--color-background-card: #fff;
 	--color-btn: #dd3436;
 	--color-banner: #111;
@@ -483,6 +483,12 @@ input[type="file"] {
     grid-template-columns: 1fr;
   }
 }
+
+/* CONTACT FORM */
+.contact-form {
+  padding: 2em 20px;
+}
+
 @media screen and (max-width: 600px) {
 	#nav-container-desktop {
 		display: none;

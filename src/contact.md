@@ -10,7 +10,18 @@ Use the form below to send me a message! Any suggestions to improve this website
 
 If you are interested in building a website, or need help with an existing one, I may be able to help! Feel free to contact me if you are interested in my services as a web developer.
 
-<form name="contact-form" method="POST" action="/success" data-netlify="true">
+<form 
+  class="contact-form" 
+  name="contact-form" 
+  method="POST" 
+  action="/success" 
+  data-netlify="true"
+>
+  <input 
+    type="hidden" 
+    name="subject" 
+    value="Live Jazz Dayton Contact Form Submission" 
+  />
 	<div class="form-field-container">
 		<label for="name">Your name: </label>
 		<input name="name" type="text" required>
