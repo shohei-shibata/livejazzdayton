@@ -1,12 +1,2 @@
-<h3>{{ title }}</h3>
-<p>{{ start | dateString }} from {{ start | timeString }} to {{ end | timeString }}</p>
-<p>By {{ artists }}
-<p>At {{ location }} (<a href="{{ googleMapsUrl }}">Google Maps</a>)</p>
-<p>Add to calendar: 
-  <a href="{{ googleCalendar }}">Google</a>
-</p>
-<p>
-  <a href="https://livejazzdayton.com/events/{{slug}}">
-    View this event on the website
-  </a>
-</p>
+<p>{{ start | dateString }} from {{ start | timeString }}</p>
+<h3><a href="https://livejazzdayton.com/events/{{slug}}">{{ title }}</a></h3>

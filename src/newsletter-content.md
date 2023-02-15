@@ -6,13 +6,13 @@ eleventyExcludeFromCollections: true
 
 Hey there! This is the {{ | lastUpdated }} edition of the newsletter.
 
-You can see more at [livejazzdayton.com](https://livejazzdayton.com). There you can see events further in the future, and the listing there is updated daily. So check it often!
+Check out the full list of events at [livejazzdayton.com](https://livejazzdayton.com).
 
-## Upcoming Events
+# Upcoming Events
 
 <hr/>
 
-	{%- for event in events limit:5 -%}
+	{%- for event in events limit:10 -%}
 		{% include event-info-newsletter, 
 			title: event.title,
 			slug: event.slug,
