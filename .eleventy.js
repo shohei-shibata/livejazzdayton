@@ -150,7 +150,7 @@ module.exports = config => {
 	config.addShortcode("image", function (
 		src="./src/images/default-event-card-image.jpg", alt="No alt text provided", sizes="(min-width: 1024px) 100vw, 50vw"
 	) {
-		console.log(`Generating image(s) from:  ${src}`);
+		//console.log(`Generating image(s) from:  ${src}`);
 		let options = {
 			widths: [600, 900, 1500],
 			formats: ["webp", "jpeg"],
@@ -178,7 +178,7 @@ module.exports = config => {
 	});
 
 	config.addShortcode("cssBackgroundImage", function (src) {
-		console.log(`Generating css background image from: ${src}`);
+		//console.log(`Generating css background image from: ${src}`);
 		let options = {
 			widths: [1500],
 			formats: ["jpeg"],

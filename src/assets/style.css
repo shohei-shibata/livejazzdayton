@@ -320,6 +320,9 @@ input[type="file"] {
 	margin: 20px auto 50px auto;
 	text-align: center;
 }
+#pagination-link-previous {
+	text-align: left;
+}
 #pagination-link-next {
 	text-align: right;
 }
