@@ -4,6 +4,8 @@ noindex: "true"
 eleventyExcludeFromCollections: true
 ---
 
+# [Live Jazz Dayton] Newsletter {{ | lastUpdated }}
+
 Hey there! This is the {{ | lastUpdated }} edition of the newsletter.
 
 Check out the full list of events at [livejazzdayton.com](https://livejazzdayton.com).
