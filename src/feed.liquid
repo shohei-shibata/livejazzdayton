@@ -14,21 +14,27 @@ permalink: "feed.xml"
     <email>{{ feed.authorEmail }}</email>
   </author>
   <icon>/assets/favicon/favicon.ico</icon>
-	{%- for event in events limit:10 -%}
-    {%- capture eventUrl -%}
-      {{ feed.siteUrl }}/{{ event.slug }}
-    {%- endcapture -%}
-    {%- capture eventId -%}
-      {{ event.slug }}_{{ | dateIsoString }}
-    {%- endcapture -%}
-    <entry>
-      <title>{{ event.title }}</title>
-      <link href="{{ eventUrl | escape_xml }}"/>
-      <updated>{{ | dateIsoString }}</updated>
-      <id>{{ eventId }}</id>
-      <content xml:lang="en" type="html">
-      {{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}
-      </content>
-    </entry>
-	{%- endfor -%}
+
+  <entry>
+    <title>Upcoming Events {{ | dateString }}</title>
+    <link href="{{ eventUrl | escape_xml }}"/>
+    <updated>{{ | dateIsoString }}</updated>
+    <id>{{ | dateIsoString }}</id>
+    <content xml:lang="en" type="html">
+      <p>Here is the latest edition of the Live Jazz Dayton Newsletter. Enjoy!</p>
+      <h2>Upcoming Events</h2>
+      <hr/>
+      {%- for event in events limit:10 -%}
+        {%- capture eventUrl -%}
+          {{ feed.siteUrl }}/{{ event.slug }}
+        {%- endcapture -%}
+        <h3><a href="{{ eventUrl }}">{{ event.title }}</a></h3>
+        <p>{{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}</p>
+        <hr/>
+      {%- endfor -%}
+      <p>Check out the full event listing at livejazzdayton.com</p>
+      <p>Thanks for reading... <a href="https://buttondown.email/livejazzdayton">Please share!</a></p>
+      <p>Shohei</p>
+    </content>
+  </entry>
 </feed>
