@@ -1,0 +1,29 @@
+---
+permalink: "newsletter-feed.xml"
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ site.url }}">
+  <title>{{ feed.title }}</title>
+  <subtitle>{{ feed.subtitle }}</subtitle>
+  <link href="{{ feed.siteUrl }}" rel="self"/>
+  <link href="{{ feed.siteUrl }}"/>
+  <updated>{{ | dateIsoString }}</updated>
+  <id>{{ feed.siteUrl }}</id>
+  <author>
+    <name>{{ feed.authorName }}</name>
+    <email>{{ feed.authorEmail }}</email>
+  </author>
+
+  <entry>
+    <title>Upcoming Events {{ | dateString }}</title>
+    {%- capture feedUrl -%}
+      {{ feed.siteUrl }}/newsletter-{{ | dateSlug }}.xml
+    {%- endcapture -%}
+    <link href="{{ feedUrl | escape_xml }}"/>
+    <updated>{{ | dateIsoString }}</updated>
+    <id>{{ | dateSlug }}</id>
+    <content xml:lang="en" type="html">
+      {%- include newsletter-content -%}
+    </content>
+  </entry>
+</feed>
