@@ -1,6 +1,7 @@
 // 11ty configuration
 const Image = require("@11ty/eleventy-img");
 const { google, ics } = require("calendar-link");
+const xmlFiltersPlugin = require('eleventy-xml-plugin');
 
 const
   dev = global.dev  = (process.env.ELEVENTY_ENV === 'development'),
@@ -61,6 +62,11 @@ module.exports = config => {
 	config.addFilter("lastUpdated", function () {
 		const lastUpdate = new Date();
 		return lastUpdate.toDateString();
+	});
+
+  config.addFilter("dateIsoString", function (a) {
+		const dateObj = a ? new Date(a) : new Date();
+    return dateObj.toISOString();
 	});
 
 	config.addFilter("dateString", function (value) {
@@ -192,6 +198,10 @@ module.exports = config => {
 
 		return `background-image: url(${metadata.jpeg[0].url});`;
 	})
+
+  // RSS Feed
+
+  config.addPlugin(xmlFiltersPlugin)
 	
   // 11ty defaults
   return {

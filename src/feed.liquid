@@ -1,0 +1,28 @@
+---
+permalink: "feed.xml"
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ site.url }}">
+  <title>{{ feed.title }}</title>
+  <subtitle>{{ feed.subtitle }}</subtitle>
+  <link href="{{ feed.feedUrl }}" rel="self"/>
+  <link href="{{ feed.siteUrl }}"/>
+  <updated>{{ | dateIsoString }}</updated>
+  <id>{{ feed.siteUrl }}</id>
+  <author>
+    <name>{{ feed.authorName }}</name>
+    <email>{{ feed.authorEmail }}</email>
+  </author>
+	{%- for event in events limit:10 -%}
+    {%- capture eventUrl -%}
+      {{ feed.siteUrl }}/{{ event.slug }}
+    {%- endcapture -%}
+    <entry>
+      <title>{{ event.title }}</title>
+      <link href="{{ eventUrl | escape_xml }}"/>
+      <updated>{{ event.dateUpdated | dateIsoString }}</updated>
+      <id>{{ eventUrl }}</id>
+      <content xml:lang="en" type="html">{{ eventUrl | escape_xml }}</content>
+    </entry>
+	{%- endfor -%}
+</feed>

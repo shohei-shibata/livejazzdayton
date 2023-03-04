@@ -65,7 +65,8 @@ module.exports = async function() {
         locationAddress, 
         description,  
         artists,
-        links
+        links,
+        dateUpdated,
       } = await parseEventCard(card)
       const imageUrl = await getImageUrl(cardId, imageId);
       const imageOptions = { 
@@ -116,6 +117,7 @@ module.exports = async function() {
 
       const eventFormatted = {
           slug: slug,
+          dateUpdated: dateUpdated,
           title: name,
           start: start,
           end: end,
