@@ -84,6 +84,7 @@ const parseEventCard = async card => {
     cardId: card.id,
     name: card.name,
     description: markdownToHtml(card.desc),
+    dateUpdated: card.dateLastActivity,
 		imageId: card.cover.idAttachment,
     locationName: await getVenueNameById(card.id),
     locationAddress: await getVenueAddressById(card.id),
