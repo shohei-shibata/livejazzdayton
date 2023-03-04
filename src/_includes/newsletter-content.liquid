@@ -8,7 +8,7 @@
 
 {%- for event in events limit:10 -%}
   {%- capture eventUrl -%}
-    {{ feed.siteUrl }}/{{ event.slug }}
+    {{ feed.siteUrl }}/events/{{ event.slug }}
   {%- endcapture -%}
   <h3><a href="{{ eventUrl }}">{{ event.title }}</a></h3>
   <p>{{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}</p>
