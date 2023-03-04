@@ -15,7 +15,7 @@ permalink: "newsletter-feed.xml"
   </author>
 
   <entry>
-    <title>Upcoming Events {{ | newsletterPublishDate | dateLocaleString }}</title>
+    <title>[Live Jazz Dayton] Upcoming Events {{ | newsletterPublishDate | dateLocaleString }}</title>
     {%- capture feedUrl -%}
       {{ feed.siteUrl }}/?newsletterDate={{ | newsletterPublishDate | dateSlug }}
     {%- endcapture -%}
