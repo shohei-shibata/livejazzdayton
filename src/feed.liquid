@@ -13,6 +13,7 @@ permalink: "feed.xml"
     <name>{{ feed.authorName }}</name>
     <email>{{ feed.authorEmail }}</email>
   </author>
+  <icon>/assets/favicon/favicon.ico</icon>
 	{%- for event in events limit:10 -%}
     {%- capture eventUrl -%}
       {{ feed.siteUrl }}/{{ event.slug }}
@@ -22,7 +23,9 @@ permalink: "feed.xml"
       <link href="{{ eventUrl | escape_xml }}"/>
       <updated>{{ event.dateUpdated | dateIsoString }}</updated>
       <id>{{ eventUrl }}</id>
-      <content xml:lang="en" type="html">{{ eventUrl | escape_xml }}</content>
+      <content xml:lang="en" type="html">
+      {{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}
+      </content>
     </entry>
 	{%- endfor -%}
 </feed>
