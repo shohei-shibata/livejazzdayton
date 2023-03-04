@@ -107,15 +107,13 @@ module.exports = config => {
   config.addFilter("newsletterPublishDate", function () {
     // Right now the newsletter is set to be sent out every Thursday
 		const dateObj = changeTimezone(new Date(), timezoneString);
-		const y = dateObj.getFullYear();
-		const m = dateObj.getMonth();
 		const d = dateObj.getDate();
 		const day = dateObj.getDay();
-    console.log("Original Date", dateObj.toString())
     const daysSinceThursday = day >= 4 ? day - 4 : day + 3;
-    dateObj.setDate(d-daysSinceThursday);
-    console.log("Newsletter Date", dateObj.toString())
-		return dateObj.toString();
+    // Uncomment line below to set the date to last Thursday.
+    // Leave it commented to update every day
+    //dateObj.setDate(d-daysSinceThursday);
+    return dateObj.toString();
 	});
 
 	config.addFilter("timeString", function (value) {
