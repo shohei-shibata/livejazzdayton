@@ -69,6 +69,12 @@ module.exports = config => {
     return dateObj.toISOString();
 	});
 
+  config.addFilter("dateLocaleString", function (a) {
+		const dateObj = a ? new Date(a) : new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return dateObj.toLocaleDateString("en-US", options);
+	});
+
 	config.addFilter("dateString", function (value) {
 		if (!value) { return "No Date" }
 		const dateObj = changeTimezone(value, timezoneString);
