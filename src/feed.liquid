@@ -18,11 +18,14 @@ permalink: "feed.xml"
     {%- capture eventUrl -%}
       {{ feed.siteUrl }}/{{ event.slug }}
     {%- endcapture -%}
+    {%- capture eventId -%}
+      {{ event.slug }}_{{ | dateIsoString }}
+    {%- endcapture -%}
     <entry>
       <title>{{ event.title }}</title>
       <link href="{{ eventUrl | escape_xml }}"/>
       <updated>{{ | dateIsoString }}</updated>
-      <id>{{ eventUrl }}</id>
+      <id>{{ eventId }}</id>
       <content xml:lang="en" type="html">
       {{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}
       </content>
