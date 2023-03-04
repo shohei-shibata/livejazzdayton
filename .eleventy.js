@@ -90,6 +90,14 @@ module.exports = config => {
 		return `${DOTW[day]}, ${months[m]} ${d}, ${y}`;
 	});
 
+  config.addFilter("dateSlug", function (a) {
+		const dateObj = a ? new Date(a) : new Date();
+		const y = dateObj.getFullYear();
+		const m = dateObj.getMonth();
+		const d = dateObj.getDate();
+		return `${y}-${m+1}-${d}`;
+	});
+
 	config.addFilter("timeString", function (value) {
 		if (!value) { return "Invalid Time" };
 		const dateObj = changeTimezone(new Date(value), timezoneString);

@@ -1,0 +1,22 @@
+<h1>[Live Jazz Dayton] Newsletter {{ | lastUpdated }}</h1>
+
+<p>Hey there! This is the {{ | lastUpdated }} edition of the newsletter.</p>
+
+<p>Check out the full list of events at [livejazzdayton.com](https://livejazzdayton.com).</p>
+
+<h2>Upcoming Events</h2>
+
+<hr/>
+
+{%- for event in events limit:10 -%}
+  {%- capture eventUrl -%}
+    {{ feed.siteUrl }}/{{ event.slug }}
+  {%- endcapture -%}
+  <h3><a href="{{ eventUrl }}">{{ event.title }}</a></h3>
+  <p>{{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}</p>
+  <hr/>
+{%- endfor -%}
+
+<p>Thanks for reading. If you find this helpful, <a href="https://buttondown.email/livejazzdayton">please share!</a></p>
+
+<p>Shohei</p>

@@ -1,7 +1,6 @@
 {
   "title": "The Live Jazz Dayton Newsletter",
   "subtitle": "The latest listing of live jazz in Dayton, Ohio",
-  "feedUrl": "https://livejazzdayton.com/feed.xml",
   "siteUrl": "https://livejazzdayton.com",
   "authorName": "Shohei Shibata",
   "authorEmail": "shohei.shibata.dev@gmail.com"
