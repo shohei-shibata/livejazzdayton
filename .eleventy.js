@@ -104,6 +104,20 @@ module.exports = config => {
 		return `${y}-${m+1}-${d}`;
 	});
 
+  config.addFilter("newsletterPublishDate", function () {
+    // Right now the newsletter is set to be sent out every Thursday
+		const dateObj = changeTimezone(new Date(), timezoneString);
+		const y = dateObj.getFullYear();
+		const m = dateObj.getMonth();
+		const d = dateObj.getDate();
+		const day = dateObj.getDay();
+    console.log("Original Date", dateObj.toString())
+    const daysSinceThursday = day >= 4 ? day - 4 : day + 3;
+    dateObj.setDate(d-daysSinceThursday);
+    console.log("Newsletter Date", dateObj.toString())
+		return dateObj.toString();
+	});
+
 	config.addFilter("timeString", function (value) {
 		if (!value) { return "Invalid Time" };
 		const dateObj = changeTimezone(new Date(value), timezoneString);
