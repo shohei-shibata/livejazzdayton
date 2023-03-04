@@ -21,7 +21,7 @@ permalink: "feed.xml"
     <entry>
       <title>{{ event.title }}</title>
       <link href="{{ eventUrl | escape_xml }}"/>
-      <updated>{{ event.dateUpdated | dateIsoString }}</updated>
+      <updated>{{ | dateIsoString }}</updated>
       <id>{{ eventUrl }}</id>
       <content xml:lang="en" type="html">
       {{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}
