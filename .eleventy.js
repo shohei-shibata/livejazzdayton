@@ -112,7 +112,8 @@ module.exports = config => {
     const daysSinceThursday = day >= 4 ? day - 4 : day + 3;
     // Uncomment line below to set the date to last Thursday.
     // Leave it commented to update every day
-    //dateObj.setDate(d-daysSinceThursday);
+    dateObj.setDate(d-daysSinceThursday);
+    
     return dateObj.toString();
 	});
 
