@@ -19,9 +19,9 @@ permalink: "newsletter-feed.xml"
     {%- capture feedUrl -%}
       https://buttondown.email/livejazzdayton/archive/live-jazz-dayton-newsletter-{{ | newsletterPublishDate | dateLocaleString | slugify }}
     {%- endcapture -%}
-    <link href="{{ feedUrl | escape_xml }}"/>
+    <link href="{{ feedUrl }}"/>
     <updated>{{ | dateIsoString }}</updated>
-    <id>{{ | dateSlug }}</id>
+    <id>{{ feedUrl }}</id>
     <content xml:lang="en" type="html">
       {%- include newsletter-content -%}
     </content>
