@@ -10,7 +10,7 @@
   {%- capture eventUrl -%}
     {{ feed.siteUrl }}/events/{{ event.slug }}
   {%- endcapture -%}
-  <h3><a href="{{ eventUrl }}">{{ event.title }}</a></h3>
+  <h3><a href="{{ eventUrl }}">{{ event.title | escape }}</a></h3>
   <p>{{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}</p>
   <hr/>
 {%- endfor -%}
