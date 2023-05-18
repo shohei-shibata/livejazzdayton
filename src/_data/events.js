@@ -69,6 +69,7 @@ module.exports = async function() {
         dateUpdated,
       } = await parseEventCard(card)
       const imageUrl = await getImageUrl(cardId, imageId);
+
       const imageOptions = { 
           formats: "jpeg",
           widths: [600, 900, 1500],
@@ -76,7 +77,7 @@ module.exports = async function() {
           outputDir: "./build/images/",
       };
 
-      const metadata = await Image(imageUrl, imageOptions);
+      const metadata = imageUrl ? await Image(imageUrl, imageOptions) : null;
   
       let imageAttributes = {
           alt: "ALT TEXT",
@@ -85,7 +86,7 @@ module.exports = async function() {
           decoding: "async",
       };
 
-      const imageHtml = Image.generateHTML(metadata, imageAttributes);
+      const imageHtml = imageUrl ? Image.generateHTML(metadata, imageAttributes) : null;
 
       const locationNameEscaped = locationName ? 
         locationName.replace("&", "and")

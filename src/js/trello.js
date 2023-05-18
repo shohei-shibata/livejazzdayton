@@ -103,6 +103,7 @@ const parseEventCard = async card => {
 }
 
 const getImageUrl = async (cardId, attachmentId) => {
+  if (!attachmentId || !cardId) return null;
 	const url = `http://api.trello.com/1/cards/${cardId}/attachments/${attachmentId}?${params}`;
 	const imageInfo = await EleventyFetch(url, { 
     duration: defaultDuration,

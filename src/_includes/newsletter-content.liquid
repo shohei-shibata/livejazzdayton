@@ -11,7 +11,7 @@
     {{ feed.siteUrl }}/events/{{ event.slug }}
   {%- endcapture -%}
   <h3><a href="{{ eventUrl }}">{{ event.title | escape }}</a></h3>
-  <p>{{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name }}</p>
+  <p>{{ event.start | dateString }} {{ event.start | timeString }} at {{ event.location.name | escape }}</p>
   <hr/>
 {%- endfor -%}
 
