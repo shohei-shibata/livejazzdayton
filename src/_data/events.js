@@ -7,10 +7,11 @@ const Image = require("@11ty/eleventy-img");
 const slugify = require('slugify');
 const { htmlToText } = require('html-to-text');
 const { google, ics } = require("calendar-link");
+const { getDateSlug } = require("../js/time.js");
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 const listIdApprovedCards = "6325995217c6c700939f9740";
-
+/*
 const changeTimezone = (date, timezoneString) => {
   if (!date) { return null }
   const newTimezone = new Date(new Date().toLocaleString("en-US", { timeZone: timezoneString })).getTime();
@@ -20,8 +21,10 @@ const changeTimezone = (date, timezoneString) => {
 const roundDate = (date = new Date(), minutes) => {
   const ms = minutes * 60 * 1000;
   return new Date(Math.round(new Date(date).getTime() / ms) * ms);
-}
+}*/
+/*
 const getDateString = (value = new Date()) => {
+  console.log("getDateString", value)
   const timezoneString = "America/New_York";
   const dateObj = changeTimezone(value, timezoneString);
   const y = dateObj.getFullYear();
@@ -29,8 +32,10 @@ const getDateString = (value = new Date()) => {
   const d = dateObj.getDate();
   return `${y}-${m+1}-${d}`;
 }
+*/
 
 const getCalendarLinks = (title, start, end, address, description, streamLink) => {
+  console.log("CALENDAR", title, start, end)
   const event = {
     title: title,
     start: start,
@@ -98,14 +103,14 @@ module.exports = async function() {
           :
           `${locationNameEscaped} near Dayton, Ohio`;
 
-      const slug = `${getDateString(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
+      const slug = `${getDateSlug(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
 
       const isToday = getIsToday(start);
       
       let artistsString = "";
 
       if (artists) {
-        artistsString = artists.map((artist, index) => {
+        artistsString = artists.split(", ").map((artist, index) => {
           if (index > 0) {
             return `, ${artist}`
           } else {
