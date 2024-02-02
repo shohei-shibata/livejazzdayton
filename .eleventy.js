@@ -2,6 +2,7 @@
 const Image = require("@11ty/eleventy-img");
 const { google, ics } = require("calendar-link");
 const xmlFiltersPlugin = require('eleventy-xml-plugin');
+const { getFullDateString, getTimeString } = require("./src/js/time");
 
 const
   dev = global.dev  = (process.env.ELEVENTY_ENV === 'development'),
@@ -77,23 +78,7 @@ module.exports = config => {
 
 	config.addFilter("dateString", function (value) {
 		if (!value) { return "No Date" }
-		const dateObj = changeTimezone(value, timezoneString);
-		const y = dateObj.getFullYear();
-		const m = dateObj.getMonth();
-		const d = dateObj.getDate();
-		const day = dateObj.getDay();
-		const months = [
-			"January", "February", "March", 
-			"April", "May", "June", "July",
-			"August", "September", "October",
-			"November", "December"
-		];
-		const DOTW = [
-			"Sunday", "Monday", "Tuesday",
-			"Wednesday", "Thursday", 
-			"Friday", "Saturday"
-		];
-		return `${DOTW[day]}, ${months[m]} ${d}, ${y}`;
+		return getFullDateString(value)
 	});
 
   config.addFilter("dateSlug", function (a) {
@@ -119,21 +104,7 @@ module.exports = config => {
 
 	config.addFilter("timeString", function (value) {
 		if (!value) { return "Invalid Time" };
-		const dateObj = changeTimezone(new Date(value), timezoneString);
-		const hoursBase24 = dateObj.getHours();
-		let minutes = dateObj.getMinutes();
-		const amPm = hoursBase24 < 12 ? "AM" : "PM";
-		let hoursBase12 = hoursBase24 % 12;
-		
-		if (hoursBase12 === 0) {
-			hoursBase12 = 12;
-		};
-
-		if (minutes === 0) {
-			minutes = "00";
-		};
-
-		return `${hoursBase12}:${minutes}${amPm}`;
+		return getTimeString(value)
 	});
 
 	config.addFilter("getShortMonth", function (d) {
@@ -173,7 +144,6 @@ module.exports = config => {
 	});
 
   config.addFilter("toString", function (d) {
-    console.log("toString Filter: ", d, typeof d, d.toString());
     return d.toString();
   });
 

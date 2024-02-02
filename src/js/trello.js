@@ -1,14 +1,24 @@
+require('dotenv').config()
+
 const EleventyFetch = require("@11ty/eleventy-fetch");
 const { markdownToHtml } = require("./markdownParser");
+const { getFullDateString } = require('./time');
 
 const TRELLO_API_KEY = process.env.TRELLO_API_KEY;
 const TRELLO_API_TOKEN = process.env.TRELLO_API_TOKEN;
 
 const params = `key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`;
 
-const defaultDuration = '1m';
+const defaultDuration = '5m';
 
 const approvedEventsBoardId = "6325991c66402801560c94dd";
+
+const customFieldId = {
+  artists: `63298eb14e9a4702d35dbd47`,
+  website: `63298de3f0b71701cee74d9b`,
+  tickets: `6333522eae22aa02e35a6c7c`,
+  end: `63298d1230281c0434de7e2b`,
+}
 
 const getAllCards = async (listId) => {
 	const url = `http://api.trello.com/1/lists/${listId}/cards?${params}&customFieldItems=true`
@@ -47,6 +57,16 @@ const getCustomFields = async (boardId) => {
   });
 }
 
+const getCustomFieldDefinitionById = async (fieldId) => {
+  const url = `http://api.trello.com/1/boards/${approvedEventsBoardId}/customFields?${params}`
+	const res = await EleventyFetch(url, { 
+    duration: defaultDuration,
+    type: "json" });
+  return res.find(field => {
+    return field.id === fieldId
+  });
+}
+
 const getAttachmentsByCardId = async (cardId) => {
 	const url = `http://api.trello.com/1/cards/${cardId}/attachments?${params}`
 	const res = await EleventyFetch(url, { 
@@ -55,28 +75,30 @@ const getAttachmentsByCardId = async (cardId) => {
   return res;
 }
 
-const getCustomFieldByName = async (boardId, card, fieldName) => {
+const getCustomFieldById = (card, customFieldId) => {
+  return card.customFieldItems.find(field => {
+    return field.idCustomField === customFieldId
+  })
+}
 
-  const customFields = await getCustomFields(boardId);
-  const customField = customFields.filter(item => {
-    return item.name === fieldName
-  });
-  const idCustomField = customField.length > 0 ? customField[0].id : null;
-  const customFieldFiltered = card.customFieldItems.filter(item => {
-    return item.idCustomField === idCustomField
-  });
-  const customFieldValue = customFieldFiltered.length > 0 ?
-    customFieldFiltered[0].value : null;
-  const dateFields = ["Event Start", "Event End", "Published"];
-  const isDate = dateFields.includes(fieldName);
-  if (!customFieldValue) { return null };
-  if (isDate) {
-    return customFieldValue.date;
-  } else if (fieldName === "Artists") {
-    return customFieldValue.text.split(", ");
-  } else {
-    return customFieldValue.text;
-  };
+const getCustomFieldTextById = (card, customFieldId) => {
+  const customField = getCustomFieldById(card, customFieldId)
+  return customField?.value.text
+}
+
+const getCustomFieldDateById = (card, customFieldId) => {
+  const customField = getCustomFieldById(card, customFieldId)
+  console.log("DATE", customField?.value)
+  return customField?.value.date
+}
+
+const getCustomFieldOptionValueById = async (card, customFieldId) => {
+  const customField = getCustomFieldById(card, customFieldId)
+  const fieldDef = await getCustomFieldDefinitionById(customFieldId)
+  const { value : { text: text } } = fieldDef.options.find(option => 
+    option.id === customField.idValue
+  )
+  return text
 }
 
 const parseEventCard = async card => {
@@ -88,16 +110,13 @@ const parseEventCard = async card => {
 		imageId: card.cover.idAttachment,
     locationName: await getVenueNameById(card.id),
     locationAddress: await getVenueAddressById(card.id),
-    start: await getCustomFieldByName(approvedEventsBoardId, card, "Event Start"),
-    end: await getCustomFieldByName(approvedEventsBoardId, card, "Event End"),
-    artists: await getCustomFieldByName(approvedEventsBoardId, card, "Artists"),
+    start: card.due,
+    end: getCustomFieldDateById(card, customFieldId.end),
+    artists: getCustomFieldTextById(card, customFieldId.artists),
     links: {
-      facebook: await getCustomFieldByName(approvedEventsBoardId, card, "Facebook"),
-      website: await getCustomFieldByName(approvedEventsBoardId, card, "Website"),
-      stream: await getCustomFieldByName(approvedEventsBoardId, card, "Stream Link"),
-      tickets: await getCustomFieldByName(approvedEventsBoardId, card, "Tickets"),
+      website: getCustomFieldTextById(card, customFieldId.website),
+      tickets: getCustomFieldTextById(card, customFieldId.tickets),
     },
-    streamEmbed: await getCustomFieldByName(approvedEventsBoardId, card, "Stream Embed")
   }
   return trelloParsed;
 }
@@ -116,5 +135,5 @@ module.exports = {
 	parseEventCard,
 	getImageUrl,
   getAttachmentsByCardId,
-  getCustomFieldByName,
+  getCustomFieldDateById,
 }
