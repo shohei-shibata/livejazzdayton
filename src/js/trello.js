@@ -101,32 +101,7 @@ const getCustomFieldOptionValueById = async (card, customFieldId) => {
   return text
 }
 
-const getCustomFieldByName = async (boardId, card, fieldName) => {
-
-  const customFields = await getCustomFields(boardId);
-  const customField = customFields.filter(item => {
-    return item.name === fieldName
-  });
-  const idCustomField = customField.length > 0 ? customField[0].id : null;
-  const customFieldFiltered = card.customFieldItems.filter(item => {
-    return item.idCustomField === idCustomField
-  });
-  const customFieldValue = customFieldFiltered.length > 0 ?
-    customFieldFiltered[0].value : null;
-  const dateFields = ["Event Start", "Event End", "Published"];
-  const isDate = dateFields.includes(fieldName);
-  if (!customFieldValue) { return null };
-  if (isDate) {
-    return customFieldValue.date;
-  } else if (fieldName === "Artists") {
-    return customFieldValue.text.split(", ");
-  } else {
-    return customFieldValue.text;
-  };
-}
-
 const parseEventCard = async card => {
-  console.log(card.name, card)
   const trelloParsed = {
     cardId: card.id,
     name: card.name,
@@ -142,7 +117,6 @@ const parseEventCard = async card => {
       website: getCustomFieldTextById(card, customFieldId.website),
       tickets: getCustomFieldTextById(card, customFieldId.tickets),
     },
-    streamEmbed: await getCustomFieldByName(approvedEventsBoardId, card, "Stream Embed")
   }
   return trelloParsed;
 }
@@ -161,5 +135,5 @@ module.exports = {
 	parseEventCard,
 	getImageUrl,
   getAttachmentsByCardId,
-  getCustomFieldByName,
+  getCustomFieldDateById,
 }

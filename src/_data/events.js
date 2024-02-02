@@ -24,7 +24,6 @@ const roundDate = (date = new Date(), minutes) => {
 }*/
 /*
 const getDateString = (value = new Date()) => {
-  console.log("getDateString", value)
   const timezoneString = "America/New_York";
   const dateObj = changeTimezone(value, timezoneString);
   const y = dateObj.getFullYear();
@@ -35,7 +34,6 @@ const getDateString = (value = new Date()) => {
 */
 
 const getCalendarLinks = (title, start, end, address, description, streamLink) => {
-  console.log("CALENDAR", title, start, end)
   const event = {
     title: title,
     start: start,

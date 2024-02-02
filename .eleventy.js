@@ -144,7 +144,6 @@ module.exports = config => {
 	});
 
   config.addFilter("toString", function (d) {
-    console.log("toString Filter: ", d, typeof d, d.toString());
     return d.toString();
   });
 
