@@ -289,6 +289,9 @@ form .form-field-container {
 	grid-template-columns: 200px 1fr;
 	margin: 10px auto;
 }
+.form-field-group-duration {
+  display: flex;
+}
 label {
 	display: block;
 }
