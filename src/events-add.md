@@ -12,7 +12,7 @@ Please fill out the form below. The event will be added to the site once approve
   class="new-event-form" 
   name="new-event-form" 
   method="POST" 
-  action="http://localhost:8888/.netlify/functions/createEvent" 
+  action="/.netlify/functions/createEvent" 
 >
   <input 
     type="hidden" 

@@ -1,24 +1,11 @@
 import axios from "axios";
 export default async (req, context) => {
-  const listIdUnapprovedEvents = "6325995bfd858d013807a56d"
+  console.log("SUBMISSION CREATED", context)
+/*  const listIdUnapprovedEvents = "6325995bfd858d013807a56d"
   const trelloKey = process.env.TRELLO_API_KEY
   const trelloToken = process.env.TRELLO_API_TOKEN
   const createEventUrl = `https://api.trello.com/1/cards?idList=${listIdUnapprovedEvents}&key=${trelloKey}&token=${trelloToken}`
-  /*async function addAddress(cardId, {address, locationName}) {
-    const addAddressUrl = `https://api.trello.com/1/cards/${cardId}?key=${trelloKey}&token=${trelloToken}`
-    return await axios.put(addAddressUrl, {
-      address: address,
-      locationName: locationName
-    })
-    .then(res => {
-      console.log("ADDRESS SUCCESS")
-      return res
-    })
-    .catch(err => {
-      console.log("ADDRESS ERROR")
-      return err
-    })
-  }*/
+
   async function addAttachment(cardId, { imageUrl }) {
     const addAttachmentUrl = `https://api.trello.com/1/cards/${cardId}/attachments?key=${trelloKey}&token=${trelloToken}`
     return await axios.post(addAttachmentUrl, {
@@ -121,10 +108,6 @@ export default async (req, context) => {
     })
     .then(async function (response) {
       const secondResponse = await Promise.all([
-        /*addAddress(response.data.id, {
-          address,
-          locationName
-        }), */
         addCustomFields(response.data.id, {
           start,
           artists,
@@ -134,7 +117,7 @@ export default async (req, context) => {
           address,
           locationName
         }),
-        imageUrl && addAttachment(response.data.id, {
+        addAttachment(response.data.id, {
           imageUrl
         })
       ])
@@ -162,11 +145,19 @@ export default async (req, context) => {
     return new Response({
       message: "SUCCESS"
     },{
-      status: 302,
+      statusCode: 302,
       headers: {
-        "Location": "/success"
+        "Location": "https://google.com"
       }
     })
   }
   return new Response("ERROR");
+*/
+  return new Response("SUCCESS", {
+      status: 302,
+      headers: {
+        "Location": "https://google.com"
+      }
+    }
+  )
 };
