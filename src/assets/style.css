@@ -452,6 +452,14 @@ input[type="file"] {
 	column-gap: 1em;
 }
 
+.event-add-template a {
+  text-decoration: none;
+}
+.event-add-template {
+  margin: 10px;
+  box-sizing: border-box;
+}
+
 @media screen and (max-width: 800px) {
 	.event-card {
 		max-width: 600px;
