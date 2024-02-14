@@ -28,6 +28,7 @@
     "html-to-text": "^8.2.1",
     "jsdom": "^20.0.0",
     "marked": "^4.1.0",
+    "moment-timezone": "^0.5.45",
     "query-string": "^8.2.0",
     "slugify": "^1.6.5"
   }

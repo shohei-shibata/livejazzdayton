@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment-timezone";
 export default async (req, context) => {
   const listIdUnapprovedEvents = "6325995bfd858d013807a56d"
   const trelloKey = process.env.TRELLO_API_KEY
@@ -115,6 +116,7 @@ export default async (req, context) => {
       imageUrl
     } = eventData
     const duration = parseInt(hours) + parseInt(minutes) / 60
+    const startAdjusted = moment.tz(start.replace("T", " "), "America/Detroit")
     return await axios.post(createEventUrl, {
       name,
       desc,
@@ -126,7 +128,7 @@ export default async (req, context) => {
           locationName
         }), */
         addCustomFields(response.data.id, {
-          start,
+          start: startAdjusted,
           artists,
           websiteUrl,
           ticketUrl,
