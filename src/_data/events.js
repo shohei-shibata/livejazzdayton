@@ -11,27 +11,6 @@ const { getDateSlug } = require("../js/time.js");
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 const listIdApprovedCards = "6325995217c6c700939f9740";
-/*
-const changeTimezone = (date, timezoneString) => {
-  if (!date) { return null }
-  const newTimezone = new Date(new Date().toLocaleString("en-US", { timeZone: timezoneString })).getTime();
-  const offset = newTimezone - new Date().getTime();
-  return roundDate(new Date(new Date(date).getTime() + offset), 5);
-}
-const roundDate = (date = new Date(), minutes) => {
-  const ms = minutes * 60 * 1000;
-  return new Date(Math.round(new Date(date).getTime() / ms) * ms);
-}*/
-/*
-const getDateString = (value = new Date()) => {
-  const timezoneString = "America/New_York";
-  const dateObj = changeTimezone(value, timezoneString);
-  const y = dateObj.getFullYear();
-  const m = dateObj.getMonth();
-  const d = dateObj.getDate();
-  return `${y}-${m+1}-${d}`;
-}
-*/
 
 const getCalendarLinks = (title, start, end, address, description, streamLink) => {
   const event = {
@@ -48,7 +27,6 @@ const getCalendarLinks = (title, start, end, address, description, streamLink) =
 };
 
 const getIsToday = (value) => {
-  //console.log("isToday: ", value, new Date(), (new Date(value) - new Date())/36e+5)
   return (new Date(value) - new Date())/36e+5 < 21;
 }
 
@@ -63,7 +41,7 @@ module.exports = async function() {
         name,
         imageId,
         start, 
-        end, 
+        duration,
         locationName, 
         locationAddress, 
         description,  
@@ -71,42 +49,47 @@ module.exports = async function() {
         links,
         dateUpdated,
       } = await parseEventCard(card)
-      const imageUrl = await getImageUrl(cardId, imageId);
 
+      // Set end time based on duration
+      const defaultDuration = 2
+      const end = new Date(start)
+      end.setHours(end.getHours() + parseInt(duration || defaultDuration))
+
+      // Process image data
+      const imageUrl = await getImageUrl(cardId, imageId);
       const imageOptions = { 
           formats: "jpeg",
           widths: [600, 900, 1500],
           urlPath: "/images/",
           outputDir: "./build/images/",
       };
-
       const metadata = imageUrl ? await Image(imageUrl, imageOptions) : null;
-  
       let imageAttributes = {
           alt: "ALT TEXT",
           sizes: "(min-width: 1024px) 100vw, 50vw",
           loading: "lazy",
           decoding: "async",
       };
-
       const imageHtml = imageUrl ? Image.generateHTML(metadata, imageAttributes) : null;
 
+      // Process event location data
       const locationNameEscaped = locationName ? 
         locationName.replace("&", "and")
         :
         "";
-
       const queryString = locationAddress ? 
           `${locationNameEscaped}, ${locationAddress}`
           :
           `${locationNameEscaped} near Dayton, Ohio`;
 
+      // Set event slug
       const slug = `${getDateSlug(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
 
+      // Determine if event is happening today
       const isToday = getIsToday(start);
       
+      // Parse artist name(s) into an array
       let artistsString = "";
-
       if (artists) {
         artistsString = artists.split(", ").map((artist, index) => {
           if (index > 0) {
@@ -117,8 +100,10 @@ module.exports = async function() {
         });
       } 
 
+      // Create calendar links
       const { googleCalendar, ics } = getCalendarLinks(name, start, end, locationAddress, htmlToText(description), links.stream);
 
+      // Format event data to be returned
       const eventFormatted = {
           slug: slug,
           dateUpdated: dateUpdated,

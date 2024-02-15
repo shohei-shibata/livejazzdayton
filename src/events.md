@@ -10,7 +10,7 @@ pagination:
 # Upcoming Events
 
 Do you know of an event that is not listed?
-<a href="https://docs.google.com/forms/d/1NyrLlwjvzLAs2NoT3FGgvo0-WkU7SNp43AoPIaG0LPo/viewform" target="_blank" class="btn btn-inline">Submit an Event</a>
+<a href="/events/add" class="btn btn-inline">Submit an Event</a>
 
 Last Update: {{ | lastUpdated }}
 

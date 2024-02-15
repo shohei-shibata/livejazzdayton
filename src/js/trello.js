@@ -18,6 +18,7 @@ const customFieldId = {
   website: `63298de3f0b71701cee74d9b`,
   tickets: `6333522eae22aa02e35a6c7c`,
   end: `63298d1230281c0434de7e2b`,
+  duration: `65b2354348c7c7168e48ee14`,
 }
 
 const getAllCards = async (listId) => {
@@ -86,9 +87,13 @@ const getCustomFieldTextById = (card, customFieldId) => {
   return customField?.value.text
 }
 
+const getCustomFieldNumberById = (card, customFieldId) => {
+  const customField = getCustomFieldById(card, customFieldId)
+  return customField?.value.number
+}
+
 const getCustomFieldDateById = (card, customFieldId) => {
   const customField = getCustomFieldById(card, customFieldId)
-  console.log("DATE", customField?.value)
   return customField?.value.date
 }
 
@@ -112,6 +117,7 @@ const parseEventCard = async card => {
     locationAddress: await getVenueAddressById(card.id),
     start: card.due,
     end: getCustomFieldDateById(card, customFieldId.end),
+    duration: getCustomFieldNumberById(card, customFieldId.duration),
     artists: getCustomFieldTextById(card, customFieldId.artists),
     links: {
       website: getCustomFieldTextById(card, customFieldId.website),

@@ -19,6 +19,7 @@
   "dependencies": {
     "@11ty/eleventy-fetch": "^3.0.0",
     "@netlify/functions": "^1.2.0",
+    "axios": "^1.6.7",
     "calendar-link": "^2.2.0",
     "clipboard": "^2.0.11",
     "dompurify": "^2.4.0",
@@ -27,6 +28,8 @@
     "html-to-text": "^8.2.1",
     "jsdom": "^20.0.0",
     "marked": "^4.1.0",
+    "moment-timezone": "^0.5.45",
+    "query-string": "^8.2.0",
     "slugify": "^1.6.5"
   }
 }
