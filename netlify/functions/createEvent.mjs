@@ -91,6 +91,17 @@ export default async (req, context) => {
       return err
     })
   }
+  async function addComment(cardId, { text }) {
+    const addAttachmentUrl = `https://api.trello.com/1/cards/${cardId}/actions/comments?text=${text}&key=${trelloKey}&token=${trelloToken}`
+    return await axios.post(addAttachmentUrl, {})
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      console.log("COMMENT ERROR", err)
+      return err
+    })
+  }
   
   const res = await req.formData().then(async data => {
     let eventData = {}
@@ -113,7 +124,9 @@ export default async (req, context) => {
       ticketUrl, 
       hours,
       minutes,
-      imageUrl
+      imageUrl,
+      username,
+      email
     } = eventData
     const duration = parseInt(hours) + parseInt(minutes) / 60
     const startAdjusted = moment.tz(start.replace("T", " "), "America/Detroit")
@@ -138,6 +151,9 @@ export default async (req, context) => {
         }),
         imageUrl && addAttachment(response.data.id, {
           imageUrl
+        }),
+        addComment(response.data.id, {
+          text: `Created by ${username} <${email}>`
         })
       ])
       .then(res => {
