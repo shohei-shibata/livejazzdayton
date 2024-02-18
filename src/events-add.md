@@ -47,7 +47,7 @@ I've also made a few templates to help you fill out the form:
       </a>
   </button><button class="btn-secondary">
     <a
-      href="/events/add?locationName=The Hidden Gem Music Club&address=507 Miamisburg Centerville Rd, Dayton, OH 45459"
+      href="/events/add?locationName=Gather&address=37 W 4th st Dayton OH"
       >
       Gather
       </a>
@@ -55,7 +55,7 @@ I've also made a few templates to help you fill out the form:
   <button class="btn-secondary">
     <a
       href="/events/add?locationName=Wholly Grounds&address=825 Wayne Ave, Dayton, OH 45410"
-      >
+      > 
       Wholly Grounds
       </a>
   </button>
