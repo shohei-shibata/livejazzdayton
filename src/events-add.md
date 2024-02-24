@@ -8,57 +8,38 @@ permalink: events/add/index.htm
 
 Please fill out the form below. The event will be added to the site once approved by the admin.
 
-I've also made a few templates to help you fill out the form:
+Here are a few templates to help you fill out the form:
 
 ### Event Templates
 
 <div class="event-template-buttons-container">
-  <button class="btn-secondary">
-    <a
-      href="/events/add?name=1st%20Sunday%20Jazz%20Jam&start=2024-01-01T19:00:00&artists=Kelli%20Campbell&locationName=Wholly%20Grounds&address=825%20Wayne%20Ave,%20Dayton,%20OH%2045410,%20USA&websiteUrl=https://www.facebook.com/groups/666549373851752&ticketUrl=https://checkout.square.site/merchant/ML3WYYVXDQ2ZY/checkout/FJDPRT4PQY7JCC7FVIDOZFBX&imageUrl=https://trello.com/1/cards/65b234ddd8bf3784bbc933a2/attachments/65b653fe9fe9432e10f99ae7/previews/65b653ff9fe9432e10f99c6e/download/422891944_1133493891398564_8095374200702984370_n.jpg"
-      >
-      1st Sunday Jazz Jam (Wholly Grounds)
-      </a>
-  </button>
-  <button class="btn-secondary">
-    <a
-      href="/events/add?name=3rd Saturday Jazz Jam (Springfield)&start=2024-01-01T19:00:00&artists=Connor Smith&locationName=COhatch Springfield&address=101 S Fountain Ave, Springfield, OH 45502, USA&imageUrl=https://trello.com/1/cards/65b238b06f4fb2d045e801ab/attachments/65b238b06f4fb2d045e80211/previews/65b238b06f4fb2d045e80218/download/image.png"
-      >
-      3rd Saturday Jazz Jam (Springfield)
-      </a>
-  </button>
-  <button class="btn-secondary">
-    <a
-      href="/events/add?name=Jazz @ Gather&start=2024-01-01T19:00:00&locationName=Gather&address=37 W 4th St, Dayton, OH 45402, USA"
-      >
-      Jazz @ Gather
-      </a>
-  </button>
+  {%- for item in eventTemplates -%}
+    {%- if item.type == "event" -%}
+    {% capture queryString %}
+    /events/add?name={{ item.name }}&start={{ item.start }}&artists={{ item.artists }}&locationName={{ item.locationName }}&address={{ item.address }}&websiteUrl={{ item.websiteUrl }}&ticketUrl={{ item.ticketUrl }}&imageUrl={{ item.imageUrl }}
+    {% endcapture %}
+    {% include btn-secondary,
+      name: item.name,
+      url: queryString
+    %}
+    {%- endif -%}
+  {%- endfor -%}
 </div>
 
 ### Venue Templates
 
 <div class="event-template-buttons-container">
-  <button class="btn-secondary">
-    <a
-      href="/events/add?locationName=The Hidden Gem Music Club&address=507 Miamisburg Centerville Rd, Dayton, OH 45459"
-      >
-      The Hidden Gem Music Club
-      </a>
-  </button><button class="btn-secondary">
-    <a
-      href="/events/add?locationName=Gather&address=37 W 4th st Dayton OH"
-      >
-      Gather
-      </a>
-  </button>
-  <button class="btn-secondary">
-    <a
-      href="/events/add?locationName=Wholly Grounds&address=825 Wayne Ave, Dayton, OH 45410"
-      > 
-      Wholly Grounds
-      </a>
-  </button>
+  {%- for item in eventTemplates -%}
+    {%- if item.type == "venue" -%}
+    {% capture queryString %}
+    /events/add?locationName={{ item.locationName }}&address={{ item.address }}
+    {% endcapture %}
+    {% include btn-secondary,
+      name: item.locationName,
+      url: queryString
+    %}
+    {%- endif -%}
+  {%- endfor -%}
 </div>
 
 <form 
