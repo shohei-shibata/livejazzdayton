@@ -1,21 +1,21 @@
 ---
 layout: layout.liquid
 title: Events
-description: A full listing of upcoming live jazz events in and around Dayton, Ohio.
+description: List of past live jazz events in and around Dayton, Ohio.
 pagination:
-  data: events
+  data: pastEvents
   size: 5
 ---
 
-# Upcoming Events
+# Past Events
 
-Do you want to know what you have missed? You can view them at <a href="/past-events">Past Events</a>
+What you have missed recently.
 
 Last Update: {{ | lastUpdated }}
 
 <section class="events-list">
 	{%- for event in pagination.items -%}
-		{% include event-card, 
+		{% include event-card-past-event, 
 			title: event.title,
 			slug: event.slug,
 			start: event.start,
@@ -50,8 +50,5 @@ Last Update: {{ | lastUpdated }}
 	</div>
 </section>
 
-# Submit an Event
-
-Do you know of an event that is not listed?
-<a href="/events/add" class="btn btn-inline">Submit an Event</a>
+<a class="btn" href="/">Back to Home</a>
 
