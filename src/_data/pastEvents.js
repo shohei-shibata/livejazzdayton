@@ -5,35 +5,15 @@ const {
 	} = require("../js/trello.js");
 const Image = require("@11ty/eleventy-img");
 const slugify = require('slugify');
-const { htmlToText } = require('html-to-text');
-const { google, ics } = require("calendar-link");
 const { getDateSlug } = require("../js/time.js");
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-const listIdApprovedCards = "6325995217c6c700939f9740";
-
-const getCalendarLinks = (title, start, end, address, description, streamLink) => {
-  const event = {
-    title: title,
-    start: start,
-    end: end,
-    location: address,
-    description: streamLink ? `${description}\n<a href="${streamLink}">Live Stream Link</a>` : description,
-  };
-  return {
-    googleCalendar: google(event),
-    ics: ics(event)
-  }
-};
-
-const getIsToday = (value) => {
-  return (new Date(value) - new Date())/36e+5 < 21;
-}
+const listIdPastEventsCards = "63da437db4d363b4c0bb1e01";
 
 module.exports = async function() {
-		const cards = await getAllCards(listIdApprovedCards);
+		const cards = await getAllCards(listIdPastEventsCards);
     cards.sort((a, b) => {
-      return new Date(a.due).getTime() - new Date(b.due).getTime();
+      return new Date(b.due).getTime() - new Date(a.due).getTime();
     });
     return await Promise.all(cards.map(async card => {
       const { 
@@ -46,7 +26,6 @@ module.exports = async function() {
         locationAddress, 
         description,  
         artists,
-        links,
         dateUpdated,
       } = await parseEventCard(card)
 
@@ -85,9 +64,6 @@ module.exports = async function() {
       // Set event slug
       const slug = `${getDateSlug(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
 
-      // Determine if event is happening today
-      const isToday = getIsToday(start);
-      
       // Parse artist name(s) into an array
       let artistsString = "";
       if (artists) {
@@ -99,10 +75,6 @@ module.exports = async function() {
           }
         });
       } 
-
-      // Create calendar links
-      const { googleCalendar, ics } = getCalendarLinks(name, start, end, locationAddress, htmlToText(description), links.stream);
-
       // Format event data to be returned
       const eventFormatted = {
           slug: slug,
@@ -114,17 +86,6 @@ module.exports = async function() {
               name: locationName,
               address: locationAddress
           },
-          links: {
-            googleCalendar: googleCalendar,
-            ics: ics,
-            facebook: links.facebook && links.facebook.length > 0 ? links.facebook : null,
-            website: links.website && links.website.length > 0 ? links.website : null,
-            stream: links.stream && links.stream.length > 0 ? links.stream : null,
-            tickets: links.tickets && links.tickets.length > 0 ? links.tickets : null,
-          },
-          badges: [
-            isToday ? "Today" : null
-          ],
           description: description,
           image: imageHtml,
           artists: artists,

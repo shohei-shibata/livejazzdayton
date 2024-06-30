@@ -1,0 +1,11 @@
+---
+pagination:
+  data: pastEvents
+  size: 1
+  alias: event
+  addAllPagesToCollections: true
+permalink: /past-events/{{ event.slug }}/index.html
+layout: event.liquid
+---
+
+{{ event.description }}

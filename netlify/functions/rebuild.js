@@ -12,7 +12,7 @@ module.exports.handler = schedule('0 5 * * *', async (event) => {
     console.log(`Next function run at ${eventBody.next_run}.`);
 
     await fetch(REBUILD_URL, { method: 'POST' });
-    await fetch(REBUILD_URL_STAGING, { method: 'POST' });
+    //await fetch(REBUILD_URL_STAGING, { method: 'POST' });
     
   return {
     statusCode: 200,

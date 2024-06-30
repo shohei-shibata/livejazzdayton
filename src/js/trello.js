@@ -17,6 +17,7 @@ const customFieldId = {
   artists: `63298eb14e9a4702d35dbd47`,
   website: `63298de3f0b71701cee74d9b`,
   tickets: `6333522eae22aa02e35a6c7c`,
+  start: `63298cde0d12540117f3fa32`,
   end: `63298d1230281c0434de7e2b`,
   duration: `65b2354348c7c7168e48ee14`,
 }
@@ -115,7 +116,7 @@ const parseEventCard = async card => {
 		imageId: card.cover.idAttachment,
     locationName: await getVenueNameById(card.id),
     locationAddress: await getVenueAddressById(card.id),
-    start: card.due,
+    start: getCustomFieldDateById(card, customFieldId.start),
     end: getCustomFieldDateById(card, customFieldId.end),
     duration: getCustomFieldNumberById(card, customFieldId.duration),
     artists: getCustomFieldTextById(card, customFieldId.artists),

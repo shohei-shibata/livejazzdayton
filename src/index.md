@@ -33,8 +33,11 @@ description: Live Jazz Event Listing for Dayton, Ohio
 
 <br>
 
+Do you want to know what you have missed? =>
+<a href="/past-events" class="btn btn-inline">Past Events</a>
+
 <p>
-  Do you know of an event that is not listed?
+  Do you know of an event that is not listed? =>
   <a href="/events/add" class="btn btn-inline">Submit an Event</a>
 </p>
 
