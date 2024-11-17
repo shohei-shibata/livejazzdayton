@@ -1,0 +1,25 @@
+---
+import { 
+  getAllFutureEvents
+} from "../utils/trello.js";
+
+const allEvents = await getAllFutureEvents();
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Live Jazz Dayton</title>
+	</head>
+	<body>
+		<h1>Events</h1>
+    <ul>
+      {allEvents.map(event => (
+        <li><a href={`/events/${event.slug}`}>{event.name}</a></li>
+      ))}
+    </ul>
+	</body>
+</html>

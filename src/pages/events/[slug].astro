@@ -1,0 +1,22 @@
+---
+import { 
+  getAllFutureEvents
+} from "../../utils/trello.js";
+
+export async function getStaticPaths() {
+  return (await getAllFutureEvents()).map(event => {
+    return {
+      params: {
+        slug: event.slug
+      },
+      props: {
+        ...event
+      }
+    }
+  });
+};
+
+const { name, description, locationName, locationAddress, start, end, duration, artists, links, slug } = Astro.props;
+
+---
+<h1>{name}</h1>
