@@ -14,13 +14,27 @@ const getFullDateString = (timeString) => (
     day: "numeric",
   })
 )
+const getYear = (timeString) => (
+  formatTime(timeString, {
+    year: "numeric"
+  })
+)
+const getMonthString = (timeString) => (
+  formatTime(timeString, {
+    month: "long"
+  })
+)
+const getDayString = (timeString) => (
+  formatTime(timeString, {
+    day: "numeric"
+  })
+)
+const getDayOfWeekString = (timeString) => (
+  formatTime(timeString, {
+    weekday: "long"
+  })
+)
 
-const getDateSlug = (timeString) => {
-  const yyyy = formatTime(timeString, { year: "numeric" })
-  const mm = formatTime(timeString, { month: "numeric" })
-  const dd = formatTime(timeString, { day: "numeric" })
-  return `${yyyy}-${mm}-${dd}`
-}
 
 const getTimeString = (timeString) => (
   formatTime(timeString, {
@@ -29,8 +43,20 @@ const getTimeString = (timeString) => (
   })
 )
 
+const getDateSlug = (timeString) => {
+  const yyyy = formatTime(timeString, { year: "numeric" })
+  const mm = formatTime(timeString, { month: "numeric" })
+  const dd = formatTime(timeString, { day: "numeric" })
+  return `${yyyy}-${mm}-${dd}`
+}
+
+
 export {
   getFullDateString,
+  getYear,
+  getMonthString,
+  getDayOfWeekString,
+  getDayString,
   getDateSlug,
   getTimeString,
 }
