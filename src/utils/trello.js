@@ -1,5 +1,5 @@
 import EleventyFetch from "@11ty/eleventy-fetch";
-import { markdownToHtml } from "./markdownParser";
+import { markdownToHtml } from "./markdownParser.js";
 import slugify from 'slugify';
 import { getDateSlug } from "./time.js";
 

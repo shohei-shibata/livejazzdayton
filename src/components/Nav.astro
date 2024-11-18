@@ -1,0 +1,117 @@
+---
+import { Icon } from "astro-icon/components";
+import backgroundImage from "../images/brush.svg"
+
+const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const links = [
+  {
+    name: "Home",
+    url: "/",
+    icon: "home"
+  },
+  {
+    name: "About",
+    url: "/about",
+    icon: "about"
+  },
+  {
+    name: "Events",
+    url: "/events",
+    icon: "events"
+  },
+  {
+    name: "Links",
+    url: "/links",
+    icon: "links"
+  },
+  {
+    name: "Contact",
+    url: "/contact",
+    icon: "contact"
+  },
+]
+---
+<nav class="nav-main box">
+  <h1 class="logo"><a href="/">{siteTitle}</a></h1>
+  <ul class="nav-links-desktop">
+    {links.map(link => (
+      <li>
+        <a class="link" href={link.url} aria-current={pathname === link.url ? "page" : "false"}>
+          <span class="nav-link-text">
+            {link.name}
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <ul class="nav-links-mobile">
+    {links.map(link => (
+      <li>
+        <a href={link.url} aria-current={pathname === link.url ? "page" : "false"}>
+          <Icon class="nav-icon" name={link.icon}/>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .nav-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url({backgroundImage})
+  }
+  .nav-links-desktop {
+    display: flex;
+    gap: 10px;
+  }
+  .nav-main li {
+    list-style-type: none;
+  }
+  .nav-main a {
+    text-decoration: none;
+    color: var(--grey-20);
+  }
+  .nav-main a:hover,
+  .nav-main a[aria-current="page"] {
+    text-decoration: underline;
+  }
+  .nav-links-mobile {
+    display: none;
+  }
+  @media screen and (max-width: 768px) {
+    .nav-main {
+      justify-content: center;
+    }
+    .nav-links-mobile {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      padding: 0;
+      justify-content: space-evenly;
+      align-items: center;
+      height: var(--mobile-nav-height);
+      background-color: var(--grey-90);
+    }
+    .nav-links-mobile a {
+      display: inline-block;
+    }
+    .nav-links-mobile a[aria-current="page"] {
+      border-bottom: solid 1px var(--grey-20);
+    }
+    .nav-links-desktop {
+      display: none;
+    }
+    .nav-icon {
+      color: var(--grey-20);
+      font-size: var(--text-3xl);
+    }
+  }
+</style>

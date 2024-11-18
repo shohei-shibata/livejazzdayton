@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact">
+  <h1>Contact</h1>
+  <p>Send me a message via the form below and I'll get back to you as soon as I can!</p>
+  <form name="contact" method="POST" action="/contact/thanks" data-netlify>
+    <div class="input-row">
+      <label for="name">Name</label>
+      <input 
+        class="input-text-field"
+        type="text" 
+        name="name" 
+        placeholder="Your name"
+        required
+        autofocus
+      />
+    </div>
+    <div class="input-row">
+      <label for="email">
+        Email
+      </label>
+      <input 
+        class="input-text-field"
+        type="email" 
+        name="email" 
+        placeholder="Email address"
+        required
+      />
+    </div>
+    <div class="input-row">
+      <label for="message">Message</label>
+      <textarea 
+        name="message" 
+        placeholder="Your message"
+        rows="4"
+      />
+    </div>
+    <input class="btn" type="submit" value="Submit"/>
+  </form>
+  
+  
+</Layout>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: var(--form-max-width);
+    margin: var(--space-2xl) auto;
+  }
+  .input-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin: 5px 0;
+  }
+  input[type="submit"] {
+    margin: var(--space-2xl) auto 0 auto;
+  }
+  .input-text-field {
+    border-width: 0 0 1px 0;
+    border-color: var(--grey-20);
+  }
+  .input-text-field,
+  textarea {
+    font-size: var(--text-md);
+    font-family: unset;
+    resize: vertical;
+  }
+  textarea {
+    border: 1px solid var(--grey-20);
+  }
+</style>
