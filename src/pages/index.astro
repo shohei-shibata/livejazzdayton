@@ -5,6 +5,7 @@ import {
   getMonthString, 
   getDayOfWeekString,
   getDayString, 
+  getTimeString,
 } from "../utils/time";
 import { 
   getAllFutureEvents
@@ -14,25 +15,33 @@ const allEvents = await getAllFutureEvents();
 ---
 
 <Layout title="Home">
-  <h1>Events</h1>
-  <ul class="event-list">
-    {allEvents.map((event, index, array) => {
-      const insertMonth = index === 0 || getMonthString(event.start) !== getMonthString(array[index-1]?.start);
-      const insertYear = index === 0 || insertMonth && getMonthString(event.start) === "January";
-      return (
-      <>
-        {insertMonth && <li><span class="month">{getMonthString(event.start)}</span>{insertYear && <span class="year">{getYear(event.start)}</span>}</li>}
-        <li class="event-item">
-          <a href={`/events/${event.slug}`}>
-            <span class="day">{getDayString(event.start)}</span>
-            <span class="dow">{getDayOfWeekString(event.start)}</span>
-            <span class="event-name">{event.name}</span>
-          </a>
-        </li>
-      </>
-      )
-    })}
-  </ul>
+  <section>
+    <h1 class="section-title">Upcoming Events</h1>
+    <ul class="event-list">
+      {allEvents.map((event, index, array) => {
+        const insertMonth = index === 0 || getMonthString(event.start) !== getMonthString(array[index-1]?.start);
+        const insertYear = insertMonth && getMonthString(event.start) === "January";
+        return (
+        <>
+          {insertMonth && <li><span class="month">{getMonthString(event.start)}</span>{insertYear && <span class="year">{getYear(event.start)}</span>}</li>}
+          <li class="event-item">
+            <a href={`/events/${event.slug}`}>
+              <div class="day-container">
+                <span class="day">{getDayString(event.start)}</span>
+                <span class="day-of-the-week">{getDayOfWeekString(event.start)}</span>
+              </div>
+              <div class="event-info">
+                <span class="event-name">{event.name}</span><br/>
+                <span class="time-location">{getTimeString(event.start)} at {event.locationName}</span><br/>
+                <span class="artist-name">By {event.artists.toString()}</span>
+              </div>
+            </a>
+          </li>
+        </>
+        )
+      })}
+    </ul>
+  </section>
 </Layout>
 
 <style>
@@ -45,10 +54,23 @@ const allEvents = await getAllFutureEvents();
   }
   .event-list a {
     text-decoration: none;
-    color: var(--text-color-primary);
+    color: var(--color-text-primary);
+  }
+  .event-item a {
+    background-color: var(--white);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-sm);
+  }
+  .event-item a:hover {
+    box-shadow: var(--box-shadow);
   }
   .month {
+    display: inline-block;
+    font-family: "Rubik", sans-serif;
     font-size: var(--text-3xl);
+    font-weight: bolder;
+    color: var(--grey-50);
+    margin: var(--space-2xl) auto 0 auto;
   }
   .year {
     font-size: var(--text-3xl);
@@ -56,6 +78,33 @@ const allEvents = await getAllFutureEvents();
   }
   .event-item a {
     display: grid;
-    grid-template-columns: 35px 150px 1fr;
+    grid-template-columns: 130px 1fr;
+    align-items: center;
+  }
+  .day-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: var(--space-2xl);
+  }
+  .day,
+  .day-of-the-week {
+    font-family: "Rubik", sans-serif;
+  }
+  .day {
+    font-weight: bolder;
+    font-size: 70px;
+  }
+  .day-of-the-week {
+    text-transform: uppercase;
+    font-size: var(--text-md);
+  }
+  .event-info {
+    padding: 0 var(--space-3xl);
+    border-left: solid 1px var(--color-text-primary);
+  }
+  .event-name {
+    font-weight: bold;
+    font-size: var(--text-2xl);
   }
 </style>

@@ -12,7 +12,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Rubik+Dirt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Rubik+Dirt&family=Rubik&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{siteTitle} | {title}</title>
   </head>
@@ -48,7 +48,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --black-fade-40: rgba(0, 0, 0, 0.4);
     --grey-90: #232129;
     --grey-50: #555;
-    --grey-20: #efefef;  
+    --grey-20: #eee;  
     --green-80: #088413;
     --green-50-rgb: 55, 182, 53;
     --white: #ffffff;
@@ -102,10 +102,16 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     font-family: var(--font-text);
     max-width: var(--width-body);
     margin: auto;
+    padding: 0 var(--space-xl);
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: var(--bold);
+  }
+  .section-title {
+    font-family: var(--font-logo);
+    font-size: var(--text-3xl);
+    text-align: center;
   }
   p {
     line-height: var(--text-2xl);
@@ -125,5 +131,11 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
   .main-content {
     width: var(--width-main-content);
     margin: var(--space-3xl) auto;
+    max-width: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    body {
+      margin-bottom: var(--mobile-nav-height);
+    }
   }
 </style>
