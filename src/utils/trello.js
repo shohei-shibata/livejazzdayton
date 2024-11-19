@@ -2,6 +2,7 @@ import EleventyFetch from "@11ty/eleventy-fetch";
 import { markdownToHtml } from "./markdownParser.js";
 import slugify from 'slugify';
 import { getDateSlug } from "./time.js";
+import { getGoogleMapsEmbedUrl } from "./google";
 
 const TRELLO_API_KEY = import.meta.env.TRELLO_API_KEY;
 const TRELLO_API_TOKEN = import.meta.env.TRELLO_API_TOKEN;
@@ -80,22 +81,26 @@ const getCustomFieldDateById = (card, customFieldId) => {
 }
 
 const parseEventCard = async card => {
-  const start = getCustomFieldDateById(card, customFieldId.start)
+  const start = getCustomFieldDateById(card, customFieldId.start);
+  const locationName = await getVenueNameById(card.id);
+  const locationAddress = await getVenueAddressById(card.id)
+  const googleMapsEmbedUrl = getGoogleMapsEmbedUrl(locationName, locationAddress);
   return {
     cardId: card.id,
     name: card.name,
     description: markdownToHtml(card.desc),
     dateUpdated: card.dateLastActivity,
-		imageId: card.cover.idAttachment,
-    locationName: await getVenueNameById(card.id),
-    locationAddress: await getVenueAddressById(card.id),
+		imageUrl: await getImageUrl(card.id, card.cover.idAttachment),
+    locationName,
+    locationAddress,
     start,
     end: getCustomFieldDateById(card, customFieldId.end),
     duration: getCustomFieldNumberById(card, customFieldId.duration),
     artists: getCustomFieldTextById(card, customFieldId.artists),
     websiteUrl: getCustomFieldTextById(card, customFieldId.website),
     ticketsUrl: getCustomFieldTextById(card, customFieldId.tickets),
-    slug: `${getDateSlug(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`
+    slug: `${getDateSlug(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`,
+    googleMapsEmbedUrl
   }
 }
 

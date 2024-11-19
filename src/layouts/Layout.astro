@@ -12,7 +12,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Rubik+Dirt&family=Rubik&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner&family=Rubik+Dirt&family=Rubik&family=Inter&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{siteTitle} | {title}</title>
   </head>
@@ -28,8 +28,8 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
 <style is:global>
   :root {
     --font-logo: "Rubik Dirt", sans-serif;
-    --font-heading: "Barlow", sans-serif;
-    --font-text: sans-serif;
+    --font-heading: "Commissioner", sans-serif;
+    --font-text: "Inter", sans-serif;
 
     --background-color-primary: #eee;
     --background-color-secondary: #ddd;
@@ -48,11 +48,8 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --black-fade-40: rgba(0, 0, 0, 0.4);
     --grey-90: #232129;
     --grey-50: #555;
-    --grey-20: #eee;  
-    --green-80: #088413;
-    --green-50-rgb: 55, 182, 53;
+    --grey-20: #eee;
     --white: #ffffff;
-    --yellow: #dcab4e;
 
     /* radii */
     --radius-sm: 4px;
@@ -94,9 +91,10 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
 
     /* shadow */
     --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 4px 12px;
   }
   html {
-    background-color: var(--grey-20);
+    background-color: var(--black-fade-5);
   }
   body {
     font-family: var(--font-text);
@@ -132,6 +130,22 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     width: var(--width-main-content);
     margin: var(--space-3xl) auto;
     max-width: 100%;
+  }
+  .link-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    background-color: transparent;
+    border: solid 1px var(--black-fade-40);
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+    line-height: var(--text-lg);
+    box-shadow: var(--box-shadow-light);
+    opacity: 0.8;
+  }
+  .link-btn:hover {
+    opacity: 1;
+    box-shadow: var(--box-shadow);
   }
   @media screen and (max-width: 768px) {
     body {
