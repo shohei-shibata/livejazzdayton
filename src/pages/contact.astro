@@ -1,47 +1,47 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
 ---
 
-<Layout title="Contact">
-  <h1>Contact</h1>
-  <p>Send me a message via the form below and I'll get back to you as soon as I can!</p>
-  <form name="contact" method="POST" action="/contact/thanks" data-netlify>
-    <div class="input-row">
-      <label for="name">Name</label>
-      <input 
-        class="input-text-field"
-        type="text" 
-        name="name" 
-        placeholder="Your name"
-        required
-        autofocus
-      />
-    </div>
-    <div class="input-row">
-      <label for="email">
-        Email
-      </label>
-      <input 
-        class="input-text-field"
-        type="email" 
-        name="email" 
-        placeholder="Email address"
-        required
-      />
-    </div>
-    <div class="input-row">
-      <label for="message">Message</label>
-      <textarea 
-        name="message" 
-        placeholder="Your message"
-        rows="4"
-      />
-    </div>
-    <input class="btn" type="submit" value="Submit"/>
-  </form>
+<PageLayout title="Contact">
+  <section>
+    <p>Send me a message via the form below and I'll get back to you as soon as I can!</p>
+    <form name="contact" method="POST" action="/contact/thanks" data-netlify>
+      <div class="input-row">
+        <label for="name">Name</label>
+        <input 
+          class="input-text-field"
+          type="text" 
+          name="name" 
+          placeholder="Your name"
+          required
+          autofocus
+        />
+      </div>
+      <div class="input-row">
+        <label for="email">
+          Email
+        </label>
+        <input 
+          class="input-text-field"
+          type="email" 
+          name="email" 
+          placeholder="Email address"
+          required
+        />
+      </div>
+      <div class="input-row">
+        <label for="message">Message</label>
+        <textarea 
+          name="message" 
+          placeholder="Your message"
+          rows="4"
+        />
+      </div>
+      <input class="btn" type="submit" value="Submit"/>
+    </form>
+  </section>
   
-  
-</Layout>
+</PageLayout>
 
 <style>
   form {
@@ -58,6 +58,9 @@ import Layout from '../layouts/Layout.astro';
   }
   input[type="submit"] {
     margin: var(--space-2xl) auto 0 auto;
+  }
+  input[type="submit"]:hover {
+    cursor: pointer;
   }
   .input-text-field {
     border-width: 0 0 1px 0;

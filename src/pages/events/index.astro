@@ -1,17 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { 
-  getAllFutureEvents
-} from "../../utils/trello.js";
-
-const allEvents = await getAllFutureEvents();
+import EventListing from "../../components/EventListing.astro";
 ---
 
 <Layout title="Home">
-  <h1>Events</h1>
-  <ul>
-    {allEvents.map(event => (
-      <li><a href={`/events/${event.slug}`}>{event.name}</a></li>
-    ))}
-  </ul>
+  <section>
+    <h1 class="section-title">Upcoming Events</h1>
+    <EventListing/>
+    <div class="btn-container">
+      <a class="btn-sm" href="#">Back to Top</a>
+    </div>
+  </section>
 </Layout>

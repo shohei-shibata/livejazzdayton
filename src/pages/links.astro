@@ -1,17 +1,39 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { 
-  getAllFutureEvents
-} from "../utils/trello.js";
 
-const allEvents = await getAllFutureEvents();
+import { getCollection } from "astro:content";
+import VenueCard from "../components/VenueCard.astro";
+import MusicianCard from "../components/MusicianCard.astro";
+const allVenues = await getCollection("venue");
+const allMusicians = await getCollection("musician");
 ---
 
-<Layout title="Home">
-  <h1>Events</h1>
-  <ul>
-    {allEvents.map(event => (
-      <li><a href={`/events/${event.slug}`}>{event.name}</a></li>
-    ))}
-  </ul>
+<Layout title="Links">
+  <section>
+    <h1 class="section-title">Venues</h1>
+    <ul class="cards-container">
+      {allVenues.map(venue => (
+        <VenueCard venue={venue}/>
+      ))}
+    </ul>
+  </section>
+  <section>
+    <h1 class="section-title">Musicians</h1>
+    <ul class="cards-container">
+      {allMusicians.map(musician => (
+        <MusicianCard musician={musician}/>
+      ))}
+    </ul>
+  </section>
 </Layout>
+
+<style>
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: scroll;
+    gap: var(--space-2xl);
+    padding: 0;
+  }
+</style>

@@ -85,12 +85,13 @@ const parseEventCard = async card => {
   const locationName = await getVenueNameById(card.id);
   const locationAddress = await getVenueAddressById(card.id)
   const googleMapsEmbedUrl = getGoogleMapsEmbedUrl(locationName, locationAddress);
+  const imageUrl = await getImageUrl(card.id, card.cover.idAttachment)
   return {
     cardId: card.id,
     name: card.name,
     description: markdownToHtml(card.desc),
     dateUpdated: card.dateLastActivity,
-		imageUrl: await getImageUrl(card.id, card.cover.idAttachment),
+		imageUrl,
     locationName,
     locationAddress,
     start,
@@ -110,7 +111,7 @@ const getImageUrl = async (cardId, attachmentId) => {
 	const imageInfo = await EleventyFetch(url, { 
     duration: defaultDuration,
     type: "json" });
-	return `${imageInfo.url}?${params}`;
+	return imageInfo.url;
 }
 
 export {

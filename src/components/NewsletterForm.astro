@@ -1,0 +1,67 @@
+<div class="newsletter-section-container box">
+  <div class="newsletter-form-text">
+    <h1>Live Jazz in your inbox</h1>
+    <p>Never miss an event! Get email updates of upcoming events and important announcements.</p>
+  </div>
+  <form
+    action="https://buttondown.email/api/emails/embed-subscribe/livejazzdayton"
+    method="post"
+    target="popupwindow"
+    onsubmit="window.open('https://buttondown.email/livejazzdayton', 'popupwindow')"
+    class="newsletter-signup-form"
+  >
+    <div class="input-group">
+      <label for="bd-name">Name</label>
+      <input type="text" name="metadata__name" id="bd-Name" class="input" required>
+    </div>
+    <div class="input-group">
+      <label for="bd-email">Email</label>
+      <input type="email" name="email" id="bd-email" class="input" required/>
+    </div>
+    <input type="submit" value="Subscribe" class="btn"/>
+  </form>
+</div>
+
+<style>
+  h1 {
+    font-size: var(--text-2xl);
+  }
+  .newsletter-section-container {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    padding: var(--space-3xl) 0;
+  }
+  .newsletter-form-text {
+    padding: 0 var(--space-3xl);
+  }
+  .newsletter-form-text h1 {
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+  form {
+    padding: 0 var(--space-3xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-lg);
+    margin-top: var(--space-sm);
+  }
+  .input-group {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+  }
+  input[type="submit"] {
+    margin: var(--space-xl) 0 var(--space-md) 0;
+    box-shadow: none;
+    background-color: var(--grey-20);
+    border: none;
+  }
+  @media screen and (max-width: 768px) {
+    .newsletter-section-container {
+      grid-template-columns: 1fr;
+    }
+    form {
+      margin-top: var(--space-xl);
+    }
+  }
+</style>

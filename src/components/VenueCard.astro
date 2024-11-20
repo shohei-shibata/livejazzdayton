@@ -1,0 +1,42 @@
+---
+const { venue } = Astro.props;
+const { name, website, address } = venue.data
+---
+<li class="item">
+  <a href={website} target="_blank">
+    <h1>{name}</h1>
+    <p>{address}</p>
+  </a>
+</li>
+
+<style>
+  h1 {
+    font-size: var(--text-lg);
+  }
+  .item {
+    list-style-type: none;
+    margin: var(--space-2xl) 0;
+    background-size: 75%;
+    background-position: 250px -75px;
+    border-radius: var(--radius-sm);
+  }
+  .item a {
+    text-decoration: none;
+    color: var(--color-text-primary);
+    background-color: var(--white);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--box-shadow-light);
+    display: block;
+    width: 250px;
+    height: 200px;
+  }
+  .item a:hover {
+    box-shadow: var(--box-shadow);
+  }
+  @media screen and (max-width: 768px) {
+    .item a {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,90 @@
+---
+import { 
+  getDayOfWeekString,
+  getDayString, 
+  getTimeString,
+} from "../utils/time";
+
+const { event } = Astro.props;
+---
+<li class="event-item" style={{backgroundImage: `url(${event.imageUrl})`}}>
+  <a href={`/events/${event.slug}`}>
+    <div class="day-container">
+      <span class="day">{getDayString(event.start)}</span>
+      <span class="day-of-the-week">{getDayOfWeekString(event.start)}</span>
+    </div>
+    <div class="event-info">
+      <span class="event-name">{event.name}</span><br/>
+      <span class="time-location">{getTimeString(event.start)} at {event.locationName}</span><br/>
+      <span class="artist-name">By {event.artists.toString()}</span>
+    </div>
+  </a>
+</li>
+
+<style>
+  .event-item {
+    list-style-type: none;
+    margin: var(--space-2xl) 0;
+    background-size: 75%;
+    background-position: 250px -75px;
+    border-radius: var(--radius-sm);
+  }
+  .event-item a {
+    text-decoration: none;
+    color: var(--color-text-primary);
+    background-image: linear-gradient(120deg, var(--white) 50%, #ffffffd7 70%, #ffffff00 100%);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--box-shadow-light);
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    align-items: center;
+  }
+  .event-item a:hover {
+    box-shadow: var(--box-shadow);
+  }
+  .day-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: var(--space-2xl);
+  }
+  .day,
+  .day-of-the-week {
+    font-family: "Rubik", sans-serif;
+  }
+  .day {
+    font-weight: bolder;
+    font-size: 70px;
+  }
+  .day-of-the-week {
+    text-transform: uppercase;
+    font-size: var(--text-md);
+  }
+  .event-info {
+    padding: 0 var(--space-3xl);
+    border-left: solid 1px var(--color-text-primary);
+  }
+  .event-name {
+    font-weight: bold;
+    font-size: var(--text-2xl);
+  }
+  @media screen and (max-width: 768px) {
+    .event-item a {
+      grid-template-columns: 1fr;
+    }
+    .day-container {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--space-xl);
+    }
+    .day-of-the-week {
+      margin-top: var(--space-lg);
+    }
+    .event-info {
+      padding: 0;
+      border-left: none;
+      margin-bottom: var(--space-sm);
+    }
+  }
+</style>
