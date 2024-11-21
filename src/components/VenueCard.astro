@@ -1,41 +1,61 @@
 ---
 const { venue } = Astro.props;
-const { name, website, address } = venue.data
+const { name, website, address_street, address_city, cover } = venue.data
 ---
-<li class="item">
-  <a href={website} target="_blank">
+<li class="item" style={{backgroundImage: `url(${cover?.src})`}}>
+  <div class="item-content-wrapper">
     <h1>{name}</h1>
-    <p>{address}</p>
+    <p>{address_street}<br/>{address_city}</p>
+    <div class="link-container">
+      <a class="btn-sm btn-venue-link" href={website} target="_blank">Website</a>
+      <a class="btn-sm btn-venue-link" target="_blank">Directions</a>
+    </div>
   </a>
 </li>
 
 <style>
   h1 {
-    font-size: var(--text-lg);
+    font-family: var(--font-logo);
+    font-size: var(--text-xl);
+    text-shadow: #ffffff55 0px 2px 20px;
+    margin: 0;
+  }
+  p {
+    font-weight: bold;
+    text-shadow: #ffffff55 0px 2px 20px;
+    margin: 0;
   }
   .item {
     list-style-type: none;
     margin: var(--space-2xl) 0;
-    background-size: 75%;
-    background-position: 250px -75px;
+    background-size: cover;
     border-radius: var(--radius-sm);
   }
-  .item a {
-    text-decoration: none;
+  .item-content-wrapper {
     color: var(--color-text-primary);
-    background-color: var(--white);
+    background-color: #ffffffaa;
     padding: var(--space-2xl);
     border-radius: var(--radius-sm);
     box-shadow: var(--box-shadow-light);
-    display: block;
-    width: 250px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr auto;
+    width: 225px;
     height: 200px;
   }
-  .item a:hover {
-    box-shadow: var(--box-shadow);
+  .btn-venue-link {
+    font-weight: bold;
+    border-color: var(--color-text-primary);
+  }
+  .btn-venue-link:hover {
+    background-color: #ffffff55;
+  }
+  .link-container {
+    display: flex;
+    gap: var(--space-sm);
   }
   @media screen and (max-width: 768px) {
-    .item a {
+    .item-content-wrapper {
       grid-template-columns: 1fr;
     }
   }

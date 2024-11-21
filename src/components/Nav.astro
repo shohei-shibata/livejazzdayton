@@ -33,7 +33,7 @@ const links = [
   },
 ]
 ---
-<nav class="nav-main box">
+<nav class="nav-main">
   <h1 class="logo"><a href="/">{siteTitle}</a></h1>
   <ul class="nav-links-desktop">
     {links.map(link => (
@@ -59,9 +59,13 @@ const links = [
 
 <style>
   .nav-main {
+    background-color: var(--black);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100vw;
+    padding: 0 var(--space-3xl);
+    box-sizing: border-box;
   }
   .nav-links-desktop {
     display: flex;

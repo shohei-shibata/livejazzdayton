@@ -1,6 +1,8 @@
 ---
 name: "Gather"
 website: "https://gatherdyt.com/"
-address: "37 W 4th St, Dayton, OH 45402"
+address_street: "37 W 4th St"
+address_city: "Dayton, OH 45402"
+cover: "../../images/gather.jpg"
 ---
 

@@ -27,20 +27,20 @@ const { event } = Astro.props;
     margin: var(--space-2xl) 0;
     background-size: 75%;
     background-position: 250px -75px;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
+    box-shadow: var(--box-shadow-light);
+    overflow: hidden;
   }
   .event-item a {
     text-decoration: none;
     color: var(--color-text-primary);
     background-image: linear-gradient(120deg, var(--white) 50%, #ffffffd7 70%, #ffffff00 100%);
     padding: var(--space-2xl);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--box-shadow-light);
     display: grid;
     grid-template-columns: 130px 1fr;
     align-items: center;
   }
-  .event-item a:hover {
+  .event-item:hover {
     box-shadow: var(--box-shadow);
   }
   .day-container {
@@ -70,6 +70,10 @@ const { event } = Astro.props;
     font-size: var(--text-2xl);
   }
   @media screen and (max-width: 768px) {
+    .event-item {
+      background-size: cover;
+      background-position: 20vw -10px;
+    }
     .event-item a {
       grid-template-columns: 1fr;
     }

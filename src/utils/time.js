@@ -5,10 +5,16 @@ const formatTime = (timeString, options) => {
     timeZone: "America/Detroit",
   }).format(dateObj)
 }
-
 const getFullDateString = (timeString) => (
   formatTime(timeString, {
     weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
+)
+const getShortDateString = (timeString) => (
+  formatTime(timeString, {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -34,8 +40,6 @@ const getDayOfWeekString = (timeString) => (
     weekday: "long"
   })
 )
-
-
 const getTimeString = (timeString) => (
   formatTime(timeString, {
     hour: "numeric",
@@ -53,6 +57,7 @@ const getDateSlug = (timeString) => {
 
 export {
   getFullDateString,
+  getShortDateString,
   getYear,
   getMonthString,
   getDayOfWeekString,

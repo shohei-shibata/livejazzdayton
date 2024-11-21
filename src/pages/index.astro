@@ -1,19 +1,48 @@
 ---
+import type { CollectionEntry } from "astro:content";
+
+import { getShortDateString } from "../utils/time";
+import { markdownToHtml } from "../utils/markdownParser";
+
 import Layout from "../layouts/Layout.astro";
 import EventListingShort from "../components/EventListingShort.astro";
 
 import { getCollection } from "astro:content";
 import VenueCard from "../components/VenueCard.astro";
 import MusicianCard from "../components/MusicianCard.astro";
-const allVenues = await getCollection("venue");
-const allMusicians = await getCollection("musician");
+
+function randomize(arr: any) {
+  return arr.sort(() => (0.5 - Math.random()))
+}
+
+const allNews: CollectionEntry<'news'>[] = await getCollection("news");
+console.log(allNews)
+const allVenues: CollectionEntry<'venue'>[] = randomize(await getCollection("venue"));
+const allMusicians: CollectionEntry<'musician'>[] = randomize(await getCollection("musician"));
 ---
 
 <Layout title="Home">
-  {/* <section>
+  <section id="banner" class="full-width">
+    <video id="banner-video" autoplay muted loop>
+      <source src="https://res.cloudinary.com/dcuvzfo54/video/upload/v1732154434/4997787_Music_Instrument_1280x720_ezbiiw.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="banner-text-overlay">
+      <h1 class="section-title">Find the best live jazz in Dayton Ohio</h1>
+    </div>
+  </section>
+  <section>
     <h1 class="section-title">News</h1>
-    <p class="text-center">Announcements</p>
-  </section> */}
+    {allNews.map((news) => (
+      <div class="news-item-container">
+        <div>
+          <h2 class="news-title">{news.data.title}</h2>
+          <p class="news-date">{getShortDateString(news.data.publishDate)}</p>
+        </div>
+        <div class="news-body" set:html={markdownToHtml(news.body)}/>
+      </div>
+    ))}
+  </section>
   <section>
     <h1 class="section-title">Upcoming Events</h1>
     <EventListingShort/>
@@ -24,7 +53,7 @@ const allMusicians = await getCollection("musician");
   <section>
     <h1 class="section-title">Venues</h1>
     <ul class="cards-container">
-      {allVenues.map(venue => (
+      {allVenues.map((venue) => (
         <VenueCard venue={venue}/>
       ))}
     </ul>
@@ -40,11 +69,70 @@ const allMusicians = await getCollection("musician");
 </Layout>
 
 <style>
+  #banner {
+    background-color: var(--white);
+    color: var(--text-color-primary);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    width: 100vw;
+    max-height: 50vw;
+  }
+  #banner-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+  }
+  #banner-text-overlay {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000055;
+    color: var(--white);
+    max-height: 50vw;
+  }
+  #banner,
+  #banner-text-overlay {
+    height: 350px;
+  }
   .cards-container {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
     gap: var(--space-2xl);
     padding: 0;
+  }
+  .news-item-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--space-xl);
+    max-width: 700px;
+    margin: auto;
+  }
+  .news-title {
+    font-size: var(--text-xl);
+    margin-bottom: 0;
+  }
+  .news-date {
+    font-size: var(--text-sm);
+    margin: var(--space-sm) 0;
+  }
+  .news-title,
+  .news-body p {
+    margin-top: var(--space-lg);
+  }
+  @media screen and (max-width: 768px) {
+    .news-item-container {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .news-title,
+    .news-body p {
+      margin: 0;
+    }
   }
 </style>

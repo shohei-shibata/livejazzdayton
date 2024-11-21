@@ -51,6 +51,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --grey-90: #232129;
     --grey-50: #555;
     --grey-20: #eee;
+    --black: #111;
     --white: #ffffff;
 
     /* radii */
@@ -96,17 +97,20 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 4px 12px;
   }
   html {
-    background-color: var(--black-fade-5);
+    background-color: var(--grey-20);
   }
   body {
     font-family: var(--font-text);
-    max-width: var(--width-body);
-    margin: auto;
-    padding: 0 var(--space-xl);
+    margin: 0;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: var(--bold);
+  }
+  section {
+    margin: var(--space-3xl) auto;
+    padding: 0 var(--space-lg);
+    max-width: var(--width-body);
   }
   .section-title {
     font-family: var(--font-logo);
@@ -129,9 +133,13 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     box-shadow: var(--box-shadow);
   }
   .main-content {
-    width: var(--width-main-content);
-    margin: var(--space-3xl) auto;
-    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .full-width {
+    margin: 0;
+    width: 100vw;
+    max-width: none;
   }
   .btn,
   .btn-sm {
@@ -142,7 +150,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     border: solid 1px var(--black-fade-40);
     border-radius: var(--radius-sm);
     box-shadow: var(--box-shadow-light);
-    opacity: 0.8;
+    opacity: 0.9;
   }
   .btn:hover,
   .btn-sm:hover {
