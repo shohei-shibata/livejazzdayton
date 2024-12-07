@@ -1,8 +1,9 @@
 ---
 const { musician } = Astro.props;
-const { name, website, cover, title } = musician.data
+const { name, website, cover, title } = musician.data;
 ---
-<li class="item" style={{backgroundImage: `url(${cover?.src})`}}>
+
+<li class="item" style={{ backgroundImage: `url(${cover?.src})` }}>
   <a href={website} target="_blank">
     <h1>{name}</h1>
     <p class="title">{title}</p>
@@ -32,7 +33,6 @@ const { name, website, cover, title } = musician.data
   .item a {
     text-decoration: none;
     color: var(--color-text-primary);
-    background-color: #ffffff33;
     padding: var(--space-2xl);
     border-radius: var(--radius-sm);
     box-shadow: var(--box-shadow-light);
@@ -43,9 +43,15 @@ const { name, website, cover, title } = musician.data
     justify-content: flex-end;
     align-items: center;
     text-align: center;
+    background-size: 100% 100%;
+    background-position: 0px 0px;
+    background-image: radial-gradient(
+      75% 75% at 50% 50%,
+      #00000022 0%,
+      #000 100%
+    );
   }
   .item a:hover {
-    background-color: #ffffff55;
     box-shadow: var(--box-shadow);
   }
   @media screen and (max-width: 768px) {

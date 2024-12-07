@@ -33,14 +33,6 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --font-heading: "Commissioner", sans-serif;
     --font-text: "Inter", sans-serif;
 
-    --background-color-primary: #eee;
-    --background-color-secondary: #ddd;
-    --background-color-code: #333;
-    --color-border: #aaa;
-    --color-cards-bg: #fff;
-    --color-cards-shadow: #ddd;
-    --color-text-primary: #222;
-    --color-text-secondary: #555;
     --width-body: 900px;
     --width-main-content: 700px;
     --mobile-nav-height: 75px;
@@ -50,9 +42,20 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --black-fade-40: rgba(0, 0, 0, 0.4);
     --grey-90: #232129;
     --grey-50: #555;
-    --grey-20: #eee;
+    --grey-20: #ededed;
     --black: #111;
     --white: #ffffff;
+
+    
+    --background-color-primary: var(--grey-20);
+    --background-color-secondary: #ddd;
+    --background-color-code: #333;
+    --color-border: #aaa;
+    --color-cards-bg: #fff;
+    --color-cards-shadow: #ddd;
+    --color-text-primary: var(--grey-90);
+    --color-text-secondary: var(--grey-50);
+    --color-text-inverse: var(--white);
 
     /* radii */
     --radius-sm: 4px;
@@ -109,7 +112,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
   }
   section {
     margin: var(--space-3xl) auto;
-    padding: 0 var(--space-lg);
+    padding: var(--space-lg) var(--space-lg);
     max-width: var(--width-body);
   }
   .section-title {
