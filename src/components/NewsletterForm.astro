@@ -1,8 +1,11 @@
 <div class="wrapper">
-  <div class="newsletter-section-container box">
+  <div class="newsletter-section-container box animated-bg">
     <div class="newsletter-form-text">
       <h1>Live Jazz in your inbox</h1>
-      <p>Never miss an event! Get email updates of upcoming events and important announcements.</p>
+      <p>
+        Never miss an event! Get email updates of upcoming events and important
+        announcements.
+      </p>
     </div>
     <form
       action="https://buttondown.email/api/emails/embed-subscribe/livejazzdayton"
@@ -13,13 +16,19 @@
     >
       <div class="input-group">
         <label for="bd-name">Name</label>
-        <input type="text" name="metadata__name" id="bd-Name" class="input" required>
+        <input
+          type="text"
+          name="metadata__name"
+          id="bd-Name"
+          class="input"
+          required
+        />
       </div>
       <div class="input-group">
         <label for="bd-email">Email</label>
-        <input type="email" name="email" id="bd-email" class="input" required/>
+        <input type="email" name="email" id="bd-email" class="input" required />
       </div>
-      <input type="submit" value="Subscribe" class="btn"/>
+      <input type="submit" value="Subscribe" class="btn" />
     </form>
   </div>
 </div>
@@ -62,6 +71,48 @@
     box-shadow: none;
     background-color: var(--white);
     border: none;
+  }
+  .animated-bg {
+    background: linear-gradient(315deg, var(--grey-90), var(--grey-50));
+    background-size: 400% 400%;
+
+    -webkit-animation: MovingBackground 20s ease infinite;
+    -moz-animation: MovingBackground 20s ease infinite;
+    animation: MovingBackground 20s ease infinite;
+  }
+
+  @-webkit-keyframes MovingBackground {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  @-moz-keyframes MovingBackground {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  @keyframes MovingBackground {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
   @media screen and (max-width: 768px) {
     .newsletter-section-container {

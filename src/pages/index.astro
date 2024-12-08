@@ -5,26 +5,31 @@ import { getShortDateString } from "../utils/time";
 import { markdownToHtml } from "../utils/markdownParser";
 
 import Layout from "../layouts/Layout.astro";
-import EventListingShort from "../components/EventListingShort.astro";
 
 import { getCollection } from "astro:content";
-import VenueCard from "../components/VenueCard.astro";
-import MusicianCard from "../components/MusicianCard.astro";
+import LinkCardList from "../components/LinkCardList.astro";
+import EventListing from "../components/EventListing.astro";
 
 function randomize(arr: any) {
-  return arr.sort(() => (0.5 - Math.random()))
+  return arr.sort(() => 0.5 - Math.random());
 }
 
-const allNews: CollectionEntry<'news'>[] = await getCollection("news");
-console.log(allNews)
-const allVenues: CollectionEntry<'venue'>[] = randomize(await getCollection("venue"));
-const allMusicians: CollectionEntry<'musician'>[] = randomize(await getCollection("musician"));
+const allNews: CollectionEntry<"news">[] = await getCollection("news");
+const allVenues: CollectionEntry<"venue">[] = randomize(
+  await getCollection("venue")
+);
+const allMusicians: CollectionEntry<"musician">[] = randomize(
+  await getCollection("musician")
+);
 ---
 
 <Layout title="Home">
   <section id="banner" class="full-width">
     <video id="banner-video" autoplay muted loop>
-      <source src="https://res.cloudinary.com/dcuvzfo54/video/upload/v1732154434/4997787_Music_Instrument_1280x720_ezbiiw.mp4" type="video/mp4">
+      <source
+        src="https://res.cloudinary.com/dcuvzfo54/video/upload/v1732154434/4997787_Music_Instrument_1280x720_ezbiiw.mp4"
+        type="video/mp4"
+      />
       Your browser does not support the video tag.
     </video>
     <div id="banner-text-overlay">
@@ -33,38 +38,32 @@ const allMusicians: CollectionEntry<'musician'>[] = randomize(await getCollectio
   </section>
   <section>
     <h1 class="section-title">News</h1>
-    {allNews.map((news) => (
-      <div class="news-item-container">
-        <div>
-          <h2 class="news-title">{news.data.title}</h2>
-          <p class="news-date">{getShortDateString(news.data.publishDate)}</p>
+    {
+      allNews.map((news) => (
+        <div class="news-item-container">
+          <div>
+            <h2 class="news-title">{news.data.title}</h2>
+            <p class="news-date">{getShortDateString(news.data.publishDate)}</p>
+          </div>
+          <div class="news-body" set:html={markdownToHtml(news.body)} />
         </div>
-        <div class="news-body" set:html={markdownToHtml(news.body)}/>
-      </div>
-    ))}
+      ))
+    }
   </section>
   <section>
     <h1 class="section-title">Upcoming Events</h1>
-    <EventListingShort/>
+    <EventListing limit={3} />
     <div class="btn-container">
       <a class="btn-sm" href="/events">View More</a>
     </div>
   </section>
   <section>
     <h1 class="section-title">Venues</h1>
-    <ul class="cards-container">
-      {allVenues.map((venue) => (
-        <VenueCard venue={venue}/>
-      ))}
-    </ul>
+    <LinkCardList data={allVenues} type="venue"/>
   </section>
   <section>
     <h1 class="section-title">Musicians</h1>
-    <ul class="cards-container">
-      {allMusicians.map(musician => (
-        <MusicianCard musician={musician}/>
-      ))}
-    </ul>
+    <LinkCardList data={allMusicians} type="musician"/>
   </section>
 </Layout>
 
@@ -99,18 +98,14 @@ const allMusicians: CollectionEntry<'musician'>[] = randomize(await getCollectio
   #banner-text-overlay {
     height: 350px;
   }
-  .cards-container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    gap: var(--space-2xl);
-    padding: 0;
-  }
   .news-item-container {
     display: grid;
     grid-template-columns: 250px 1fr;
     gap: var(--space-xl);
     margin: auto;
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    padding: var(--space-2xl);
   }
   .news-title {
     font-size: var(--text-xl);

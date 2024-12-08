@@ -2,26 +2,25 @@
 import Layout from "../layouts/Layout.astro";
 
 import { getCollection } from "astro:content";
-import VenueCard from "../components/VenueCard.astro";
-import MusicianCard from "../components/MusicianCard.astro";
+import LinkCard from "../components/LinkCard.astro";
 const allVenues = await getCollection("venue");
 const allMusicians = await getCollection("musician");
 ---
 
 <Layout title="Links">
   <section>
-    <h1 class="section-title">Venues</h1>
+    <h1 class="section-title">Musicians</h1>
     <ul class="cards-container">
-      {allVenues.map(venue => (
-        <VenueCard venue={venue}/>
+      {allMusicians.map(musician => (
+        <LinkCard type="musician" data={musician.data}/>
       ))}
     </ul>
   </section>
   <section>
-    <h1 class="section-title">Musicians</h1>
+    <h1 class="section-title">Venues</h1>
     <ul class="cards-container">
-      {allMusicians.map(musician => (
-        <MusicianCard musician={musician}/>
+      {allVenues.map(venue => (
+        <LinkCard type="venue" data={venue.data}/>
       ))}
     </ul>
   </section>

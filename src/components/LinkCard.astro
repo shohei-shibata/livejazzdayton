@@ -1,0 +1,118 @@
+---
+const { type, data } = Astro.props;
+
+---
+
+{
+  type === "venue" && (
+    <li class="item" style={{ backgroundImage: `url(${data.cover?.src})` }}>
+      <div class="item-content-wrapper darken-bg content-spread-left">
+        <h1>{data.name}</h1>
+        <p>
+          {data.address_street}
+          <br />
+          {data.address_city}
+        </p>
+        <div class="link-container">
+          <a class="btn-sm btn-link" href={data.website} target="_blank">
+            Website
+          </a>
+          <a class="btn-sm btn-link" target="_blank">
+            Directions
+          </a>
+        </div>
+      </div>
+    </li>
+  )
+}
+
+{
+  type === "musician" && (
+    <li class="item" style={{ backgroundImage: `url(${data.cover?.src})` }}>
+      <div class="item-content-wrapper focus-center content-bottom-center">
+        <h1>{data.name}</h1>
+        <div class="link-container">
+          <a class="btn-sm btn-link" href={data.website} target="_blank">
+            Website
+          </a>
+        </div>
+      </div>
+    </li>
+  )
+}
+
+<style>
+  h1 {
+    font-family: var(--font-logo);
+    font-size: var(--text-xl);
+    text-shadow: #ffffff55 0px 2px 20px;
+    margin: 0;
+  }
+  p {
+    font-weight: bold;
+    text-shadow: #ffffff55 0px 2px 20px;
+    margin: 0;
+  }
+  .item {
+    list-style-type: none;
+    margin: var(--space-2xl) 0;
+    background-size: cover;
+    border-radius: var(--radius-sm);
+  }
+  .item-content-wrapper {
+    color: var(--color-text-inverse);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--box-shadow-light);
+    width: 225px;
+    height: 200px;
+  }
+  .darken-bg {
+    background-color: #00000088;
+  }
+  .focus-center {
+    background-size: 100% 100%;
+    background-position: 0px 0px;
+    background-image: radial-gradient(
+      75% 75% at 50% 50%,
+      #00000022 0%,
+      #000 100%
+    );
+  }
+  .content-spread-left {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr auto;
+  }
+  .content-bottom-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+  .btn-link {
+    font-weight: bold;
+    border-color: var(--color-text-inverse);
+    color: var(--color-text-inverse);
+  }
+  .btn-link:hover {
+    background-color: #ffffff22;
+  }
+  .link-container {
+    display: flex;
+    gap: var(--space-sm);
+  }
+  .title {
+    color: var(--white);
+    font-weight: bold;
+    margin: 0;
+    text-shadow: #00000055 0px 4px 12px;
+  }
+  @media screen and (max-width: 768px) {
+    .item-content-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

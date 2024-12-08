@@ -1,14 +1,18 @@
 ---
 import { 
   getYear,
-  getMonthString,
+  getMonthString, 
 } from "../utils/time";
 import { 
   getAllFutureEvents
 } from "../utils/trello.js";
-import EventCard from "./EventCard.astro";
+import EventCard from "./EventCard.astro"
+
+const { limit } = Astro.props;
 
 const allEvents = await getAllFutureEvents();
+
+if ( limit ) allEvents.splice(limit)
 ---
 
 <ul class="event-list">
