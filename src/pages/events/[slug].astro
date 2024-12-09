@@ -25,20 +25,26 @@ const { name, description, imageUrl, locationName, locationAddress, start, end, 
 ---
 
 <Layout title={name}>
-  <img src={imageUrl} width="700px"/>
-  <h1 class="event-name">{name}</h1>
-  <p class="meta-time">{getFullDateString(start)} from {getTimeString(start)}</p>
-  <div set:html={description}/>
-  <div class="google-maps-container">
-    <iframe frameborder="0" src={ googleMapsEmbedUrl }>
-    </iframe>
-	</div>
-  <div class="nav-links-container">
-    <a class="btn-sm" href="/events">View More</a>
+  <div class="event-info-container">
+    <img src={imageUrl} width="700px"/>
+    <h1 class="event-name">{name}</h1>
+    <p class="meta-time">{getFullDateString(start)} from {getTimeString(start)}</p>
+    <div set:html={description}/>
+    <div class="google-maps-container">
+      <iframe frameborder="0" src={ googleMapsEmbedUrl }>
+      </iframe>
+    </div>
+    <div class="nav-links-container">
+      <a class="btn-sm" href="/events">More Events</a>
+    </div>
   </div>
 </Layout>
 
 <style>
+  .event-info-container {
+    max-width: var(--width-text-content);
+    margin: var(--space-3xl) auto;
+  }
   img {
     border-radius: var(--radius-md);
     width: auto;
@@ -46,7 +52,6 @@ const { name, description, imageUrl, locationName, locationAddress, start, end, 
     max-width: 100%;
     display: block;
     margin: auto;
-    box-shadow: var(--box-shadow);
   }
   .event-name {
     margin-top: var(--space-3xl);
@@ -65,7 +70,6 @@ const { name, description, imageUrl, locationName, locationAddress, start, end, 
     height: 400px;
     margin: var(--space-3xl) auto;
     border-radius: var(--radius-md);
-    box-shadow: var(--box-shadow-light);
     overflow: hidden;
   }
   .google-maps-container iframe {

@@ -21,12 +21,20 @@
           name="metadata__name"
           id="bd-Name"
           class="input"
+          placeholder="Your Name"
           required
         />
       </div>
       <div class="input-group">
         <label for="bd-email">Email</label>
-        <input type="email" name="email" id="bd-email" class="input" required />
+        <input
+          type="email"
+          name="email"
+          id="bd-email"
+          class="input"
+          placeholder="Your Email"
+          required
+        />
       </div>
       <input type="submit" value="Subscribe" class="btn" />
     </form>
@@ -65,15 +73,20 @@
   .input-group {
     display: grid;
     grid-template-columns: 100px 1fr;
+    align-items: baseline;
+  }
+  .input {
+    line-height: 1.5rem;
+    padding: 0 var(--space-sm);
   }
   input[type="submit"] {
     margin: var(--space-xl) 0 var(--space-md) 0;
-    box-shadow: none;
     background-color: var(--white);
     border: none;
+    color: var(--color-text-inverse);
   }
   .animated-bg {
-    background: linear-gradient(315deg, var(--grey-90), var(--grey-50));
+    background: linear-gradient(315deg, var(--grey-90), var(--black));
     background-size: 400% 400%;
 
     -webkit-animation: MovingBackground 20s ease infinite;

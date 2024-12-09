@@ -55,6 +55,7 @@ import PageLayout from '../layouts/PageLayout.astro';
     display: grid;
     grid-template-columns: 100px 1fr;
     margin: 5px 0;
+    align-items: baseline;
   }
   input[type="submit"] {
     margin: var(--space-2xl) auto 0 auto;
@@ -65,12 +66,18 @@ import PageLayout from '../layouts/PageLayout.astro';
   .input-text-field {
     border-width: 0 0 1px 0;
     border-color: var(--grey-20);
+    line-height: 2rem;
+    padding: 0 var(--space-sm);
+    border-radius: var(--radius-sm);
   }
   .input-text-field,
   textarea {
     font-size: var(--text-md);
     font-family: unset;
     resize: vertical;
+    line-height: 2rem;
+    padding: 0 var(--space-sm);
+    border-radius: var(--radius-sm);
   }
   textarea {
     border: 1px solid var(--grey-20);

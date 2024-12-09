@@ -34,16 +34,16 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --font-text: "Inter", sans-serif;
 
     --width-body: 900px;
-    --width-main-content: 700px;
+    --width-text-content: 700px;
     --mobile-nav-height: 75px;
       
     /* colors */
     --black-fade-5: rgba(0, 0, 0, 0.05);
     --black-fade-40: rgba(0, 0, 0, 0.4);
-    --grey-90: #232129;
+    --grey-90: #16151a;
     --grey-50: #555;
     --grey-20: #ededed;
-    --black: #111;
+    --black: #040404;
     --white: #ffffff;
 
     
@@ -53,9 +53,9 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --color-border: #aaa;
     --color-cards-bg: #fff;
     --color-cards-shadow: #ddd;
-    --color-text-primary: var(--grey-90);
+    --color-text-primary: var(--white);
     --color-text-secondary: var(--grey-50);
-    --color-text-inverse: var(--white);
+    --color-text-inverse: var(--grey-90);
 
     /* radii */
     --radius-sm: 4px;
@@ -100,7 +100,8 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 4px 12px;
   }
   html {
-    background-color: var(--grey-20);
+    background-color: var(--grey-90);
+    color: var(--color-text-primary);
   }
   body {
     font-family: var(--font-text);
@@ -136,7 +137,6 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     border-radius: var(--radius-md);
     padding: var(--space-xl);
     margin: var(--space-xl) 0;
-    box-shadow: var(--box-shadow);
   }
   .main-content {
     width: 100%;
@@ -153,16 +153,16 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     text-decoration: none;
     color: var(--color-text-primary);
     background-color: transparent;
-    border: solid 1px var(--black-fade-40);
+    border: solid 1px var(--color-text-primary);
     border-radius: var(--radius-sm);
-    box-shadow: var(--box-shadow-light);
     opacity: 0.9;
+    transition: background-color 0.1s ease-in
   }
   .btn:hover,
   .btn-sm:hover {
     opacity: 1;
-    box-shadow: var(--box-shadow);
     cursor: pointer;
+    background-color: #ffffff22;
   }
   .btn {
     line-height: var(--text-lg);

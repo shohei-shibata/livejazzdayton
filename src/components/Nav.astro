@@ -1,5 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import LogoSvg from "../icons/logo-dark.svg";
 
 const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
 
@@ -9,51 +11,61 @@ const links = [
   {
     name: "Home",
     url: "/",
-    icon: "home"
+    icon: "home",
   },
   {
     name: "About",
     url: "/about",
-    icon: "about"
+    icon: "about",
   },
   {
     name: "Events",
     url: "/events",
-    icon: "events"
+    icon: "events",
   },
   {
     name: "Links",
     url: "/links",
-    icon: "links"
+    icon: "links",
   },
   {
     name: "Contact",
     url: "/contact",
-    icon: "contact"
+    icon: "contact",
   },
-]
+];
 ---
+
 <nav class="nav-main">
-  <h1 class="logo"><a href="/">{siteTitle}</a></h1>
+  <a class="logo" href="/"><Image src={LogoSvg} alt="Logo" /></a>
   <ul class="nav-links-desktop">
-    {links.map(link => (
-      <li>
-        <a class="link" href={link.url} aria-current={pathname === link.url ? "page" : "false"}>
-          <span class="nav-link-text">
-            {link.name}
-          </span>
-        </a>
-      </li>
-    ))}
+    {
+      links.map((link) => (
+        <li>
+          <a
+            class="link"
+            href={link.url}
+            aria-current={pathname === link.url ? "page" : "false"}
+          >
+            <span class="nav-link-text">{link.name}</span>
+          </a>
+        </li>
+      ))
+    }
   </ul>
   <ul class="nav-links-mobile">
-    {links.map(link => (
-      <li>
-        <a href={link.url} aria-current={pathname === link.url ? "page" : "false"}>
-          <Icon class="nav-icon" name={link.icon}/>
-        </a>
-      </li>
-    ))}
+    {
+      links.map((link) => (
+        <li>
+          <a
+            href={link.url}
+            aria-current={pathname === link.url ? "page" : "false"}
+          >
+            <Icon class="nav-icon" name={link.icon} />
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 
@@ -66,6 +78,9 @@ const links = [
     width: 100vw;
     padding: 0 var(--space-3xl);
     box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
   .nav-links-desktop {
     display: flex;
@@ -85,6 +100,11 @@ const links = [
   .nav-links-mobile {
     display: none;
   }
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   @media screen and (max-width: 768px) {
     .nav-main {
       justify-content: center;
@@ -101,7 +121,7 @@ const links = [
       justify-content: space-evenly;
       align-items: center;
       height: var(--mobile-nav-height);
-      background-color: var(--grey-90);
+      background-color: var(--black);
     }
     .nav-links-mobile a {
       display: inline-block;

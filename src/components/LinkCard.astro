@@ -9,15 +9,15 @@ const { type, data } = Astro.props;
       <div class="item-content-wrapper darken-bg content-spread-left">
         <h1>{data.name}</h1>
         <p>
-          {data.address_street}
+          {data.address.street}
           <br />
-          {data.address_city}
+          {data.address.city}
         </p>
         <div class="link-container">
           <a class="btn-sm btn-link" href={data.website} target="_blank">
             Website
           </a>
-          <a class="btn-sm btn-link" target="_blank">
+          <a class="btn-sm btn-link" target="_blank" href={data.address.googleUrl}>
             Directions
           </a>
         </div>
@@ -60,10 +60,9 @@ const { type, data } = Astro.props;
     border-radius: var(--radius-sm);
   }
   .item-content-wrapper {
-    color: var(--color-text-inverse);
+    color: var(--color-text-primary);
     padding: var(--space-2xl);
     border-radius: var(--radius-sm);
-    box-shadow: var(--box-shadow-light);
     width: 225px;
     height: 200px;
   }
@@ -94,8 +93,8 @@ const { type, data } = Astro.props;
   }
   .btn-link {
     font-weight: bold;
-    border-color: var(--color-text-inverse);
-    color: var(--color-text-inverse);
+    border-color: var(--color-text-primary);
+    color: var(--color-text-primary);
   }
   .btn-link:hover {
     background-color: #ffffff22;
@@ -108,7 +107,6 @@ const { type, data } = Astro.props;
     color: var(--white);
     font-weight: bold;
     margin: 0;
-    text-shadow: #00000055 0px 4px 12px;
   }
   @media screen and (max-width: 768px) {
     .item-content-wrapper {

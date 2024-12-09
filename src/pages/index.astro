@@ -9,6 +9,7 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import LinkCardList from "../components/LinkCardList.astro";
 import EventListing from "../components/EventListing.astro";
+import { Icon } from "astro-icon/components";
 
 function randomize(arr: any) {
   return arr.sort(() => 0.5 - Math.random());
@@ -33,7 +34,7 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
       Your browser does not support the video tag.
     </video>
     <div id="banner-text-overlay">
-      <h1 class="section-title">Discover amazing live jazz in Dayton, Ohio</h1>
+      <h1>Discover amazing <Icon name="live-jazz" /> in the Gem City</h1>
     </div>
   </section>
   <section>
@@ -90,9 +91,12 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #00000033;
+    background-color: #00000055;
     color: var(--white);
     max-height: 50vw;
+  }
+  #banner-text-overlay svg {
+    margin: 0 -20px -2.25rem -20px;
   }
   #banner,
   #banner-text-overlay {
@@ -103,9 +107,10 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     grid-template-columns: 250px 1fr;
     gap: var(--space-xl);
     margin: auto;
-    background-color: var(--white);
+    background-color: var(--black);
     border-radius: var(--radius-md);
     padding: var(--space-2xl);
+    color: var(--color-text-primary);
   }
   .news-title {
     font-size: var(--text-xl);
@@ -118,6 +123,10 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
   .news-title,
   .news-body p {
     margin-top: var(--space-lg);
+  }
+
+  [data-icon="live-jazz"] {
+    font-size: 6rem;
   }
   @media screen and (max-width: 768px) {
     .news-item-container {

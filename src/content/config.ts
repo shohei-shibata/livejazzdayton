@@ -13,8 +13,11 @@ const venues = defineCollection({
   schema: ({ image }) => z.object({ 
     name: z.string(),
     website: z.string(),
-    address_street: z.string(),
-    address_city: z.string(),
+    address: z.object({
+      street: z.string(),
+      city: z.string(),
+      googleUrl: z.string(),
+    }),
     cover: image().refine((img) => img.width >= 200, {
       message: "Cover image must be at least 200px wide."
     }).optional()
