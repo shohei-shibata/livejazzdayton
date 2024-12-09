@@ -34,7 +34,7 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
       Your browser does not support the video tag.
     </video>
     <div id="banner-text-overlay">
-      <h1>Discover amazing <Icon name="live-jazz" /> in the Gem City</h1>
+      <h1><span>Discover amazing</span><Icon name="live-jazz" /><span>in the Gem City</span></h1>
     </div>
   </section>
   <section>
@@ -70,13 +70,13 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
 
 <style>
   #banner {
-    background-color: var(--white);
+    background-color: var(--black);
     color: var(--text-color-primary);
     position: relative;
     overflow: hidden;
     padding: 0;
     width: 100vw;
-    max-height: 50vw;
+    height: 50vh;
   }
   #banner-video {
     position: absolute;
@@ -93,21 +93,21 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     align-items: center;
     background-color: #00000055;
     color: var(--white);
-    max-height: 50vw;
+    height: 100%;
+  }
+  #banner-text-overlay h1 {
+    display: flex;
+    align-items: center;
   }
   #banner-text-overlay svg {
-    margin: 0 -20px -2.25rem -20px;
-  }
-  #banner,
-  #banner-text-overlay {
-    height: 350px;
+    margin: 0 -20px;
   }
   .news-item-container {
     display: grid;
     grid-template-columns: 250px 1fr;
     gap: var(--space-xl);
     margin: auto;
-    background-color: var(--black);
+    background-color: var(--grey-90);
     border-radius: var(--radius-md);
     padding: var(--space-2xl);
     color: var(--color-text-primary);
@@ -129,6 +129,10 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     font-size: 6rem;
   }
   @media screen and (max-width: 768px) {
+    #banner {
+      max-height: none;
+      height: 50vh;
+    }
     .news-item-container {
       grid-template-columns: 1fr;
       gap: 0;
@@ -136,6 +140,24 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     .news-title,
     .news-body p {
       margin: 0;
+    }
+  }
+  @media screen and (max-width: 637px) {
+    #banner {
+      max-height: none;
+      height: calc(100vh - var(--mobile-nav-height) - var(--main-nav-height));
+    }
+    #banner-video {
+      width: auto;
+      height: 100%;
+    }
+    #banner-text-overlay h1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #banner-text-overlay svg {
+      margin: 0 auto;
     }
   }
 </style>

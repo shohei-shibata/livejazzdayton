@@ -28,7 +28,7 @@ const { name, description, imageUrl, locationName, locationAddress, start, end, 
   <div class="event-info-container">
     <img src={imageUrl} width="700px"/>
     <h1 class="event-name">{name}</h1>
-    <p class="meta-time">{getFullDateString(start)} from {getTimeString(start)}</p>
+    <p class="meta-time">{getFullDateString(start)} from {getTimeString(start)} with {artists.toString()}</p>
     <div set:html={description}/>
     <div class="google-maps-container">
       <iframe frameborder="0" src={ googleMapsEmbedUrl }>

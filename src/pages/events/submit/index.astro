@@ -1,5 +1,5 @@
 ---
-import PageLayout from "../../layouts/PageLayout.astro";
+import PageLayout from "../../../layouts/PageLayout.astro";
 ---
 
 <PageLayout title="Submit an Event">
@@ -12,7 +12,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
       class="new-event-form"
       name="new-event-form"
       method="POST"
-      action="/netlify/functions/createEvent"
+      action="/.netlify/functions/createEvent"
     >
       <input type="hidden" name="subject" value="New Event Submission" />
       <h3>About you</h3>
