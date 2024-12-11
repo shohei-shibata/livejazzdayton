@@ -12,6 +12,7 @@
   "dependencies": {
     "@11ty/eleventy-fetch": "^5.0.1",
     "@astrojs/check": "^0.9.4",
+    "@astrojs/rss": "^4.0.10",
     "@netlify/functions": "^2.8.2",
     "astro": "^4.16.13",
     "astro-icon": "^1.1.2",
