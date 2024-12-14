@@ -21,14 +21,21 @@ export async function getStaticPaths() {
   });
 };
 
-const { name, description, imageUrl, locationName, locationAddress, start, end, duration, artists, links, slug, googleMapsEmbedUrl } = Astro.props;
+const { name, description, imageUrl, locationName, locationAddress, start, artists, websiteUrl, ticketsUrl, googleMapsEmbedUrl } = Astro.props;
+
+console.log(name, Astro.props)
 ---
 
 <Layout title={name}>
   <div class="event-info-container">
     <img src={imageUrl} width="700px"/>
     <h1 class="event-name">{name}</h1>
-    <p class="meta-time">{getFullDateString(start)} from {getTimeString(start)} with {artists.toString()}</p>
+    <p class="metadata">{getFullDateString(start)} from {getTimeString(start)} with {artists.toString()}</p>
+    <p class="metadata">{locationName} ({locationAddress})</p>
+    <div class="event-links-container">
+      {websiteUrl && <a href={websiteUrl} target="_blank" class="btn btn-sm">Event Website</a>}
+      {ticketsUrl && <a href={ticketsUrl} target="_blank" class="btn btn-sm">Tickets</a>}
+    </div>
     <div set:html={description}/>
     <div class="google-maps-container">
       <iframe frameborder="0" src={ googleMapsEmbedUrl }>
@@ -45,6 +52,10 @@ const { name, description, imageUrl, locationName, locationAddress, start, end, 
     max-width: var(--width-text-content);
     margin: var(--space-3xl) auto;
   }
+  .event-links-container {
+    display: flex;
+    gap: var(--space-md);
+  }
   img {
     border-radius: var(--radius-md);
     width: auto;
@@ -56,7 +67,7 @@ const { name, description, imageUrl, locationName, locationAddress, start, end, 
   .event-name {
     margin-top: var(--space-3xl);
   }
-  .meta-time {
+  .metadata {
     font-style: italic;
   }
   .nav-links-container {
