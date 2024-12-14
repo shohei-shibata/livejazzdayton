@@ -22,8 +22,6 @@ export async function getStaticPaths() {
 };
 
 const { name, description, imageUrl, locationName, locationAddress, start, artists, websiteUrl, ticketsUrl, googleMapsEmbedUrl } = Astro.props;
-
-console.log(name, Astro.props)
 ---
 
 <Layout title={name}>
