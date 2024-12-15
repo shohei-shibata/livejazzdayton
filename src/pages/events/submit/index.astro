@@ -1,0 +1,144 @@
+---
+import PageLayout from "../../../layouts/PageLayout.astro";
+---
+
+<PageLayout title="Submit an Event">
+  <section>
+    <p>
+      I really appreciate your contribution to this website! Please input as
+      much info as you can, and I will take care of the rest.
+    </p>
+    <form
+      class="new-event-form"
+      name="new-event-form"
+      method="POST"
+      action="/.netlify/functions/createEvent"
+    >
+      <input type="hidden" name="subject" value="New Event Submission" />
+      <h3>About you</h3>
+      <div class="input-row"> 
+        <label for="username">Name*: </label>
+        <input name="username" id="username" type="text" placeholder="Please enter your name" required />
+      </div>
+      <div class="input-row">
+        <label for="email">Email*: </label>
+        <input name="email" id="email" type="email" placeholder="Please enter your email" required />
+      </div>
+      <h3>About the event</h3>
+      <div class="input-row">
+        <label for="name">Title*: </label>
+        <input name="name" id="name" type="text" placeholder="Please enter the event name" required />
+      </div>
+      <div class="input-row">
+        <label for="start">Start date/time*: </label>
+        <input name="start" id="start" type="datetime-local" required />
+      </div>
+      <div class="input-row">
+        <label for="hours">Duration (HH:MM): </label>
+        <div class="form-field-group-duration">
+          <input name="hours" id="hours" type="number" value="2" min="0" />
+          :
+          <input
+            name="minutes"
+            id="minutes"
+            type="number"
+            value="0"
+            min="0"
+            max="59"
+          />
+        </div>
+      </div>
+      <div class="input-row">
+        <label for="artists">Who is playing?*: </label>
+        <input
+          name="artists"
+          id="artists"
+          type="text"
+          placeholder="Please separate names with a comma"
+          required
+        />
+      </div>
+      <div class="input-row">
+        <label for="locationName">Venue Name: </label>
+        <input name="locationName" id="locationName" type="text" placeholder="Name of the event venue" />
+      </div>
+      <div class="input-row">
+        <label for="address">Venue Address*: </label>
+        <input name="address" id="address" type="text" placeholder="Address of the event venue" required />
+      </div>
+      <div class="input-row">
+        <label for="desc">Description: </label>
+        <textarea name="desc" id="desc" rows="10"></textarea>
+      </div>
+      <div class="input-row">
+        <label for="websiteUrl">Event website link: </label>
+        <input name="websiteUrl" id="websiteUrl" type="url" placeholder="https://somewebsite.com/event-link" />
+      </div>
+      <div class="input-row">
+        <label for="ticketUrl">Ticket purchase link: </label>
+        <input name="ticketUrl" id="ticketUrl" type="url" placeholder="https://ticketcompany.com/ticket-purchase-link"/>
+      </div>
+      <div class="input-row">
+        <label for="imageUrl">Image URL: </label>
+        <input name="imageUrl" id="imageUrl" type="url" placeholder="https://imagehost.com/cover-image.jpg"/>
+      </div>
+      <input name="submit" type="submit" value="Submit" class="btn" />
+    </form>
+  </section>
+</PageLayout>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: var(--form-max-width);
+    margin: var(--space-2xl) auto;
+  }
+  .input-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin: 5px 0;
+    align-items: baseline;
+  }
+  input[type="submit"] {
+    margin: var(--space-2xl) auto 0 auto;
+  }
+  input[type="submit"]:hover {
+    cursor: pointer;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="datetime-local"],
+  input[type="number"],
+  input[type="url"] {
+    border-width: 0 0 1px 0;
+    border-color: var(--grey-20);
+    line-height: 2rem;
+    padding: 0 var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+  .input-text-field,
+  textarea {
+    font-size: var(--text-md);
+    font-family: unset;
+    resize: vertical;
+    line-height: 2rem;
+    padding: 0 var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+  textarea {
+    border: 1px solid var(--grey-20);
+  }
+  .form-field-group-duration {
+    display: grid;
+    grid-template-columns: 1fr 20px 1fr;
+    text-align: center;
+    align-items: center;
+  }
+  @media screen and (max-width: 768px) {
+    .input-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,127 @@
+---
+import { Icon } from "astro-icon/components"
+const thisYear = new Date().getFullYear()
+const pathname = new URL(Astro.request.url).pathname;
+
+const links = [
+  {
+    name: "Home",
+    url: "/",
+    icon: "home",
+  },
+  {
+    name: "About",
+    url: "/about",
+    icon: "about",
+  },
+  {
+    name: "Events",
+    url: "/events",
+    icon: "events",
+  },
+  {
+    name: "Links",
+    url: "/links",
+    icon: "links",
+  },
+  {
+    name: "Contact",
+    url: "/contact",
+    icon: "contact",
+  },
+];
+---
+
+<footer class="footer">
+  <nav id="footer-nav">
+    <ul>
+      {
+        links.map((link) => (
+          <li>
+            <a
+              class="link"
+              href={link.url}
+              aria-current={pathname === link.url ? "page" : "false"}
+            >
+              <span class="nav-link-text">{link.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <div class="footer-links">
+    <ul>
+      <li>Find me online: </li>
+      <li><a href="https://shoheishibata.com" target="_blank"><Icon class="footer-link-icon" name="website"/></a></li>
+      <li><a href="https://github.com/shohei-shibata" target="_blank"><Icon class="footer-link-icon" name="github"/></a></li>
+      <li><a href="https://www.linkedin.com/in/shohei-shibata-53867a41/" target="_blank"><Icon class="footer-link-icon" name="linkedin"/></a></li>
+      <li><a href="https://buymeacoffee.com/shohei_shibata" target="_blank"><Icon class="footer-link-icon" name="bmc-logo"/></a></li>
+    </ul>
+  </div>
+  <div class="credits">
+    <div>© {thisYear} Designed and built by <a href="https://shoheishibata.com">Shohei Shibata</a> in Dayton, Ohio <Icon name="gem"/></div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 5px 0;
+    margin: var(--space-2xl) auto;
+  }
+  .footer a,
+  #footer-nav a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+  }
+  .footer-links a,
+  #footer-nav a {
+    opacity: 0.8;
+  }
+  .footer-links {
+    margin: 0 0 var(--space-2xl) 0;
+  }
+  .footer-links ul {
+    padding: 0;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-3xl);
+  }
+  .footer-links li,
+  #footer-nav li {
+    list-style-type: none;
+    color: var(--color-text-secondary);
+    opacity: 0.8;
+  }
+  .footer a:hover,
+  #footer-nav a:hover,
+  #footer-nav a[aria-current="page"]  {
+    text-decoration: underline;
+    color: var(--color-text-secondary);
+    opacity: 1;
+  }
+  .footer-link-icon {
+    font-size: var(--text-2xl);
+  }
+  .credits {
+    text-align: center;
+    color: var(--color-text-secondary);
+  }
+  .social-icons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    font-size: 1.5em;
+  }
+  .social-icons a:hover {
+    color: #888;
+  }
+  
+  #footer-nav ul {
+    display: flex;
+    gap: var(--space-2xl);
+    justify-content: center;
+  }
+</style>

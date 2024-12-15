@@ -1,0 +1,142 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import LogoSvg from "../icons/logo-dark.svg";
+
+const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const links = [
+  {
+    name: "Home",
+    url: "/",
+    icon: "home",
+  },
+  {
+    name: "About",
+    url: "/about",
+    icon: "about",
+  },
+  {
+    name: "Events",
+    url: "/events",
+    icon: "events",
+  },
+  {
+    name: "Links",
+    url: "/links",
+    icon: "links",
+  },
+  {
+    name: "Contact",
+    url: "/contact",
+    icon: "contact",
+  },
+];
+---
+
+<nav class="nav-main">
+  <a class="logo" href="/"><Image src={LogoSvg} alt="Logo" /></a>
+  <ul class="nav-links-desktop">
+    {
+      links.map((link) => (
+        <li>
+          <a
+            class="link"
+            href={link.url}
+            aria-current={pathname === link.url ? "page" : "false"}
+          >
+            <span class="nav-link-text">{link.name}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <ul class="nav-links-mobile">
+    {
+      links.map((link) => (
+        <li>
+          <a
+            href={link.url}
+            aria-current={pathname === link.url ? "page" : "false"}
+          >
+            <Icon class="nav-icon" name={link.icon} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .nav-main {
+    background-color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--main-nav-height);
+    width: 100vw;
+    padding: 0;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .nav-links-desktop {
+    display: flex;
+    gap: var(--space-2xl);
+    padding: 0 var(--space-xl) 0 0;
+  }
+  .nav-main li {
+    list-style-type: none;
+  }
+  .nav-main a {
+    text-decoration: none;
+    color: var(--grey-20);
+  }
+  .nav-main a:hover,
+  .nav-main a[aria-current="page"] {
+    text-decoration: underline;
+  }
+  .nav-links-mobile {
+    display: none;
+  }
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (max-width: 768px) {
+    .nav-main {
+      justify-content: center;
+    }
+    .nav-links-mobile {
+      z-index: 1;
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      margin: 0;
+      width: 100%;
+      padding: 0;
+      justify-content: space-evenly;
+      align-items: center;
+      height: var(--mobile-nav-height);
+      background-color: var(--black);
+    }
+    .nav-links-mobile a {
+      display: inline-block;
+    }
+    .nav-links-mobile a[aria-current="page"] {
+      border-bottom: solid 1px var(--grey-20);
+    }
+    .nav-links-desktop {
+      display: none;
+    }
+    .nav-icon {
+      color: var(--grey-20);
+      font-size: var(--text-3xl);
+    }
+  }
+</style>
