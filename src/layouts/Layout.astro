@@ -1,0 +1,209 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import NewsletterForm from "../components/NewsletterForm.astro";
+
+const { title } = Astro.props;
+const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner&family=Rubik+Dirt&family=Rubik&family=Inter&display=swap" rel="stylesheet">
+    <meta name="generator" content={Astro.generator} />
+    <title>{siteTitle} | {title}</title>
+  </head>
+  <body>
+    <Nav/>
+    <div class="main-content">
+      <slot/>
+    </div>
+    <NewsletterForm/>
+    <Footer/>
+  </body> 
+</html>
+
+<style is:global>
+  :root {
+    --font-logo: "Rubik Dirt", sans-serif;
+    --font-heading: "Commissioner", sans-serif;
+    --font-text: "Inter", sans-serif;
+
+    --width-body: 900px;
+    --width-text-content: 700px;
+    --main-nav-height: 100px;
+    --mobile-nav-height: 75px;
+      
+    /* colors */
+    --black-fade-5: rgba(0, 0, 0, 0.05);
+    --black-fade-40: rgba(0, 0, 0, 0.4);
+    --grey-90: #16151a;
+    --grey-50: #555;
+    --grey-20: #ededed;
+    --black: #040404;
+    --white: #ffffff;
+    --warning: #ff0018;
+    --warning-light: #ff001855;
+
+    
+    --background-color-primary: var(--grey-20);
+    --background-color-secondary: #ddd;
+    --background-color-code: #333;
+    --color-border: #aaa;
+    --color-cards-bg: #fff;
+    --color-cards-shadow: #ddd;
+    --color-text-primary: var(--white);
+    --color-text-secondary: var(--grey-50);
+    --color-text-inverse: var(--grey-90);
+
+    /* radii */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-rounded: 999px;
+
+    /* spacing */
+    --space-sm: 4px;
+    --space-md: 8px;
+    --space-lg: 16px;
+    --space-xl: 20px;
+    --space-2xl: 24px;
+    --space-3xl: 48px;
+
+    /* line-height */
+    --solid: 1;
+    --dense: 1.25;
+    --default: 1.5;
+    --loose: 2;
+
+    /* letter-spacing */
+    --tracked: 0.075em;
+    --tight: -0.015em;
+
+    /* font-weight */
+    --body: 400;
+    --medium: 500;
+    --semibold: 600;
+    --bold: 700;
+
+    /* font-size */
+    --text-xs: 12px;
+    --text-sm: 14px;
+    --text-md: 16px;
+    --text-lg: 18px;
+    --text-xl: 20px;
+    --text-2xl: 24px;
+    --text-3xl: 32px;
+
+    /* shadow */
+    --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 4px 12px;
+  }
+  html {
+    background-color: var(--black);
+    color: var(--color-text-primary);
+  }
+  body {
+    font-family: var(--font-text);
+    margin: 0;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--bold);
+  }
+  a {
+    color: inherit;
+  }
+  section {
+    margin: var(--space-3xl) auto;
+    padding: var(--space-lg) var(--space-lg);
+    max-width: var(--width-body);
+  }
+  .section-title {
+    font-family: var(--font-logo);
+    font-size: var(--text-3xl);
+    text-align: center;
+  }
+  p {
+    line-height: var(--text-2xl);
+    font-size: var(--text-xl);
+  }
+  .logo {
+    font-family: var(--font-logo);
+    font-size: var(--text-3xl);
+  }
+  .box {
+    background-color: var(--grey-90);
+    color: var(--white);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    margin: var(--space-xl) 0;
+  }
+  .main-content {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .full-width {
+    margin: 0;
+    width: 100vw;
+    max-width: none;
+  }
+  .btn,
+  .btn-sm {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    background-color: transparent;
+    border: solid 1px var(--color-text-primary);
+    border-radius: var(--radius-sm);
+    opacity: 0.9;
+    transition: background-color 0.1s ease-in
+  }
+  .btn:hover,
+  .btn-sm:hover {
+    opacity: 1;
+    cursor: pointer;
+    background-color: #ffffff22;
+  }
+  .btn {
+    line-height: var(--text-lg);
+    font-size: var(--text-lg);
+    padding: var(--space-md) var(--space-lg);
+  }
+  .btn-sm {
+    line-height: var(--text-lg);
+    padding: var(--space-md);
+  }
+  .text-center {
+    text-align: center;
+  }
+  .btn-container {
+    text-align: center;
+    padding: var(--space-2xl) 0;
+  }
+  .event-badge svg {
+    margin: 0 var(--space-lg);
+    font-size: 4rem;
+  }
+  fieldset {
+    margin: var(--space-lg) 0;
+  }
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  @media screen and (max-width: 768px) {
+    body {
+      margin-bottom: var(--mobile-nav-height);
+    }
+  }
+</style>

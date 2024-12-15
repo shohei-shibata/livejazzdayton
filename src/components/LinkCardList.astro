@@ -1,0 +1,97 @@
+---
+import { Icon } from "astro-icon/components";
+import LinkCard from "./LinkCard.astro";
+
+const { data, type } = Astro.props;
+---
+
+<ul class="cards-container scroll-container">
+  <button class="scroll-btn left"><Icon name="scroll-left" /></button>
+  {data.map((item: any) => <LinkCard type={type} data={item.data} />)}
+  <button class="scroll-btn right"><Icon name="scroll-right" /></button>
+</ul>
+
+<style>
+  .cards-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    gap: var(--space-2xl);
+    padding: 0;
+  }
+  .scroll-container {
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+  .scroll-btn {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    width: 50px;
+    background-color: var(--grey-90);
+    border-radius: var(--radius-md);
+    opacity: 0.7;
+    border: none;
+    padding: 0;
+    z-index: 1;
+  }
+  .scroll-btn svg {
+    color: var(--grey-20);
+    font-size: var(--text-3xl);
+    padding: var(--space-md);
+  }
+  .scroll-btn:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+  .scroll-btn.right {
+    right: var(--space-lg);
+  }
+  .scroll-btn.left {
+    left: var(--space-lg);
+  }
+</style>
+
+<script is:inline>
+  Array.from(document.getElementsByClassName("scroll-btn")).forEach((item) => {
+    if (item.classList.contains("right")) {
+      item.addEventListener("click", (e) => {
+        item.parentNode.scrollBy({
+          left: 250,
+          behavior: "smooth",
+        });
+      });
+      item.parentNode.addEventListener("scroll", (e) => {
+        const { scrollLeft, scrollWidth, offsetWidth } = item.parentNode;
+        const scrollTop = scrollLeft === 0;
+        const scrollEnd = scrollLeft + offsetWidth === scrollWidth;
+        const leftBtn = item.parentNode.getElementsByClassName("left")[0];
+        if (scrollEnd) {
+          item.style.display = "none";
+        } else {
+          item.style.display = "block";
+        }
+        if (scrollTop) {
+          leftBtn.style.display = "none";
+        } else {
+          leftBtn.style.display = "block";
+        }
+      });
+    } else if (item.classList.contains("left")) {
+      if (item.parentNode.scrollLeft === 0) {
+        item.style.display = "none";
+      }
+      item.addEventListener("click", (e) => {
+        item.parentNode.scrollBy({
+          left: -250,
+          behavior: "smooth",
+        });
+      });
+    }
+  });
+</script>

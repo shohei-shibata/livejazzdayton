@@ -1,0 +1,67 @@
+---
+import { Icon } from "astro-icon/components"
+const thisYear = new Date().getFullYear()
+---
+
+<footer class="footer">
+  <nav class="footer-links">
+    <ul>
+      <li><a href="https://github.com/shohei-shibata" target="_blank"><Icon class="footer-link-icon" name="github"/></a></li>
+      <li><a href="https://www.linkedin.com/in/shohei-shibata-53867a41/" target="_blank"><Icon class="footer-link-icon" name="linkedin"/></a></li>
+      <li><a href="https://buymeacoffee.com/shohei_shibata" target="_blank"><Icon class="footer-link-icon" name="bmc-logo"/></a></li>
+    </ul>
+  </nav>
+  <div class="credits">
+    <div>© {thisYear} Designed and built by <a href="https://shoheishibata.com">Shohei Shibata</a> in Dayton, Ohio <Icon name="gem"/></div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 5px 0;
+    margin: var(--space-2xl) auto;
+  }
+  .footer a {
+    text-decoration: none;
+    color: var(--color-text-secondary);
+  }
+  .footer-links a {
+    opacity: 0.7;
+  }
+  .footer-links {
+    margin: 0 0 var(--space-2xl) 0;
+  }
+  .footer-links ul {
+    padding: 0;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-3xl);
+  }
+  .footer-links li {
+    list-style-type: none;
+  }
+  .footer a:hover,
+  .activeLink {
+    text-decoration: underline;
+    color: var(--color-text-secondary);
+    opacity: 1;
+  }
+  .footer-link-icon {
+    font-size: var(--text-2xl);
+  }
+  .credits {
+    text-align: center;
+    color: var(--color-text-secondary);
+  }
+  .social-icons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    font-size: 1.5em;
+  }
+  .social-icons a:hover {
+    color: #888;
+  }
+</style>

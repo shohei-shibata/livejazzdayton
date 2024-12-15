@@ -1,0 +1,147 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+---
+
+<PageLayout title="New Website Survey">
+  <section>
+    <p>Thanks for checking out the brand-new LiveJazzDayton.com!</p>
+    <p>
+      If you could take a quick minute to share your thoughts on the redesigned
+      website, that would be much appreciated. I will use this info to make the
+      site even better, and more useful for you.
+    </p>
+    <form
+      name="survey-202412"
+      method="POST"
+      action="/survey/thanks"
+      data-netlify
+    >
+      <fieldset>
+        <legend>Do you like the new design of LiveJazzDayton.com?</legend>
+        <input type="radio" id="q1-yes" value="yes" name="question-1" />
+        <label for="q1-yes">Yes</label>
+        <input type="radio" id="q1-no" value="no" name="question-1" />
+        <label for="q1-no">No</label>
+        <br />
+        <br />
+        <legend>What do you (or don't you) like about it?</legend>
+        <br />
+        <textarea name="q2-comments" placeholder="Your comments" rows="4"
+        ></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>Future Improvements</legend>
+        <legend
+          >If I were to make some additions to this website, which ones would
+          you find to be most helpful?</legend
+        >
+        <br />
+        <div>
+          <input type="checkbox" id="videos" name="new-features" />
+          <label for="videos">Videos of past events</label>
+        </div>
+        <div>
+          <input type="checkbox" id="reviews" name="new-features" />
+          <label for="reviews">Review posts of recent events</label>
+        </div>
+        <div>
+          <input type="checkbox" id="musician-bio" name="new-features" />
+          <label for="musician-bio">View musician bio</label>
+        </div>
+        <div>
+          <input type="checkbox" id="booking" name="new-features" />
+          <label for="booking"
+            >Be able to contact or send booking requests to musicians</label
+          >
+        </div>
+        <div>
+          <input type="checkbox" id="light-mode" name="new-features" />
+          <label for="light-mode"
+            >Be able to switch the color theme of the website between dark and
+            light modes</label
+          >
+        </div>
+        <br />
+        <legend>Other ideas?</legend>
+        <br />
+        <textarea
+          name="new-features-comments"
+          placeholder="Your comments"
+          rows="4"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>Your contact information (Optional)</legend>
+        <div class="input-row">
+          <label for="name">Name</label>
+          <input
+            class="input-text-field"
+            type="text"
+            name="name"
+            placeholder="Your name"
+          />
+        </div>
+        <div class="input-row">
+          <label for="email"> Email </label>
+          <input
+            class="input-text-field"
+            type="email"
+            name="email"
+            placeholder="Email address"
+          />
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Any other comments or thoughts?</legend>
+        <div class="input-row">
+          <textarea
+            name="comments"
+            placeholder="Feel free to tell me anything that's on your mind!"
+            rows="4"></textarea>
+        </div>
+      </fieldset>
+      <input class="btn" type="submit" value="Submit" />
+    </form>
+  </section>
+</PageLayout>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: var(--form-max-width);
+    margin: var(--space-2xl) auto;
+  }
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin: var(--space-md) 0;
+    align-items: baseline;
+  }
+  input[type="submit"] {
+    margin: var(--space-2xl) auto 0 auto;
+  }
+  input[type="submit"]:hover {
+    cursor: pointer;
+  }
+  .input-text-field {
+    border-width: 0 0 1px 0;
+    border-color: var(--grey-20);
+    line-height: 2rem;
+    padding: 0 var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+  .input-text-field,
+  textarea {
+    font-size: var(--text-md);
+    font-family: unset;
+    resize: vertical;
+    line-height: 2rem;
+    padding: 0 var(--space-sm);
+    border-radius: var(--radius-sm);
+  }
+  textarea {
+    border: 1px solid var(--grey-20);
+  }
+</style>
