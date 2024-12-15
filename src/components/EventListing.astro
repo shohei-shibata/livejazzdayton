@@ -1,0 +1,51 @@
+---
+import { 
+  getYear,
+  getMonthString, 
+} from "../utils/time";
+import { 
+  getAllFutureEvents
+} from "../utils/trello.js";
+import EventCard from "./EventCard.astro"
+
+const { limit } = Astro.props;
+
+const allEvents = await getAllFutureEvents();
+
+if ( limit ) allEvents.splice(limit)
+---
+
+<ul class="event-list">
+  {allEvents.map((event, index, array) => {
+    const insertMonth = index === 0 || getMonthString(event.start) !== getMonthString(array[index-1]?.start);
+    const insertYear = insertMonth && getMonthString(event.start) === "January";
+    return (
+    <>
+      {insertMonth && <li><span class="month">{getMonthString(event.start)}</span>{insertYear && <span class="year">{getYear(event.start)}</span>}</li>}
+      <EventCard event={event}/>
+    </>
+    )
+  })}
+</ul>
+
+<style>
+  .event-list {
+    padding: 0;
+  }
+  .event-list li {
+    list-style-type: none;
+    margin: var(--space-2xl) 0;
+  }
+  .month {
+    display: inline-block;
+    font-family: "Rubik", sans-serif;
+    font-size: var(--text-3xl);
+    font-weight: bolder;
+    color: var(--color-text-primary);
+    margin: var(--space-2xl) auto 0 auto;
+  }
+  .year {
+    font-size: var(--text-3xl);
+    margin-left: var(--space-lg);
+  }
+</style>

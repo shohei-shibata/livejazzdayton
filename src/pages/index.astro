@@ -1,0 +1,156 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import { getShortDateString } from "../utils/time";
+import { markdownToHtml } from "../utils/markdownParser";
+
+import Layout from "../layouts/Layout.astro";
+
+import { getCollection } from "astro:content";
+import LinkCardList from "../components/LinkCardList.astro";
+import EventListing from "../components/EventListing.astro";
+import { Icon } from "astro-icon/components";
+
+function randomize(arr: any) {
+  return arr.sort(() => 0.5 - Math.random());
+}
+
+const allNews: CollectionEntry<"news">[] = await getCollection("news");
+const allVenues: CollectionEntry<"venue">[] = randomize(
+  await getCollection("venue")
+);
+const allMusicians: CollectionEntry<"musician">[] = randomize(
+  await getCollection("musician")
+);
+---
+
+<Layout title="Home">
+  <section id="banner" class="full-width">
+    <video id="banner-video" autoplay muted loop>
+      <source
+        src="https://res.cloudinary.com/dcuvzfo54/video/upload/v1732154434/4997787_Music_Instrument_1280x720_ezbiiw.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+    <div id="banner-text-overlay">
+      <h1><span>Discover amazing</span><Icon name="live-jazz" /><span>in the Gem City</span></h1>
+    </div>
+  </section>
+  <section>
+    <h1 class="section-title">News</h1>
+    {
+      allNews.map((news) => (
+        <div class="news-item-container">
+          <div>
+            <h2 class="news-title">{news.data.title}</h2>
+            <p class="news-date">{getShortDateString(news.data.publishDate)}</p>
+          </div>
+          <div class="news-body" set:html={markdownToHtml(news.body)} />
+        </div>
+      ))
+    }
+  </section>
+  <section>
+    <h1 class="section-title">Upcoming Events</h1>
+    <EventListing limit={3} />
+    <div class="btn-container">
+      <a class="btn-sm" href="/events">View More</a>
+    </div>
+  </section>
+  <section>
+    <h1 class="section-title">Musicians</h1>
+    <LinkCardList data={allMusicians} type="musician"/>
+  </section>
+  <section>
+    <h1 class="section-title">Venues</h1>
+    <LinkCardList data={allVenues} type="venue"/>
+  </section>
+</Layout>
+
+<style>
+  #banner {
+    background-color: var(--black);
+    color: var(--text-color-primary);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    width: 100vw;
+    height: 50vh;
+  }
+  #banner-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+  }
+  #banner-text-overlay {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000055;
+    color: var(--white);
+    height: 100%;
+  }
+  #banner-text-overlay h1 {
+    display: flex;
+    align-items: center;
+  }
+  #banner-text-overlay svg {
+    margin: 0 -20px;
+  }
+  .news-item-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--space-xl);
+    margin: auto;
+    background-color: var(--grey-90);
+    border-radius: var(--radius-md);
+    padding: var(--space-2xl);
+    color: var(--color-text-primary);
+  }
+  .news-title {
+    margin-bottom: 0;
+  }
+  .news-date {
+    font-size: var(--text-sm);
+    margin: var(--space-sm) 0;
+  }
+  .news-title,
+  .news-body p {
+    margin-top: var(--space-lg);
+  }
+
+  [data-icon="live-jazz"] {
+    font-size: 6rem;
+  }
+  @media screen and (max-width: 768px) {
+    .news-item-container {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .news-title,
+    .news-body p {
+      margin: 0;
+    }
+    #banner {
+      max-height: none;
+      height: calc(100vh - var(--mobile-nav-height) - var(--main-nav-height));
+    }
+    #banner-video {
+      width: auto;
+      height: 100%;
+    }
+    #banner-text-overlay h1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #banner-text-overlay svg {
+      margin: 0 auto;
+    }
+  }
+</style>

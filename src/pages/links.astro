@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { getCollection } from "astro:content";
+import LinkCard from "../components/LinkCard.astro";
+const allVenues = await getCollection("venue");
+const allMusicians = await getCollection("musician");
+---
+
+<Layout title="Links">
+  <section>
+    <h1 class="section-title">Musicians</h1>
+    <ul class="cards-container">
+      {allMusicians.map(musician => (
+        <LinkCard type="musician" data={musician.data}/>
+      ))}
+    </ul>
+  </section>
+  <section>
+    <h1 class="section-title">Venues</h1>
+    <ul class="cards-container">
+      {allVenues.map(venue => (
+        <LinkCard type="venue" data={venue.data}/>
+      ))}
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: scroll;
+    gap: var(--space-2xl);
+    padding: 0;
+  }
+</style>

@@ -1,0 +1,105 @@
+---
+import { Icon } from "astro-icon/components";
+import { 
+  getDayOfWeekString,
+  getDayString, 
+  getTimeString,
+  isToday,
+} from "../utils/time";
+
+const { event } = Astro.props;
+const highlight = isToday(event.start);
+---
+<li class=`event-item ${highlight && "highlight"}` style={{backgroundImage: `url(${event.imageUrl})`}}>
+  <a href={`/events/${event.slug}`}>
+    <div class="day-container">
+      <span class="day">{getDayString(event.start)}</span>
+      <span class="day-of-the-week">{getDayOfWeekString(event.start)}</span>
+    </div>
+    <div class="event-info">
+      <span class="event-name">{event.name}</span><br/>
+      <span class="time-location">{getTimeString(event.start)} at {event.locationName}</span><br/>
+      <span class="artist-name">By {event.artists.toString()}</span>
+    </div>
+  </a>
+</li>
+
+<style>
+  .event-item {
+    list-style-type: none;
+    margin: var(--space-2xl) 0;
+    background-size: 50%;
+    background-position: right;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .event-item.highlight {
+    box-shadow: 
+      0 0 0 2px #f76677,
+      0 0 0.8rem #F4364C;
+  }
+  .event-item a {
+    position: relative;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    background-image: linear-gradient(120deg, #16151a 60%, #16151ad7 70%, #16151a00 80%);
+    padding: var(--space-2xl);
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    align-items: center;
+  }
+  .day-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: var(--space-2xl);
+  }
+  .day,
+  .day-of-the-week {
+    font-family: "Rubik", sans-serif;
+  }
+  .day {
+    font-weight: bolder;
+    font-size: 70px;
+  }
+  .day-of-the-week {
+    text-transform: uppercase;
+    font-size: var(--text-md);
+  }
+  .event-info {
+    padding: 0 20% 0 var(--space-3xl);
+    border-left: solid 1px var(--color-text-primary);
+  }
+  .event-name {
+    font-weight: bold;
+    font-size: var(--text-2xl);
+  }
+  .event-badge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #00000055;
+  }
+  @media screen and (max-width: 768px) {
+    .event-item {
+      background-size: cover;
+      background-position: 20vw -10px;
+    }
+    .event-item a {
+      grid-template-columns: 1fr;
+    }
+    .day-container {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--space-xl);
+    }
+    .day-of-the-week {
+      margin-top: var(--space-lg);
+    }
+    .event-info {
+      padding: 0 20% 0 0;
+      border-left: none;
+      margin-bottom: var(--space-sm);
+    }
+  }
+</style>

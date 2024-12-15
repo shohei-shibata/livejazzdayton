@@ -182,7 +182,7 @@ export default async (req, context) => {
     },{
       status: 302,
       headers: {
-        "Location": "/success"
+        "Location": "/events/submit/success"
       }
     })
   }
