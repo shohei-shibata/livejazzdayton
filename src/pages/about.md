@@ -3,7 +3,6 @@ layout: ../layouts/MarkdownPageLayout.astro
 title: About Live Jazz Dayton
 ---
 
-### Hello 👋 
 
 Thanks for stopping by! I'm Shohei, the creator and the manager of this website. You might also finding me on the stage playing drums now and then.
 
