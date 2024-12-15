@@ -18,15 +18,15 @@ import PageLayout from "../../layouts/PageLayout.astro";
     >
       <fieldset name="do-you-like-the-new-design">
         <legend>Do you like the new design of LiveJazzDayton.com?</legend>
-        <input type="radio" id="like-design" value="yes" name="question-1" />
-        <label for="like-design">Yes</label>
+        <input type="radio" id="yes" value="yes" name="like-new-design" />
+        <label for="yes">Yes</label>
         <input
           type="radio"
-          id="dont-like-design"
+          id="no"
           value="no"
-          name="question-1"
+          name="like-new-design"
         />
-        <label for="dont-like-design">No</label>
+        <label for="no">No</label>
         <br />
         <br />
         <legend>What do you (or don't you) like about it?</legend>
@@ -39,7 +39,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
         <input
           type="checkbox"
           id="livejazzdayton-website"
-          name="event-info-source" value="livejazzdayton-website"
+          name="info-source" value="livejazzdayton-website"
         />
         <label for="livejazzdayton-website"
           >The LiveJazzDayton.com website</label
@@ -47,20 +47,20 @@ import PageLayout from "../../layouts/PageLayout.astro";
         <input
           type="checkbox"
           id="livejazzdayton-newsletter"
-          name="event-info-source" value="livejazzdayton-newsletter"
+          name="info-source" value="livejazzdayton-newsletter"
         />
         <label for="livejazzdayton-newsletter"
           >The LiveJazzDayton email newsletter</label
         ><br />
-        <input type="checkbox" id="musician-website" name="event-info-source" value="musician-website" />
+        <input type="checkbox" id="musician-website" name="info-source" value="musician-website" />
         <label for="musician-website"
           >By visiting individual musician's website</label
         ><br />
-        <input type="checkbox" id="venue-website" name="event-info-source" value="venue-website" />
+        <input type="checkbox" id="venue-website" name="info-source" value="venue-website" />
         <label for="venue-website"
           >By visiting individual music venue's website</label
         ><br />
-        <input type="checkbox" id="social-media" name="event-info-source" value="social-media" />
+        <input type="checkbox" id="social-media" name="info-source" value="social-media" />
         <label for="social-media"
           >Social Media (Facebook, Instagram, X, etc.)</label
         ><br />
