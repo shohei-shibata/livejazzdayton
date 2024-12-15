@@ -30,12 +30,62 @@ import PageLayout from "../../layouts/PageLayout.astro";
         ></textarea>
       </fieldset>
       <fieldset>
+        <legend>Your preferred method of finding live jazz events?</legend>
+        <div>
+          <input
+            type="checkbox"
+            id="livejazzdayton-website"
+            name="event-info-source"
+          />
+          <label for="livejazzdayton-website"
+            >The LiveJazzDayton.com website</label
+          >
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="livejazzdayton-newsletter"
+            name="event-info-source"
+          />
+          <label for="livejazzdayton-newsletter"
+            >The LiveJazzDayton email newsletter</label
+          >
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="musician-website"
+            name="event-info-source"
+          />
+          <label for="musician-website"
+            >By visiting individual musician's website</label
+          >
+        </div>
+        <div>
+          <input type="checkbox" id="venue-website" name="event-info-source" />
+          <label for="venue-website"
+            >By visiting individual music venue's website</label
+          >
+        </div>
+        <div>
+          <input type="checkbox" id="social-media" name="event-info-source" />
+          <label for="social-media"
+            >Social Media (Facebook, Instagram, X, etc.)</label
+          >
+        </div>
+        <br />
+        <legend>Other</legend>
+        <textarea
+          name="new-features-comments"
+          placeholder="Please describe how else you find live jazz events."
+          rows="4"></textarea>
+      </fieldset>
+      <fieldset>
         <legend>Future Improvements</legend>
         <legend
-          >If I were to make some additions to this website, which ones would
+          >If I were to make some additions to Live Jazz Dayton, which ones would
           you find to be most helpful?</legend
         >
-        <br />
         <div>
           <input type="checkbox" id="videos" name="new-features" />
           <label for="videos">Videos of past events</label>
@@ -46,7 +96,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
         </div>
         <div>
           <input type="checkbox" id="musician-bio" name="new-features" />
-          <label for="musician-bio">View musician bio</label>
+          <label for="musician-bio">More info on musicians (bio, etc.)</label>
         </div>
         <div>
           <input type="checkbox" id="booking" name="new-features" />
@@ -55,18 +105,14 @@ import PageLayout from "../../layouts/PageLayout.astro";
           >
         </div>
         <div>
-          <input type="checkbox" id="light-mode" name="new-features" />
-          <label for="light-mode"
-            >Be able to switch the color theme of the website between dark and
-            light modes</label
-          >
+          <input type="checkbox" id="social-media" name="new-features" />
+          <label for="social-media">Live Jazz Dayton on social media (Facebook, instagram, etc.)</label>
         </div>
         <br />
-        <legend>Other ideas?</legend>
-        <br />
+        <legend>Comments</legend>
         <textarea
           name="new-features-comments"
-          placeholder="Your comments"
+          placeholder="Other features you'd like to see, etc."
           rows="4"></textarea>
       </fieldset>
       <fieldset>
