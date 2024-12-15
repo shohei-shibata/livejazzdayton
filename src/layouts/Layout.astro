@@ -110,6 +110,12 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     font-family: var(--font-text);
     margin: 0;
   }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: var(--bold);
@@ -129,6 +135,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
   }
   p {
     line-height: var(--text-2xl);
+    font-size: var(--text-xl);
   }
   .logo {
     font-family: var(--font-logo);
@@ -186,6 +193,13 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
   .event-badge svg {
     margin: 0 var(--space-lg);
     font-size: 4rem;
+  }
+  fieldset {
+    margin: var(--space-lg) 0;
+  }
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
   }
   @media screen and (max-width: 768px) {
     body {

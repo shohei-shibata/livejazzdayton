@@ -59,12 +59,12 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     </div>
   </section>
   <section>
-    <h1 class="section-title">Venues</h1>
-    <LinkCardList data={allVenues} type="venue"/>
-  </section>
-  <section>
     <h1 class="section-title">Musicians</h1>
     <LinkCardList data={allMusicians} type="musician"/>
+  </section>
+  <section>
+    <h1 class="section-title">Venues</h1>
+    <LinkCardList data={allVenues} type="venue"/>
   </section>
 </Layout>
 
@@ -113,7 +113,6 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     color: var(--color-text-primary);
   }
   .news-title {
-    font-size: var(--text-xl);
     margin-bottom: 0;
   }
   .news-date {
@@ -129,10 +128,6 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     font-size: 6rem;
   }
   @media screen and (max-width: 768px) {
-    #banner {
-      max-height: none;
-      height: 50vh;
-    }
     .news-item-container {
       grid-template-columns: 1fr;
       gap: 0;
@@ -141,8 +136,6 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     .news-body p {
       margin: 0;
     }
-  }
-  @media screen and (max-width: 637px) {
     #banner {
       max-height: none;
       height: calc(100vh - var(--mobile-nav-height) - var(--main-nav-height));
