@@ -1,8 +1,3 @@
-# build output
-dist/
-# generated types
-.astro/
-
 # dependencies
 node_modules/
 
@@ -27,3 +22,4 @@ _archive/
 .cache/
 .netlify/
 .vscode/
+.astro/
