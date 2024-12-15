@@ -18,96 +18,80 @@ import PageLayout from "../../layouts/PageLayout.astro";
     >
       <fieldset>
         <legend>Do you like the new design of LiveJazzDayton.com?</legend>
-        <input type="radio" id="q1-yes" value="yes" name="question-1" />
-        <label for="q1-yes">Yes</label>
-        <input type="radio" id="q1-no" value="no" name="question-1" />
-        <label for="q1-no">No</label>
+        <input type="radio" id="like-design" value="yes" name="question-1" />
+        <label for="like-design">Yes</label>
+        <input
+          type="radio"
+          id="dont-like-design"
+          value="no"
+          name="question-1"
+        />
+        <label for="dont-like-design">No</label>
         <br />
         <br />
         <legend>What do you (or don't you) like about it?</legend>
         <br />
-        <textarea name="q2-comments" placeholder="Your comments" rows="4"
+        <textarea name="design-comment" placeholder="Your comments" rows="4"
         ></textarea>
       </fieldset>
       <fieldset>
         <legend>Your preferred method of finding live jazz events?</legend>
-        <div>
-          <input
-            type="checkbox"
-            id="livejazzdayton-website"
-            name="event-info-source"
-          />
-          <label for="livejazzdayton-website"
-            >The LiveJazzDayton.com website</label
-          >
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            id="livejazzdayton-newsletter"
-            name="event-info-source"
-          />
-          <label for="livejazzdayton-newsletter"
-            >The LiveJazzDayton email newsletter</label
-          >
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            id="musician-website"
-            name="event-info-source"
-          />
-          <label for="musician-website"
-            >By visiting individual musician's website</label
-          >
-        </div>
-        <div>
-          <input type="checkbox" id="venue-website" name="event-info-source" />
-          <label for="venue-website"
-            >By visiting individual music venue's website</label
-          >
-        </div>
-        <div>
-          <input type="checkbox" id="social-media" name="event-info-source" />
-          <label for="social-media"
-            >Social Media (Facebook, Instagram, X, etc.)</label
-          >
-        </div>
+        <input
+          type="checkbox"
+          id="livejazzdayton-website"
+          name="event-info-source"
+        />
+        <label for="livejazzdayton-website"
+          >The LiveJazzDayton.com website</label
+        ><br />
+        <input
+          type="checkbox"
+          id="livejazzdayton-newsletter"
+          name="event-info-source"
+        />
+        <label for="livejazzdayton-newsletter"
+          >The LiveJazzDayton email newsletter</label
+        ><br />
+        <input type="checkbox" id="musician-website" name="event-info-source" />
+        <label for="musician-website"
+          >By visiting individual musician's website</label
+        ><br />
+        <input type="checkbox" id="venue-website" name="event-info-source" />
+        <label for="venue-website"
+          >By visiting individual music venue's website</label
+        ><br />
+        <input type="checkbox" id="social-media" name="event-info-source" />
+        <label for="social-media"
+          >Social Media (Facebook, Instagram, X, etc.)</label
+        ><br />
         <br />
         <legend>Other</legend>
         <textarea
-          name="new-features-comments"
+          name="info-source-comments"
           placeholder="Please describe how else you find live jazz events."
           rows="4"></textarea>
       </fieldset>
       <fieldset>
         <legend>Future Improvements</legend>
         <legend
-          >If I were to make some additions to Live Jazz Dayton, which ones would
-          you find to be most helpful?</legend
+          >If I were to make some additions to Live Jazz Dayton, which ones
+          would you find to be most helpful?</legend
         >
-        <div>
-          <input type="checkbox" id="videos" name="new-features" />
-          <label for="videos">Videos of past events</label>
-        </div>
-        <div>
-          <input type="checkbox" id="reviews" name="new-features" />
-          <label for="reviews">Review posts of recent events</label>
-        </div>
-        <div>
-          <input type="checkbox" id="musician-bio" name="new-features" />
-          <label for="musician-bio">More info on musicians (bio, etc.)</label>
-        </div>
-        <div>
-          <input type="checkbox" id="booking" name="new-features" />
-          <label for="booking"
-            >Be able to contact or send booking requests to musicians</label
-          >
-        </div>
-        <div>
-          <input type="checkbox" id="social-media" name="new-features" />
-          <label for="social-media">Live Jazz Dayton on social media (Facebook, instagram, etc.)</label>
-        </div>
+        <input type="checkbox" id="videos" name="new-features" />
+        <label for="videos">Videos of past events</label><br />
+        <input type="checkbox" id="reviews" name="new-features" />
+        <label for="reviews">Review posts of recent events</label><br />
+        <input type="checkbox" id="musician-bio" name="new-features" />
+        <label for="musician-bio">More info on musicians (bio, etc.)</label><br
+        />
+        <input type="checkbox" id="booking" name="new-features" />
+        <label for="booking"
+          >Be able to contact or send booking requests to musicians</label
+        ><br />
+        <input type="checkbox" id="social-media" name="new-features" />
+        <label for="social-media"
+          >Live Jazz Dayton on social media (Facebook, instagram, etc.)</label
+        >
         <br />
         <legend>Comments</legend>
         <textarea
