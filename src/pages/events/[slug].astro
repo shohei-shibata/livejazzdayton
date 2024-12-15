@@ -1,43 +1,68 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { 
-  getAllFutureEvents
-} from "../../utils/trello";
-import {
-  getFullDateString,
-getTimeString
-} from "../../utils/time"
+import { getAllFutureEvents } from "../../utils/trello";
+import { getFullDateString, getTimeString, isToday } from "../../utils/time";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
-  return (await getAllFutureEvents()).map(event => {
+  return (await getAllFutureEvents()).map((event) => {
     return {
       params: {
-        slug: event.slug
+        slug: event.slug,
       },
       props: {
-        ...event
-      }
-    }
+        ...event,
+      },
+    };
   });
-};
+}
 
-const { name, description, imageUrl, locationName, locationAddress, start, artists, websiteUrl, ticketsUrl, googleMapsEmbedUrl } = Astro.props;
+const {
+  name,
+  description,
+  imageUrl,
+  locationName,
+  locationAddress,
+  start,
+  artists,
+  websiteUrl,
+  ticketsUrl,
+  googleMapsEmbedUrl,
+} = Astro.props;
+
+
+const addTodayBadge = isToday(start);
 ---
 
 <Layout title={name}>
   <div class="event-info-container">
-    <img src={imageUrl} width="700px"/>
-    <h1 class="event-name">{name}</h1>
-    <p class="metadata">{getFullDateString(start)} from {getTimeString(start)} with {artists.toString()}</p>
+    <img src={imageUrl} width="700px" />
+    <h1 class="event-name">{name}{addTodayBadge && <span class="event-badge"><Icon name="today"/></span>}</h1>
+    <p class="metadata">
+      {getFullDateString(start)} from {getTimeString(start)} with {
+        artists.toString()
+      }
+    </p>
     <p class="metadata">{locationName} ({locationAddress})</p>
     <div class="event-links-container">
-      {websiteUrl && <a href={websiteUrl} target="_blank" class="btn btn-sm">Event Website</a>}
-      {ticketsUrl && <a href={ticketsUrl} target="_blank" class="btn btn-sm">Tickets</a>}
+      {
+        websiteUrl && (
+          <a href={websiteUrl} target="_blank" class="btn btn-sm">
+            Event Website
+          </a>
+        )
+      }
+      {
+        ticketsUrl && (
+          <a href={ticketsUrl} target="_blank" class="btn btn-sm">
+            Tickets
+          </a>
+        )
+      }
     </div>
-    <div set:html={description}/>
+    <div set:html={description} />
     <div class="google-maps-container">
-      <iframe frameborder="0" src={ googleMapsEmbedUrl }>
-      </iframe>
+      <iframe frameborder="0" src={googleMapsEmbedUrl}> </iframe>
     </div>
     <div class="nav-links-container">
       <a class="btn-sm" href="/events">More Events</a>
@@ -64,6 +89,8 @@ const { name, description, imageUrl, locationName, locationAddress, start, artis
   }
   .event-name {
     margin-top: var(--space-3xl);
+    display: flex;
+    align-items: center;
   }
   .metadata {
     font-style: italic;

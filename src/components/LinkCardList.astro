@@ -59,7 +59,6 @@ const { data, type } = Astro.props;
 
 <script is:inline>
   Array.from(document.getElementsByClassName("scroll-btn")).forEach((item) => {
-    console.log("SCROLL", item, item.parentNode)
     if (item.classList.contains("right")) {
       item.addEventListener("click", (e) => {
         item.parentNode.scrollBy({

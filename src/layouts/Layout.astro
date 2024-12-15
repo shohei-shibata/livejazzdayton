@@ -46,6 +46,8 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --grey-20: #ededed;
     --black: #040404;
     --white: #ffffff;
+    --warning: #ff0018;
+    --warning-light: #ff001855;
 
     
     --background-color-primary: var(--grey-20);
@@ -180,6 +182,10 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
   .btn-container {
     text-align: center;
     padding: var(--space-2xl) 0;
+  }
+  .event-badge svg {
+    margin: 0 var(--space-lg);
+    font-size: 4rem;
   }
   @media screen and (max-width: 768px) {
     body {

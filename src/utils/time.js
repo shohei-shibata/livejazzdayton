@@ -80,6 +80,10 @@ function rssPubDate() {
   return pubDate;
 };
 
+function isToday(dateString) {
+  return (new Date(dateString) - new Date())/36e+5 < 21;
+}
+
 export {
   getFullDateString,
   getShortDateString,
@@ -90,4 +94,5 @@ export {
   getDateSlug,
   getTimeString,
   rssPubDate,
+  isToday,
 }

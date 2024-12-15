@@ -1,13 +1,16 @@
 ---
+import { Icon } from "astro-icon/components";
 import { 
   getDayOfWeekString,
   getDayString, 
   getTimeString,
+  isToday,
 } from "../utils/time";
 
 const { event } = Astro.props;
+const highlight = isToday(event.start);
 ---
-<li class="event-item" style={{backgroundImage: `url(${event.imageUrl})`}}>
+<li class=`event-item ${highlight && "highlight"}` style={{backgroundImage: `url(${event.imageUrl})`}}>
   <a href={`/events/${event.slug}`}>
     <div class="day-container">
       <span class="day">{getDayString(event.start)}</span>
@@ -30,7 +33,13 @@ const { event } = Astro.props;
     border-radius: var(--radius-md);
     overflow: hidden;
   }
+  .event-item.highlight {
+    box-shadow: 
+      0 0 0 2px #f76677,
+      0 0 0.8rem #F4364C;
+  }
   .event-item a {
+    position: relative;
     text-decoration: none;
     color: var(--color-text-primary);
     background-image: linear-gradient(120deg, #16151a 60%, #16151ad7 70%, #16151a00 80%);
@@ -64,6 +73,12 @@ const { event } = Astro.props;
   .event-name {
     font-weight: bold;
     font-size: var(--text-2xl);
+  }
+  .event-badge {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #00000055;
   }
   @media screen and (max-width: 768px) {
     .event-item {
