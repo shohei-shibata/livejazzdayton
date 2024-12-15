@@ -16,7 +16,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
       action="/survey/thanks"
       data-netlify
     >
-      <fieldset>
+      <fieldset name="do-you-like-the-new-design">
         <legend>Do you like the new design of LiveJazzDayton.com?</legend>
         <input type="radio" id="like-design" value="yes" name="question-1" />
         <label for="like-design">Yes</label>
@@ -34,7 +34,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
         <textarea name="design-comment" placeholder="Your comments" rows="4"
         ></textarea>
       </fieldset>
-      <fieldset>
+      <fieldset name="how-do-you-find-event-info">
         <legend>Your preferred method of finding live jazz events?</legend>
         <input
           type="checkbox"
@@ -71,7 +71,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
           placeholder="Please describe how else you find live jazz events."
           rows="4"></textarea>
       </fieldset>
-      <fieldset>
+      <fieldset name="future-improvements">
         <legend>Future Improvements</legend>
         <legend
           >If I were to make some additions to Live Jazz Dayton, which ones
@@ -99,7 +99,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
           placeholder="Other features you'd like to see, etc."
           rows="4"></textarea>
       </fieldset>
-      <fieldset>
+      <fieldset name="contact-info">
         <legend>Your contact information (Optional)</legend>
         <div class="input-row">
           <label for="name">Name</label>
@@ -120,7 +120,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
           />
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset name="other-comments">
         <legend>Any other comments or thoughts?</legend>
         <div class="input-row">
           <textarea
