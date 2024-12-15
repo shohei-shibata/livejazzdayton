@@ -2,29 +2,66 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import NewsletterForm from "../components/NewsletterForm.astro";
+import SeoImage from "../images/seo.png"
 
 const { title } = Astro.props;
+const siteUrl = Astro.site?.origin;
 const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
+const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta
+      name="description"
+      content={siteDescription}
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Commissioner&family=Rubik+Dirt&family=Rubik&family=Inter&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner&family=Rubik+Dirt&family=Rubik&family=Inter&display=swap"
+      rel="stylesheet"
+    />
     <meta name="generator" content={Astro.generator} />
+    <meta name="keywords" content="jazz, dayton, ohio, live music, events" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={siteUrl}
+    />
+    <meta property="og:title" content={siteTitle} | {title} />
+    <meta property="og:description" content={siteDescription} />
+    <meta
+      property="og:image"
+      content={SeoImage.src}
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content={siteUrl}
+    />
+    <meta property="twitter:title" content={siteTitle} | {title} />
+    <meta property="twitter:description" content="Discover " />
+    <meta
+      property="twitter:image"
+      content={SeoImage.src}
+    />
+
     <title>{siteTitle} | {title}</title>
   </head>
   <body>
-    <Nav/>
+    <Nav />
     <div class="main-content">
-      <slot/>
+      <slot />
     </div>
-    <NewsletterForm/>
-    <Footer/>
-  </body> 
+    <NewsletterForm />
+    <Footer />
+  </body>
 </html>
 
 <style is:global>
@@ -37,7 +74,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --width-text-content: 700px;
     --main-nav-height: 100px;
     --mobile-nav-height: 75px;
-      
+
     /* colors */
     --black-fade-5: rgba(0, 0, 0, 0.05);
     --black-fade-40: rgba(0, 0, 0, 0.4);
@@ -49,7 +86,6 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     --warning: #ff0018;
     --warning-light: #ff001855;
 
-    
     --background-color-primary: var(--grey-20);
     --background-color-secondary: #ddd;
     --background-color-code: #333;
@@ -116,7 +152,12 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
   h2 {
     font-size: 1.5rem;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     font-weight: var(--bold);
   }
@@ -166,7 +207,7 @@ const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
     border: solid 1px var(--color-text-primary);
     border-radius: var(--radius-sm);
     opacity: 0.9;
-    transition: background-color 0.1s ease-in
+    transition: background-color 0.1s ease-in;
   }
   .btn:hover,
   .btn-sm:hover {
