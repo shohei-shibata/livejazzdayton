@@ -42,16 +42,15 @@ const { type, data } = Astro.props;
 }
 
 <style>
-  h1 {
-    font-family: var(--font-logo);
-    font-size: var(--text-xl);
+  h1, p {
     text-shadow: #ffffff55 0px 2px 20px;
     margin: 0;
   }
+  h1 {
+    font-size: var(--text-xl);
+  }
   p {
-    font-weight: bold;
-    text-shadow: #ffffff55 0px 2px 20px;
-    margin: 0;
+    font-size: var(--text-sm);
   }
   .item {
     list-style-type: none;
