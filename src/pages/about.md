@@ -16,6 +16,6 @@ Finally, if you enjoy this website or the newsletter... please consider making a
 
 Hope to see you at a live jazz event in the near future.
 
-Take care!
+Take care,
 
 Shohei Shibata
