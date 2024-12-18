@@ -4,6 +4,7 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import NewsletterForm from "../components/NewsletterForm.astro";
 import SeoImage from "../images/seo.png"
+import { GoogleAnalytics } from "astro-google-analytics";
 
 const { title } = Astro.props;
 const siteUrl = Astro.site?.origin;
@@ -54,6 +55,7 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
     />
 
     <title>{siteTitle} | {title}</title>
+    <GoogleAnalytics id="G-DZMSQLFM6Q" />
     <ViewTransitions />
   </head>
   <body>

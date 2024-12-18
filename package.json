@@ -15,6 +15,7 @@
     "@astrojs/rss": "^4.0.10",
     "@netlify/functions": "^2.8.2",
     "astro": "^4.16.13",
+    "astro-google-analytics": "^1.0.3",
     "astro-icon": "^1.1.2",
     "dompurify": "^3.2.0",
     "jsdom": "^25.0.1",
