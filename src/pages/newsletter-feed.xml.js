@@ -6,20 +6,28 @@ import { getAllFutureEvents } from '../utils/trello';
 const allEvents = await getAllFutureEvents();
 const limit = 5;
 allEvents.splice(limit)
-
 const pubDate = rssPubDate();
-
 const bdUrl = `https://buttondown.email/livejazzdayton/archive/live-jazz-dayton-newsletter-${getDateSlug(pubDate)}`;
+const eventListing = allEvents.map(
+  (event) =>
+    `<h3><a href="https://livejazzdayton.com/events/${event.slug}">${event.name}</a></h3>
+      <p>${getFullDateString(event.start)} ${getTimeString(event.start)} at ${event.locationName}</p>
+    <hr/>`
+);
+
 
 const newsletterContent = `
 <p>Hey there! This is the ${getDateSlug(pubDate)} edition of the Live Jazz Dayton Newsletter.</p>
-<p>Here's the list of upcoming live jazz events in our area. Don't forget to check out <a href="https://livejazzdayton.com">https://livejazzdayton.com</a> for more</p>
+<p>Here's the list of upcoming live jazz events in and around Dayton.</p>
 <h2>Upcoming Events</h2>
-${allEvents.map(event => (
-`<h3><a href="https://livejazzdayton.com/events/${event.slug}">${event.name}</a></h3>
-  <p>${ getFullDateString(event.start) } ${ getTimeString(event.start) } at ${ event.locationName }</p>
-  <hr/>`
-))}
+${eventListing.join("")}
+<p>Don't forget to check out <a href="https://livejazzdayton.com/events">https://livejazzdayton.com/events/</a> for the full listing.</p>
+<p>Do you know of someone who may also enjoy receiving this newsletter? Then please forward this email to them. They can sign up through the "subscribe" link below.</p>
+<p>Finally, please consider supporting my work! You can make a donation via <a href="https://buymeacoffee.com/shohei_shibata">Buy Me A Coffee</a>. It would be very much appreciated!</p>
+<p>That's all for now. Have a wonderful weekend!</p>
+<br/>
+<p>Take care,</p>
+<p>Shohei Shibata</p>
 `
 
 export function GET(context) {
