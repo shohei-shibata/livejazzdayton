@@ -60,18 +60,14 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio";
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
       bodyElement?.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else if (preferDark.matches) {
+    } else if (preferDark.matches && storedTheme !=="light") {
       bodyElement?.classList.add("dark");
-      localStorage.setItem("theme", "dark");
     } else {
       bodyElement?.classList.remove("dark");
-      localStorage.setItem("theme", "light");
     }
   }
   document.addEventListener("astro:after-swap", applyTheme);
   document.addEventListener("astro:page-load", () => {
-    const preferDark = window.matchMedia(`(prefers-color-scheme: dark)`);
     applyTheme();
     const bodyElement = document.querySelector("body");
     const triggers = document.getElementsByClassName("theme-trigger");
