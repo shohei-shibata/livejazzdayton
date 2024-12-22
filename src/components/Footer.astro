@@ -52,7 +52,7 @@ const links = [
   </nav>
   <div class="footer-links">
     <ul>
-      <li>Find me online: </li>
+      <li class="hide-on-mobile">Find me online: </li>
       <li><a href="https://shoheishibata.com" target="_blank"><Icon class="footer-link-icon" name="website"/></a></li>
       <li><a href="https://github.com/shohei-shibata" target="_blank"><Icon class="footer-link-icon" name="github"/></a></li>
       <li><a href="https://www.linkedin.com/in/shohei-shibata-53867a41/" target="_blank"><Icon class="footer-link-icon" name="linkedin"/></a></li>
@@ -120,8 +120,15 @@ const links = [
   }
   
   #footer-nav ul {
+    padding: 0 var(--space-lg);
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-2xl);
     justify-content: center;
+  }
+  @media screen and (max-width: 768px) {
+    .hide-on-mobile {
+      display: none;
+    }
   }
 </style>
