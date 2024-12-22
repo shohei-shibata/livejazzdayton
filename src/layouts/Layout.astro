@@ -3,23 +3,20 @@ import { ViewTransitions } from "astro:transitions";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import NewsletterForm from "../components/NewsletterForm.astro";
-import SeoImage from "../images/seo.png"
+import SeoImage from "../images/seo.png";
 import { GoogleAnalytics } from "astro-google-analytics";
 
 const { title } = Astro.props;
 const siteUrl = Astro.site?.origin;
 const siteTitle = import.meta.env.PUBLIC_SITE_TITLE;
-const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
+const siteDescription = "Discover amazing live jazz events in Dayton, Ohio";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content={siteDescription}
-    />
+    <meta name="description" content={siteDescription} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
@@ -30,29 +27,17 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
     <meta name="keywords" content="jazz, dayton, ohio, live music, events" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content={siteUrl}
-    />
+    <meta property="og:url" content={siteUrl} />
     <meta property="og:title" content={siteTitle} | {title} />
     <meta property="og:description" content={siteDescription} />
-    <meta
-      property="og:image"
-      content={SeoImage.src}
-    />
+    <meta property="og:image" content={SeoImage.src} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta
-      property="twitter:url"
-      content={siteUrl}
-    />
+    <meta property="twitter:url" content={siteUrl} />
     <meta property="twitter:title" content={siteTitle} | {title} />
     <meta property="twitter:description" content="Discover " />
-    <meta
-      property="twitter:image"
-      content={SeoImage.src}
-    />
+    <meta property="twitter:image" content={SeoImage.src} />
 
     <title>{siteTitle} | {title}</title>
     <GoogleAnalytics id="G-DZMSQLFM6Q" />
@@ -70,14 +55,23 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
 
 <script>
   function applyTheme() {
+    const preferDark = window.matchMedia(`(prefers-color-scheme: dark)`);
     const bodyElement = document.querySelector("body");
-    const storedTheme = localStorage.getItem("theme") || "dark";
-    storedTheme === "dark"
-      ? bodyElement?.classList.add("dark")
-      : bodyElement?.classList.remove("dark");
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      bodyElement?.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else if (preferDark.matches) {
+      bodyElement?.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      bodyElement?.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
   }
   document.addEventListener("astro:after-swap", applyTheme);
   document.addEventListener("astro:page-load", () => {
+    const preferDark = window.matchMedia(`(prefers-color-scheme: dark)`);
     applyTheme();
     const bodyElement = document.querySelector("body");
     const triggers = document.getElementsByClassName("theme-trigger");
@@ -115,7 +109,7 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
     --white: #ffffff;
     --warning: #ff0018;
     --warning-light: #ff001855;
-    --neon-red: #FA5D6F;
+    --neon-red: #fa5d6f;
 
     --background-color-primary: var(--grey-20);
     --background-color-secondary: var(--grey-50);
@@ -127,7 +121,12 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
     --color-text-secondary: var(--grey-50);
     --color-text-inverse: var(--white);
     --color-text-light: var(--white);
-    --event-card-gradient: linear-gradient(120deg, #eeeeee 60%, #eeeeeed7 70%, #eeeeee00 80%);
+    --event-card-gradient: linear-gradient(
+      120deg,
+      #eeeeee 60%,
+      #eeeeeed7 70%,
+      #eeeeee00 80%
+    );
 
     /* radii */
     --radius-sm: 4px;
@@ -183,7 +182,12 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
     --color-text-secondary: var(--grey-50);
     --color-text-inverse: var(--grey-90);
     --color-text-light: var(--white);
-    --event-card-gradient: linear-gradient(120deg, #1c1a20 60%, #1c1a20d7 70%, #1c1a2000 80%);
+    --event-card-gradient: linear-gradient(
+      120deg,
+      #1c1a20 60%,
+      #1c1a20d7 70%,
+      #1c1a2000 80%
+    );
   }
   body {
     background-color: var(--background-color-primary);
@@ -302,7 +306,6 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
   }
   legend {
     margin: var(--space-md) 0;
-
   }
   @media screen and (max-width: 768px) {
     body {
