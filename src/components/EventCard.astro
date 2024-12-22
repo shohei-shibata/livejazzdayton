@@ -31,9 +31,11 @@ const highlight = isToday(event.start);
     background-size: 50%;
     background-position: right;
     border-radius: var(--radius-md);
+    border: solid 1.5px var(--color-border);
     overflow: hidden;
   }
   .event-item.highlight {
+    border: none;
     box-shadow: 
       0 0 0 2px #f76677,
       0 0 0.8rem #F4364C;
@@ -42,7 +44,7 @@ const highlight = isToday(event.start);
     position: relative;
     text-decoration: none;
     color: var(--color-text-primary);
-    background-image: linear-gradient(120deg, #16151a 60%, #16151ad7 70%, #16151a00 80%);
+    background-image: var(--event-card-gradient);
     padding: var(--space-2xl);
     display: grid;
     grid-template-columns: 130px 1fr;
