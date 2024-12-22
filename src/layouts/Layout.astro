@@ -68,8 +68,34 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
   </body>
 </html>
 
+<script>
+  function applyTheme() {
+    const bodyElement = document.querySelector("body");
+    const storedTheme = localStorage.getItem("theme") || "dark";
+    storedTheme === "dark"
+      ? bodyElement?.classList.add("dark")
+      : bodyElement?.classList.remove("dark");
+  }
+  document.addEventListener("astro:after-swap", applyTheme);
+  document.addEventListener("astro:page-load", () => {
+    applyTheme();
+    const bodyElement = document.querySelector("body");
+    const triggers = document.getElementsByClassName("theme-trigger");
+    for (const trigger of triggers) {
+      trigger.addEventListener("click", () => {
+        bodyElement?.classList.toggle("dark");
+        if (bodyElement?.classList.contains("dark")) {
+          localStorage.setItem("theme", "dark");
+        } else {
+          localStorage.setItem("theme", "light");
+        }
+      });
+    }
+  });
+</script>
+
 <style is:global>
-  :root {
+  body {
     --font-logo: "Rubik Dirt", sans-serif;
     --font-heading: "Rubik Dirt", sans-serif;
     --font-text: "Inter", sans-serif;
@@ -89,16 +115,19 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
     --white: #ffffff;
     --warning: #ff0018;
     --warning-light: #ff001855;
+    --neon-red: #FA5D6F;
 
     --background-color-primary: var(--grey-20);
-    --background-color-secondary: #ddd;
+    --background-color-secondary: var(--grey-50);
     --background-color-code: #333;
     --color-border: #aaa;
     --color-cards-bg: #fff;
     --color-cards-shadow: #ddd;
-    --color-text-primary: var(--white);
+    --color-text-primary: var(--grey-90);
     --color-text-secondary: var(--grey-50);
-    --color-text-inverse: var(--grey-90);
+    --color-text-inverse: var(--white);
+    --color-text-light: var(--white);
+    --event-card-gradient: linear-gradient(120deg, #eeeeee 60%, #eeeeeed7 70%, #eeeeee00 80%);
 
     /* radii */
     --radius-sm: 4px;
@@ -142,13 +171,26 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
     --box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     --box-shadow-light: rgba(149, 157, 165, 0.2) 0px 4px 12px;
   }
-  html {
-    background-color: var(--black);
-    color: var(--color-text-primary);
+  body.dark {
+    --background-color-primary: var(--grey-90);
+    --background-color-secondary: #ddd;
+    --background-color-code: #333;
+    --background-color-card: #1c1a20;
+    --color-border: var(--grey-90);
+    --color-cards-bg: #fff;
+    --color-cards-shadow: #ddd;
+    --color-text-primary: var(--white);
+    --color-text-secondary: var(--grey-50);
+    --color-text-inverse: var(--grey-90);
+    --color-text-light: var(--white);
+    --event-card-gradient: linear-gradient(120deg, #1c1a20 60%, #1c1a20d7 70%, #1c1a2000 80%);
   }
   body {
+    background-color: var(--background-color-primary);
+    color: var(--color-text-primary);
     font-family: var(--font-text);
     margin: 0;
+    transition: background-color 0.2s ease-in;
   }
   h1 {
     font-size: 2rem;
@@ -167,6 +209,14 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio"
   }
   a {
     color: inherit;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+  }
+  button:hover {
+    cursor: pointer;
   }
   section {
     margin: var(--space-3xl) auto;

@@ -37,7 +37,12 @@ const addTodayBadge = isToday(start);
 <Layout title={name}>
   <div class="event-info-container">
     <img src={imageUrl} width="700px" />
-    <h1 class="event-name">{name}{addTodayBadge && <span class="event-badge"><Icon name="today"/></span>}</h1>
+    <h1 class="event-name">{name}{addTodayBadge && 
+      <span class="event-badge">
+        <Icon class="today-dark" name="today-dark"/>
+        <Icon class="today-light" name="today-light"/>
+      </span>}
+    </h1>
     <p class="metadata">
       {getFullDateString(start)} from {getTimeString(start)} with {
         artists.toString()
@@ -111,5 +116,14 @@ const addTodayBadge = isToday(start);
   .google-maps-container iframe {
     width: 100%;
     height: 100%;
+  }
+  .today-dark {
+    display: none;
+  }
+  body.dark .today-light {
+    display: none;
+  }
+  body.dark .today-dark {
+    display: block;
   }
 </style>
