@@ -1,0 +1,45 @@
+body,
+button,
+.badge {
+	font-family: "Barlow", sans-serif;
+}
+
+.accent-font {
+	font-family: "Rubik Dirt", sans-serif;
+}
+h1 {
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-size: 1.8em;
+}
+h2 {
+	font-size: 1.4em;
+}
+p {
+	line-height: 1.5em;
+  font-size: 1.1em;
+}
+a {
+	color: var(--color-white);
+}
+a:hover,
+.btn:hover,
+.btn-secondary:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+.btn {
+	text-transform: uppercase;
+	font-size: 1.2rem;
+}
+#banner-title {
+	font-size: 3rem;
+}
+#banner-subtitle {
+	font-size: 1.2rem;
+}
+.badge-small {
+  font-size: 16px;
+  line-height: 1.2em;
+}
+

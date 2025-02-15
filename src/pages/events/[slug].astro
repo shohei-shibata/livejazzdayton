@@ -44,8 +44,9 @@ const addTodayBadge = isToday(start);
       </span>}
     </h1>
     <p class="metadata">
-      {getFullDateString(start)} from {getTimeString(start)} with {
-        artists.toString()
+      {getFullDateString(start)} from {getTimeString(start)} 
+      {
+        artists?.length > 0 && `with ${artists.toString()}`
       }
     </p>
     <p class="metadata">{locationName} ({locationAddress})</p>

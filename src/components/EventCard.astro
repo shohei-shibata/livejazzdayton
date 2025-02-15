@@ -19,7 +19,7 @@ const highlight = isToday(event.start);
     <div class="event-info">
       <span class="event-name">{event.name}</span><br/>
       <span class="time-location">{getTimeString(event.start)} at {event.locationName}</span><br/>
-      <span class="artist-name">By {event.artists.toString()}</span>
+      { event.artist?.length > 0 && <span class="artist-name">By {event.artists.toString()}</span> }
     </div>
   </a>
 </li>

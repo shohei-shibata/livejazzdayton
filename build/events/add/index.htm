@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Jazz Dayton | Add Event</title>
+  <meta name="description" content="">
+  <meta name="author" content="Shohei Shibata">
+  
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" type="text/css" href="/assets/style.css"> 
+  <link rel="stylesheet" type="text/css" href="/assets/typography.css"> 
+  <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicon/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicon/manifest.webmanifest">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZMSQLFM6Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DZMSQLFM6Q');
+  </script>
+</head>
+
+  <body>
+		<section id="banner" class="full-width" style="
+	background-image: url(/images/ebDuKwLoHY-1500.jpeg);
+">
+	<div id="banner-text-container">
+		<div id="banner-title" class="accent-font">Live Jazz Dayton</div>
+		<div id="banner-subtitle">The place to find all the great live jazz events around Dayton OH!</div>
+	</div>
+	<nav>
+  <div id="nav-container-desktop" class="nav-container">
+    <ul>
+			
+				<li>
+					<a href=/>
+						<small>Home</small>
+					</a>
+				</li>
+			
+				<li>
+					<a href=/about>
+						<small>About</small>
+					</a>
+				</li>
+			
+				<li>
+					<a href=/events>
+						<small>Events</small>
+					</a>
+				</li>
+			
+				<li>
+					<a href=/links>
+						<small>Links</small>
+					</a>
+				</li>
+			
+				<li>
+					<a href=/contact>
+						<small>Contact</small>
+					</a>
+				</li>
+			
+    </ul>
+  </div>
+  <div id="nav-container-mobile" class="nav-container">
+	<ul>
+		
+			<li>
+				<a href=/>
+					<i class="fa-solid fa-house"></i>
+					<small class="mobile-nav-text">Home</small>
+				</a>
+			</li>
+		
+			<li>
+				<a href=/about>
+					<i class="fa-solid fa-circle-question"></i>
+					<small class="mobile-nav-text">About</small>
+				</a>
+			</li>
+		
+			<li>
+				<a href=/events>
+					<i class="fa-solid fa-calendar"></i>
+					<small class="mobile-nav-text">Events</small>
+				</a>
+			</li>
+		
+			<li>
+				<a href=/links>
+					<i class="fa-solid fa-chain"></i>
+					<small class="mobile-nav-text">Links</small>
+				</a>
+			</li>
+		
+			<li>
+				<a href=/contact>
+					<i class="fa-solid fa-envelope"></i>
+					<small class="mobile-nav-text">Contact</small>
+				</a>
+			</li>
+		
+    </ul>
+  </div>
+</nav>
+
+</section>
+
+
+    <main>
+      <h1>Submit a New Event</h1>
+<p>Please fill out the form below. The event will be added to the site once approved by the admin.</p>
+<p>Here are a few templates to help you fill out the form:</p>
+<h3>Event Templates</h3>
+<div class="event-template-buttons-container">
+    <a href="
+    /events/add?name=1st Sunday Jazz Jam&start=2024-01-01T19:00:00&artists=Kelli%20Campbell&locationName=Wholly%20Grounds&address=825%20Wayne%20Ave,%20Dayton,%20OH%2045410,%20USA&websiteUrl=https://www.facebook.com/groups/666549373851752&ticketUrl=https://checkout.square.site/merchant/ML3WYYVXDQ2ZY/checkout/FJDPRT4PQY7JCC7FVIDOZFBX&imageUrl=https://trello.com/1/cards/65b234ddd8bf3784bbc933a2/attachments/65b653fe9fe9432e10f99ae7/previews/65b653ff9fe9432e10f99c6e/download/422891944_1133493891398564_8095374200702984370_n.jpg
+    " class="btn-secondary">
+  1st Sunday Jazz Jam
+</a>
+    <a href="
+    /events/add?name=Jazz @ Gather&start=2024-01-01T19:00:00&artists=&locationName=Gather&address=37 W 4th St, Dayton, OH 45402, USA&websiteUrl=&ticketUrl=&imageUrl=
+    " class="btn-secondary">
+  Jazz @ Gather
+</a></div>
+<h3>Venue Templates</h3>
+<div class="event-template-buttons-container">
+    <a href="
+    /events/add?locationName=Gather&address=37 W 4th St, Dayton, OH 45402, USA
+    " class="btn-secondary">
+  Gather
+</a>
+    <a href="
+    /events/add?locationName=The Hidden Gem Music Club&address=507 Miamisburg Centerville Rd, Dayton, OH 45459
+    " class="btn-secondary">
+  The Hidden Gem Music Club
+</a>
+    <a href="
+    /events/add?locationName=Wholly Grounds&address=825 Wayne Ave, Dayton, OH 45410
+    " class="btn-secondary">
+  Wholly Grounds
+</a></div>
+<form 
+  class="new-event-form" 
+  name="new-event-form" 
+  method="POST" 
+  action="/.netlify/functions/createEvent" 
+>
+  <input 
+    type="hidden" 
+    name="subject" 
+    value="New Event Submission" 
+  />
+  <h3>About you</h3>
+	<div class="form-field-container">
+		<label for="username">Name*: </label>
+		<input name="username" id="username" type="text" required>
+	</div>
+	<div class="form-field-container">
+		<label for="email">Email*: </label>
+		<input name="email" id="email" type="email" required>
+	</div>
+  <h3>About the event</h3>
+	<div class="form-field-container">
+		<label for="name">Title*: </label>
+		<input name="name" id="name" type="text" required>
+	</div>
+	<div class="form-field-container">
+		<label for="start">Start date/time*: </label>
+		<input name="start" id="start" type="datetime-local" required>
+	</div>
+	<div class="form-field-container">
+		<label for="hours">Duration (HH:MM): </label>
+    <div class="form-field-group-duration">
+      <input name="hours" id="hours" type="number" value="2" min="0">
+      :
+      <input 
+        name="minutes" 
+        id="minutes"
+        type="number" 
+        value="0" 
+        min="0" 
+        max="59"
+      >
+    </div>
+	</div>
+	<div class="form-field-container">
+		<label for="artists">Who is playing?*: </label>
+		<input 
+      name="artists" 
+      id="artists"
+      type="text" 
+      placeholder="Please separate names with a comma"
+      required
+    >
+	</div>
+	<div class="form-field-container">
+		<label for="locationName">Venue Name: </label>
+		<input name="locationName" id="locationName" type="text">
+	</div>
+	<div class="form-field-container">
+		<label for="address">Venue Address*: </label>
+		<input name="address" id="address" type="text" required>
+	</div>
+	<div class="form-field-container">
+		<label for="desc">Description: </label>
+		<textarea name="desc" id="desc" rows="10"></textarea>
+	</div>
+	<div class="form-field-container">
+		<label for="websiteUrl">Event website link: </label>
+		<input name="websiteUrl" id="websiteUrl" type="url">
+	</div>
+	<div class="form-field-container">
+		<label for="ticketUrl">Ticket purchase link: </label>
+		<input name="ticketUrl" id="ticketUrl" type="url">
+	</div>
+	<div class="form-field-container">
+		<label for="imageUrl">Image URL: </label>
+		<input name="imageUrl" id="imageUrl" type="url">
+	</div>
+	<input name="submit" type="submit" value="Submit" class="btn">
+</form>
+<script>
+  window.onload = function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const defaultHours = 2;
+  const defaultMinutes = 0;
+
+  const nameField = document.getElementById("username");
+  const emailField = document.getElementById("email");
+  const titleField = document.getElementById("name");
+  const startField = document.getElementById("start");
+  const hoursField = document.getElementById("hours");
+  const minutesField = document.getElementById("minutes");
+  const artistsField = document.getElementById("artists");
+  const locationNameField = document.getElementById("locationName");
+  const addressField = document.getElementById("address");
+  const descField = document.getElementById("desc");
+  const websiteUrlField = document.getElementById("websiteUrl");
+  const ticketUrlField = document.getElementById("ticketUrl");
+  const imageField = document.getElementById("imageUrl");
+
+  nameField.value = urlParams.has("username") ? urlParams.get("username") : "";
+  emailField.value = urlParams.has("email") ? urlParams.get("email") : "";
+  titleField.value = urlParams.has("name") ? urlParams.get("name") : "";
+  startField.value = urlParams.has("start") ? urlParams.get("start") : "";
+  hoursField.value = urlParams.has("hours") ? urlParams.get("hours") : `${defaultHours}`;
+  minutesField.value = urlParams.has("minutes") ? urlParams.get("minutes") : `${defaultMinutes}`;
+  artistsField.value = urlParams.has("artists") ? urlParams.get("artists") : "";
+  locationNameField.value = urlParams.has("locationName") ? urlParams.get("locationName") : "";
+  addressField.value = urlParams.has("address") ? urlParams.get("address") : "";
+  descField.value = urlParams.has("desc") ? urlParams.get("desc") : "";
+  websiteUrlField.value = urlParams.has("websiteUrl") ? urlParams.get("websiteUrl") : "";
+  ticketUrlField.value = urlParams.has("ticketUrl") ? urlParams.get("ticketUrl") : "";
+  imageField.value = urlParams.has("imageUrl") ? urlParams.get("imageUrl") : "";
+
+};
+
+</script>
+
+    </main>
+    <footer id="site-footer">
+  <div id="news-letter-signup">
+    <div>
+      <h1>Live Jazz in Your Inbox</h1>
+      <p>Get email updates of upcoming events and important announcements</p>
+    </div>
+    <div>
+      <form
+  action="https://buttondown.email/api/emails/embed-subscribe/livejazzdayton"
+  method="post"
+  target="popupwindow"
+  onsubmit="window.open('https://buttondown.email/livejazzdayton', 'popupwindow')"
+  class="newsletter-signup-form"
+>
+  <div class="input-group">
+    <label for="bd-name">Name</label>
+    <input type="text" name="metadata__name" id="bd-Name" class="input" required>
+  </div>
+  <div class="input-group">
+    <label for="bd-email">Email</label>
+    <input type="email" name="email" id="bd-email" class="input" required/>
+  </div>
+  <input type="submit" value="Subscribe" class="btn"/>
+</form>
+
+    </div>
+  </div>
+  <div id="footer-container">
+    <small>© 2022 Shohei Shibata</small>
+    <div class="footer-link-logos-container">
+      <a class="footer-link-logos" href="https://github.com/shohei-shibata/livejazzdayton">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a class="footer-link-logos" href="https://www.linkedin.com/in/shohei-shibata-53867a41/">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a class="footer-link-logos" href="https://www.upwork.com/freelancers/~0151a5896633235bcc">
+        <iconify-icon icon="simple-icons:upwork"></iconify-icon>
+      </a>
+
+    </div>
+  </div>
+</footer>
+
+  </body> 
+  <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Rubik+Dirt&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/d2a533daa7.js" crossorigin="anonymous"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+  <script src="/assets/clipboard.min.js"></script>
+  <script src="/assets/clip.js"></script>
+</html>
