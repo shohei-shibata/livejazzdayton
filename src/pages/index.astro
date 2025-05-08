@@ -38,7 +38,7 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     </div>
   </section>
   <section>
-    <h1 class="section-title">News</h1>
+    { allNews.length > 0 && <h1 class="section-title">News</h1> }
     {
       allNews.map((news) => (
         <div class="news-item-container">
