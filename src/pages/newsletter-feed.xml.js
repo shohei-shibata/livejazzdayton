@@ -17,7 +17,7 @@ const eventListing = allEvents.map(
 
 
 const newsletterContent = `
-<p>Hey there! This is the ${getDateSlug(pubDate)} edition of the Live Jazz Dayton Newsletter.</p>
+<p>Hey there! This is the ${getFullDateString(pubDate)} edition of the Live Jazz Dayton Newsletter.</p>
 <p>Here's the list of upcoming live jazz events in and around Dayton.</p>
 <h2>Upcoming Events</h2>
 ${eventListing.join("")}
