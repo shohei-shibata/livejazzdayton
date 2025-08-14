@@ -9,7 +9,7 @@ import sanitizeHtml from "sanitize-html";
 import { getAllFutureEvents } from "../utils/trello";
 
 const allEvents = await getAllFutureEvents();
-const limit = 5;
+const limit = 10;
 allEvents.splice(limit);
 const pubDate = rssPubDate();
 const bdUrl = `https://buttondown.email/livejazzdayton/archive/live-jazz-dayton-newsletter-${getDateSlug(pubDate)}`;
