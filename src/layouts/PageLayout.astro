@@ -1,11 +1,14 @@
 ---
-import Layout from './Layout.astro';
+import Layout from "./Layout.astro";
 
 const { title } = Astro.props;
 ---
+
 <Layout title={title}>
-  <section>
+  <div class="page-banner">
     <h1 class="section-title">{title}</h1>
+  </div>
+  <section>
     <slot />
   </section>
 </Layout>

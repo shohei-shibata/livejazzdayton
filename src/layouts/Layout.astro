@@ -91,6 +91,7 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio";
     --font-text: "Inter", sans-serif;
 
     --width-body: 900px;
+    --width-md: 700px;
     --width-text-content: 700px;
     --main-nav-height: 100px;
     --mobile-nav-height: 75px;
@@ -100,6 +101,7 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio";
     --black-fade-40: rgba(0, 0, 0, 0.4);
     --grey-90: #16151a;
     --grey-50: #555;
+    --grey-30: #e8e8e8;
     --grey-20: #ededed;
     --black: #040404;
     --white: #ffffff;
@@ -110,6 +112,7 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio";
     --background-color-primary: var(--grey-20);
     --background-color-secondary: var(--grey-50);
     --background-color-code: #333;
+    --background-color-banner: var(--grey-30);
     --color-border: #aaa;
     --color-cards-bg: #fff;
     --color-cards-shadow: #ddd;
@@ -171,6 +174,7 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio";
     --background-color-secondary: #ddd;
     --background-color-code: #333;
     --background-color-card: #1c1a20;
+    --background-color-banner: var(--black);
     --color-border: var(--grey-90);
     --color-cards-bg: #fff;
     --color-cards-shadow: #ddd;
@@ -218,10 +222,20 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio";
   button:hover {
     cursor: pointer;
   }
+  .page-banner {
+    background-color: var(--background-color-banner);
+    padding: 100px 0;
+  }
+  .page-banner h1 {
+    margin: 0 auto;
+  }
   section {
     margin: var(--space-3xl) auto;
     padding: var(--space-lg) var(--space-lg);
     max-width: var(--width-body);
+  }
+  .section-markdown {
+    max-width: var(--width-md);
   }
   .section-title {
     font-size: var(--text-3xl);
@@ -229,7 +243,7 @@ const siteDescription = "Discover amazing live jazz events in Dayton, Ohio";
     margin-bottom: var(--space-3xl);
   }
   p {
-    line-height: var(--text-2xl);
+    line-height: var(--text-3xl);
     font-size: var(--text-xl);
   }
   .logo {
