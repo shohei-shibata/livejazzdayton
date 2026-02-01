@@ -4,8 +4,16 @@ import Layout from './Layout.astro';
 const { title } = Astro.props?.frontmatter;
 ---
 <Layout title={title}>
-  <section>
+  <div class="page-banner">
     <h1 class="section-title">{title}</h1>
+  </div>
+  <section class="section-markdown">
     <slot />
   </section>
 </Layout>
+
+<style is:global>
+  .section-markdown img {
+    width: 100%;
+  }
+</style>
