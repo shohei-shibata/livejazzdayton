@@ -38,13 +38,11 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
     </div>
   </section>
   <section>
-    { allNews.length > 0 && <h1 class="section-title">News</h1> }
     {
       allNews.map((news) => (
         <div class="news-item-container">
           <div>
             <h2 class="news-title">{news.data.title}</h2>
-            <p class="news-date">{getShortDateString(news.data.publishDate)}</p>
           </div>
           <div class="news-body" set:html={markdownToHtml(news.body)} />
         </div>
@@ -53,19 +51,19 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
   </section>
   <section>
     <h1 class="section-title">Upcoming Events</h1>
-    <EventListing limit={3} />
+    <EventListing limit={5} />
     <div class="btn-container">
       <a class="btn-sm" href="/events">View More</a>
     </div>
   </section>
-  <section>
+<!--<section>
     <h1 class="section-title">Musicians</h1>
     <LinkCardList data={allMusicians} type="musician"/>
   </section>
   <section>
     <h1 class="section-title">Venues</h1>
     <LinkCardList data={allVenues} type="venue"/>
-  </section>
+  </section> -->  
 </Layout>
 
 <style>
@@ -104,17 +102,19 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
   }
   .news-item-container {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 1fr;
     gap: var(--space-xl);
     margin: auto;
     background-color: var(--background-color-card);
     border-radius: var(--radius-md);
-    padding: var(--space-2xl);
+    padding: var(--space-2xl) 35px;
     color: var(--color-text-primary);
   }
   .news-title {
     margin-bottom: 0;
     font-family: var(--font-text);
+    text-transform: capitalize;
+    text-align: center;
   }
   .news-date {
     font-size: var(--text-sm);
