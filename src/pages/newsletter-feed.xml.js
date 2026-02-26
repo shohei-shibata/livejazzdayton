@@ -16,8 +16,7 @@ const bdUrl = `https://buttondown.email/livejazzdayton/archive/live-jazz-dayton-
 const eventListing = allEvents.map(
   (event) =>
     `<h3><a href="https://livejazzdayton.com/events/${event.slug}">${event.name}</a></h3>
-      <p>${getFullDateString(event.start)} ${getTimeString(event.start)} at ${event.locationName}</p>
-    <hr/>`
+      <p>${getFullDateString(event.start)} ${getTimeString(event.start)} at ${event.locationName}</p>`
 );
 
 const newsletterContent = `
@@ -27,8 +26,10 @@ const newsletterContent = `
   day: "numeric",
 })} edition of the Live Jazz Dayton Newsletter.</p>
 <p>Here's the list of jazz events you can look forward to this weekend!</p>
+<hr/>
 <h2>Upcoming Events</h2>
 ${eventListing.join("")}
+<hr/>
 <p>Don't forget to check out <a href="https://livejazzdayton.com/events">https://livejazzdayton.com/events/</a> for the full listing.</p>
 <p>That's all for now. Have a wonderful weekend!</p>
 <br/>
