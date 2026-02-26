@@ -26,12 +26,10 @@ const newsletterContent = `
   month: "long",
   day: "numeric",
 })} edition of the Live Jazz Dayton Newsletter.</p>
-<p>Here's the list of upcoming live jazz events in and around Dayton.</p>
+<p>Here's the list of jazz events you can look forward to this weekend!</p>
 <h2>Upcoming Events</h2>
 ${eventListing.join("")}
 <p>Don't forget to check out <a href="https://livejazzdayton.com/events">https://livejazzdayton.com/events/</a> for the full listing.</p>
-<p>Do you know of someone who may also enjoy receiving this newsletter? Then please forward this email to them. They can sign up through the "subscribe" link below.</p>
-<p>Finally, please consider supporting my work! You can make a donation via <a href="https://buymeacoffee.com/shohei_shibata">Buy Me A Coffee</a>. It would be very much appreciated!</p>
 <p>That's all for now. Have a wonderful weekend!</p>
 <br/>
 <p>Take care,</p>

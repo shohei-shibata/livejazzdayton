@@ -22,7 +22,7 @@
     "markdown-it": "^14.1.0",
     "marked": "^15.0.0",
     "moment-timezone": "^0.5.46",
-    "netlify-cli": "^23.0.0",
+    "netlify-cli": "^23.15.1",
     "node-fetch": "^3.3.2",
     "sanitize-html": "^2.13.1",
     "slugify": "^1.6.6",
