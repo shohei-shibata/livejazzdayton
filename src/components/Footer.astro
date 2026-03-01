@@ -1,6 +1,6 @@
 ---
-import { Icon } from "astro-icon/components"
-const thisYear = new Date().getFullYear()
+import { Icon } from "astro-icon/components";
+const thisYear = new Date().getFullYear();
 const pathname = new URL(Astro.request.url).pathname;
 
 const links = [
@@ -29,6 +29,10 @@ const links = [
     url: "/contact",
     icon: "contact",
   },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/livejazzdayton/",
+  },
 ];
 ---
 
@@ -52,15 +56,32 @@ const links = [
   </nav>
   <div class="footer-links">
     <ul>
-      <li class="hide-on-mobile">Find me online: </li>
-      <li><a href="https://shoheishibata.com" target="_blank"><Icon class="footer-link-icon" name="website"/></a></li>
-      <li><a href="https://github.com/shohei-shibata" target="_blank"><Icon class="footer-link-icon" name="github"/></a></li>
-      <li><a href="https://www.linkedin.com/in/shohei-shibata-53867a41/" target="_blank"><Icon class="footer-link-icon" name="linkedin"/></a></li>
-      <li><a href="https://buymeacoffee.com/shohei_shibata" target="_blank"><Icon class="footer-link-icon" name="bmc-logo"/></a></li>
+      <li class="hide-on-mobile">Find me online:</li>
+      <li>
+        <a href="https://shoheishibata.com" target="_blank"
+          ><Icon class="footer-link-icon" name="website" /></a>
+      </li>
+      <li>
+        <a href="https://github.com/shohei-shibata" target="_blank"
+          ><Icon class="footer-link-icon" name="github" /></a>
+      </li>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/shohei-shibata-53867a41/"
+          target="_blank"><Icon class="footer-link-icon" name="linkedin" /></a>
+      </li>
+      <li>
+        <a href="https://buymeacoffee.com/shohei_shibata" target="_blank"
+          ><Icon class="footer-link-icon" name="bmc-logo" /></a>
+      </li>
     </ul>
   </div>
   <div class="credits">
-    <div>© {thisYear} Designed and built by <a href="https://shoheishibata.com">Shohei Shibata</a> in Dayton, Ohio <Icon name="gem"/></div>
+    <div>
+      © {thisYear} Designed and built by <a href="https://shoheishibata.com"
+        >Shohei Shibata</a
+      > in Dayton, Ohio <Icon name="gem" />
+    </div>
   </div>
 </footer>
 
@@ -97,7 +118,7 @@ const links = [
   }
   .footer a:hover,
   #footer-nav a:hover,
-  #footer-nav a[aria-current="page"]  {
+  #footer-nav a[aria-current="page"] {
     text-decoration: underline;
     color: var(--color-text-secondary);
     opacity: 1;
@@ -118,7 +139,7 @@ const links = [
   .social-icons a:hover {
     color: #888;
   }
-  
+
   #footer-nav ul {
     padding: 0 var(--space-lg);
     display: flex;
