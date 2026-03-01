@@ -67,7 +67,7 @@ const links = [
             href={link.url}
             aria-current={pathname === link.url ? "page" : "false"}
           >
-            <Icon class="nav-icon" name={link.icon} />
+            <span class="nav-link-text">{link.name}</span>
           </a>
         </li>
       ))
