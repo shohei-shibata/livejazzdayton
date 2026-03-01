@@ -37,7 +37,7 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
       <h1><span>Discover amazing</span><Icon name="live-jazz" /><span>in the Gem City</span></h1>
     </div>
   </section>
-  <section>
+  <section id="news">
     {
       allNews.map((news) => (
         <div class="news-item-container">
@@ -99,6 +99,11 @@ const allMusicians: CollectionEntry<"musician">[] = randomize(
   }
   #banner-text-overlay svg {
     margin: 0 -20px;
+  }
+  #news {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
   }
   .news-item-container {
     display: grid;
