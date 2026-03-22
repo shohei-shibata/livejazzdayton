@@ -100,7 +100,7 @@ const parseEventCard = async card => {
     artists: getCustomFieldTextById(card, customFieldId.artists),
     websiteUrl: getCustomFieldTextById(card, customFieldId.website),
     ticketsUrl: getCustomFieldTextById(card, customFieldId.tickets),
-    slug: `${getDateSlug(start)}-${slugify(card.name, {remove: /[*+~.()'"!:@]/g})}`,
+    slug: `${getDateSlug(start)}-${slugify(card.name.replace("&", "and"), {remove: /[*+~.()'"!:@]/g})}`,
     googleMapsEmbedUrl
   }
 }
